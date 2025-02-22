@@ -14,7 +14,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 useHead({
   titleTemplate: "%s - Sheldon Hart",
   link: [
