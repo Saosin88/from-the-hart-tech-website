@@ -26,12 +26,12 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ var.AWS_ROLENAME }}
-          aws-region: ${{ var.AWS_REGION }}
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ vars.AWS_ROLENAME }}
+          aws-region: ${{ vars.AWS_REGION }}
 
       - name: Sync files to S3
         run: |
-          aws s3 sync ${{ var.SOURCE_DIR }} s3://${{ var.AWS_S3_BUCKET }}/ --delete --exclude '.*git*'
+          aws s3 sync ${{ vars.SOURCE_DIR }} s3://${{ vars.AWS_S3_BUCKET }}/ --delete --exclude '.*git*'
       - name: Invalidate CloudFront Cache
         run: |
           aws cloudfront create-invalidation \
