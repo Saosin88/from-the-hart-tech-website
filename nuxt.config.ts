@@ -6,7 +6,7 @@ export default defineNuxtConfig({
   },
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
-  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/sitemap", "@nuxtjs/robots"],
+  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/sitemap"],
   future: {
     compatibilityVersion: 4,
   },
@@ -15,11 +15,5 @@ export default defineNuxtConfig({
     "/about/**": { prerender: true },
     "/blog/**": { prerender: true },
     "/projects/**": { ssr: false },
-  },
-  nitro: {
-    prerender: {
-      crawlLinks: true,
-      routes: ["/sitemap.xml", "/robots.txt"],
-    },
   },
 });
