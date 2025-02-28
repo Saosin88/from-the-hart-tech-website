@@ -1,32 +1,18 @@
 ---
-title: "Title of the page"
-
-description: "meta description of the page"
-
-keywords: "keywords"
-
-robots: "index, follow"
-
-author: "Sheldon Hart"
-
-ogTitle: "This is an OpenGraph title"
-
-ogDescription: "This is the OpenGraph description"
-
-ogImage: "/logo/from-the-hart.png"
-
-ogUrl: "https://www.fromtheharttech.com/blog/first"
-
-twitterTitle: "Twitter Title"
-
-twitterDescription: "Twitter Description"
-
-twitterImage: "/logo/from-the-hart.png"
-
-twitterCard: "summary_large_image"
-
+title: Title of the page
+description: meta description of the page
+keywords: keywords
+robots: index, follow
+author: Sheldon Hart
+ogTitle: This is an OpenGraph title
+ogDescription: This is the OpenGraph description
+ogImage: /logo/from-the-hart.png
+ogUrl: https://www.fromtheharttech.com/blog/first
+twitterTitle: Twitter Title
+twitterDescription: Twitter Description
+twitterImage: /logo/from-the-hart.png
+twitterCard: summary_large_image
 twitterSite: "@sheldonhart"
-
 twitterCreator: "@sheldonhart"
 ---
 
@@ -34,7 +20,7 @@ twitterCreator: "@sheldonhart"
 
 ## Introduction
 
-This is some text. _This is italic_.
+This is some text. *This is italic*.
 
 ## Second Part
 
@@ -49,18 +35,19 @@ Unordered lists:
 
 Numbered lists:
 
-1.  Pay taxes
-2.  Die
+1. Pay taxes
+2. Die
 
 Todo list:
 
-- [ ] Buy groceries
-- [ ] Pay bills
+- Buy groceries
+- Pay bills
 
 Tables:
-| Name | Surname |
-|--|--|
-| Sheldon | Hart |
+
+| Name    | Surname |
+| ------- | ------- |
+| Sheldon | Hart    |
 
 ```html
 <html>

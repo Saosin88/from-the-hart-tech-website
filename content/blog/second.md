@@ -1,32 +1,18 @@
 ---
-title: "Title of the second page"
-
-description: "meta description of the second page"
-
-keywords: "Technology"
-
-robots: "index, follow"
-
-author: "Sheldon Hart"
-
-ogTitle: "This is an OpenGraph title"
-
-ogDescription: "This is the OpenGraph description"
-
-ogImage: "/logo/from-the-hart.png"
-
-ogUrl: "https://www.fromtheharttech.com/blog/second"
-
-twitterTitle: "Twitter Title"
-
-twitterDescription: "Twitter Description"
-
-twitterImage: "/logo/from-the-hart.png"
-
-twitterCard: "summary_large_image"
-
+title: Title of the page
+description: meta description of the page
+keywords: Technology
+robots: index, follow
+author: Sheldon Hart
+ogTitle: This is an OpenGraph title
+ogDescription: This is the OpenGraph description
+ogImage: /logo/from-the-hart.png
+ogUrl: https://www.fromtheharttech.com/blog/second
+twitterTitle: Twitter Title
+twitterDescription: Twitter Description
+twitterImage: /logo/from-the-hart.png
+twitterCard: summary_large_image
 twitterSite: "@fromtheharttech"
-
 twitterCreator: "@sheldonhart"
 ---
 
@@ -52,7 +38,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 **Bold Text Example**
 
-_Italic Text Example_
+*Italic Text Example*
 
 > Blockquote Example: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
@@ -75,6 +61,8 @@ def hello_world():
 ## Conclusion
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada.
+
+![Placeholder Image](https://via.placeholder.com/150)
 
 For more information, visit [example.com](https://www.example.com).
 
