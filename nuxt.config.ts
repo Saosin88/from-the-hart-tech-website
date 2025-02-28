@@ -16,7 +16,12 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   // Modules
-  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/sitemap", "@nuxtjs/color-mode"],
+  modules: [
+    "@nuxtjs/tailwindcss",
+    "@nuxtjs/sitemap",
+    "@nuxtjs/color-mode",
+    "@nuxt/content",
+  ],
 
   // Color Mode Configuration
   colorMode: {
