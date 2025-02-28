@@ -1,7 +1,7 @@
 ---
-title: "Title of the page"
+title: "Title of the second page"
 
-description: "meta description of the page"
+description: "meta description of the second page"
 
 keywords: "Technology"
 
