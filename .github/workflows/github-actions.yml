@@ -37,7 +37,7 @@ jobs:
         run: |
           aws s3 sync ${{ vars.SOURCE_DIR }} s3://${{ vars.AWS_S3_BUCKET }}/ \
             --delete --exclude '.*git*' \
-            --cache-control "public, s-maxage=2629800, max-age=6"
+            --cache-control "public, s-maxage=2629800, max-age=3600"
       - name: Invalidate CloudFront Cache
         run: |
           aws cloudfront create-invalidation \
