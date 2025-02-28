@@ -21,15 +21,3 @@
     </main>
   </div>
 </template>
-
-<script setup lang="ts">
-useHead({
-  titleTemplate: "%s - From The Hart",
-});
-</script>
-<style>
-body {
-  @apply bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300;
-  font-family: "Roboto", sans-serif;
-}
-</style>
