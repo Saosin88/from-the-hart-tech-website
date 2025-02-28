@@ -3,9 +3,9 @@ frontend:
   phases:
     preBuild:
       commands:
-        - nvm install 22
         - nvm use 22
-        - npm install
+        - corepack enable
+        - npx --yes nypm i
     build:
       commands:
         - npm run build
