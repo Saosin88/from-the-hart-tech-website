@@ -1,15 +1,29 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  // Site Information
   site: {
     url: "https://www.fromthehart.tech",
     name: "My frontend sandbox to play with tech",
   },
+
+  // Compatibility and Future Settings
   compatibilityDate: "2024-11-01",
-  devtools: { enabled: true },
-  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/sitemap"],
   future: {
     compatibilityVersion: 4,
   },
+
+  // Development Tools
+  devtools: { enabled: true },
+
+  // Modules
+  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/sitemap", "@nuxtjs/color-mode"],
+
+  // Color Mode Configuration
+  colorMode: {
+    classSuffix: "",
+  },
+
+  // Route Rules
   routeRules: {
     "/": {
       prerender: true,
