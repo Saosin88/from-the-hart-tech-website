@@ -15,7 +15,7 @@ ogTitle: "List of Blog Posts"
 
 ogDescription: "List of all my blog posts"
 
-ogImage: "/logo/from-the-hart.png"
+ogImage: "https://www.fromthehart.tech/logo/from-the-hart.png"
 
 ogUrl: "https://www.fromtheharttech.com/blog"
 
@@ -23,7 +23,7 @@ twitterTitle: "List of Blog Posts"
 
 twitterDescription: "List of all my blog posts"
 
-twitterImage: "/logo/from-the-hart.png"
+twitterImage: "https://www.fromthehart.tech/logo/from-the-hart.png"
 
 twitterCard: "summary_large_image"
 
