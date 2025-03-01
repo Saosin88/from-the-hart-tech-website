@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 useHead({
   titleTemplate: "%s - From The Hart",
   htmlAttrs: {

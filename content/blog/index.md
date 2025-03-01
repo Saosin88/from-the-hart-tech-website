@@ -5,6 +5,8 @@ description: "List of all my blog posts"
 
 date: "2025-02-28 12:00:00"
 
+toc: false
+
 keywords: "blog, articles, posts, index, list, table of contents"
 
 robots: "index, follow"

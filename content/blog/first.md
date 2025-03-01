@@ -5,6 +5,8 @@ description: "Meta description of the first blog post"
 
 date: "2025-02-28 12:00:00"
 
+toc: true
+
 keywords: "keywords"
 
 robots: "index, follow"

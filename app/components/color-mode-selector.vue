@@ -13,31 +13,27 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 const showNextModelLabel = ref(false);
 const colorMode = useColorMode();
 
-const modes: Array<"system" | "light" | "dark"> = ["system", "light", "dark"];
+const modes = ["system", "light", "dark"];
 
-const nextModeIcons: Record<"system" | "light" | "dark", string> = {
+const nextModeIcons = {
   system: "🌓",
   light: "🌕",
   dark: "🌑",
 };
 
-const nextMode = computed<string>(() => {
-  const currentModeIndex = modes.indexOf(
-    colorMode.preference as "system" | "light" | "dark"
-  );
+const nextMode = computed(() => {
+  const currentModeIndex = modes.indexOf(colorMode.preference);
   const nextModeIndex = (currentModeIndex + 1) % modes.length;
   return modes[nextModeIndex] || "system";
 });
 
-const nextModeIcon = computed<string>(
-  () => nextModeIcons[nextMode.value as "system" | "light" | "dark"]
-);
+const nextModeIcon = computed(() => nextModeIcons[nextMode.value]);
 
-const toggleMode = (): void => {
-  colorMode.preference = nextMode.value as "system" | "light" | "dark";
+const toggleMode = () => {
+  colorMode.preference = nextMode.value;
 };
 </script>
