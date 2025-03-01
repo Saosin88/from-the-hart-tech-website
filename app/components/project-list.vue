@@ -32,8 +32,9 @@ interface Repo {
 const { error, status, data } = await useFetch<Repo[]>(
   "https://api.github.com/users/Saosin88/repos"
 );
-const pending = computed(() => status.value === "pending");
-const repos = computed(() =>
+
+const pending = computed<boolean>(() => status.value === "pending");
+const repos = computed<Repo[]>(() =>
   (data.value ?? []).sort((a, b) => b.stargazers_count - a.stargazers_count)
 );
 </script>

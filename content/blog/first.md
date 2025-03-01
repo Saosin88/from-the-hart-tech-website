@@ -1,7 +1,9 @@
 ---
-title: "Title of the page"
+title: "First Blog Bost"
 
-description: "meta description of the page"
+description: "Meta description of the first blog post"
+
+date: "2025-02-28 12:00:00"
 
 keywords: "keywords"
 
@@ -66,6 +68,20 @@ Tables:
 <html>
   <div>Hello!</div>
 </html>
+```
+
+![From-The-Hart](/logo/from-the-hart.png)
+
+```javascript
+const { createApp } = Vue;
+const app = createApp({
+  data() {
+    return {
+      message: "Hello Vue 3!",
+    };
+  },
+});
+app.mount("#app");
 ```
 
 [Go to the second article](/blog/second)

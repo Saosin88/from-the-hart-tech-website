@@ -1,4 +1,13 @@
 {
   // https://nuxt.com/docs/guide/concepts/typescript
-  "extends": "./.nuxt/tsconfig.json"
+  "extends": "./.nuxt/tsconfig.json",
+  "compilerOptions": {
+    "target": "esnext", // Specify ECMAScript target version
+    "module": "esnext", // Specify module code generation
+    "strict": true, // Enable all strict type-checking options
+    "moduleResolution": "node", // Specify module resolution strategy
+    "esModuleInterop": true, // Enables emit interoperability between CommonJS and ES Modules
+    "skipLibCheck": true, // Skip type checking of declaration files
+    "forceConsistentCasingInFileNames": true // Disallow inconsistently-cased references to the same file
+  }
 }

@@ -1,7 +1,9 @@
 ---
-title: "Title of the second page"
+title: "Second Blog Bost"
 
-description: "meta description of the second page"
+description: "Meta description of the first blog post"
+
+date: "2025-02-28 22:00:00"
 
 keywords: "Technology"
 
