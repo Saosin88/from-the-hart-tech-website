@@ -23,6 +23,19 @@ export default defineNuxtConfig({
     "@nuxt/content",
   ],
 
+  content: {
+    build: {
+      markdown: {
+        highlight: {
+          theme: {
+            default: "min-light",
+            dark: "min-dark",
+          },
+        },
+      },
+    },
+  },
+
   // Color Mode Configuration
   colorMode: {
     classSuffix: "",

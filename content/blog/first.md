@@ -1,18 +1,34 @@
 ---
-title: Title of the page
-description: meta description of the page
-keywords: keywords
-robots: index, follow
-author: Sheldon Hart
-ogTitle: This is an OpenGraph title
-ogDescription: This is the OpenGraph description
-ogImage: /logo/from-the-hart.png
-ogUrl: https://www.fromtheharttech.com/blog/first
-twitterTitle: Twitter Title
-twitterDescription: Twitter Description
-twitterImage: /logo/from-the-hart.png
-twitterCard: summary_large_image
+title: "First Blog Bost"
+
+description: "Meta description of the first blog post"
+
+date: "2025-02-28 12:00:00"
+
+keywords: "keywords"
+
+robots: "index, follow"
+
+author: "Sheldon Hart"
+
+ogTitle: "This is an OpenGraph title"
+
+ogDescription: "This is the OpenGraph description"
+
+ogImage: "/logo/from-the-hart.png"
+
+ogUrl: "https://www.fromtheharttech.com/blog/first"
+
+twitterTitle: "Twitter Title"
+
+twitterDescription: "Twitter Description"
+
+twitterImage: "/logo/from-the-hart.png"
+
+twitterCard: "summary_large_image"
+
 twitterSite: "@sheldonhart"
+
 twitterCreator: "@sheldonhart"
 ---
 
@@ -53,6 +69,20 @@ Tables:
 <html>
   <div>Hello!</div>
 </html>
+```
+
+![From-The-Hart](/logo/from-the-hart.png)
+
+```javascript
+const { createApp } = Vue;
+const app = createApp({
+  data() {
+    return {
+      message: "Hello Vue 3!",
+    };
+  },
+});
+app.mount("#app");
 ```
 
 [Go to the second article](/blog/second)

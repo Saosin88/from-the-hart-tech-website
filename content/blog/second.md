@@ -1,18 +1,34 @@
 ---
-title: Title of the page
-description: meta description of the page
-keywords: Technology
-robots: index, follow
-author: Sheldon Hart
-ogTitle: This is an OpenGraph title
-ogDescription: This is the OpenGraph description
-ogImage: /logo/from-the-hart.png
-ogUrl: https://www.fromtheharttech.com/blog/second
-twitterTitle: Twitter Title
-twitterDescription: Twitter Description
-twitterImage: /logo/from-the-hart.png
-twitterCard: summary_large_image
+title: "Second Blog Bost"
+
+description: "Meta description of the first blog post"
+
+date: "2025-02-28 22:00:00"
+
+keywords: "Technology"
+
+robots: "index, follow"
+
+author: "Sheldon Hart"
+
+ogTitle: "This is an OpenGraph title"
+
+ogDescription: "This is the OpenGraph description"
+
+ogImage: "/logo/from-the-hart.png"
+
+ogUrl: "https://www.fromtheharttech.com/blog/second"
+
+twitterTitle: "Twitter Title"
+
+twitterDescription: "Twitter Description"
+
+twitterImage: "/logo/from-the-hart.png"
+
+twitterCard: "summary_large_image"
+
 twitterSite: "@fromtheharttech"
+
 twitterCreator: "@sheldonhart"
 ---
 
