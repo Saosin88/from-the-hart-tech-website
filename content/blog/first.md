@@ -36,7 +36,7 @@ twitterCreator: "@sheldonhart"
 
 ## Introduction
 
-This is some text. _This is italic_.
+This is some text. *This is italic*.
 
 ## Second Part
 
@@ -51,18 +51,19 @@ Unordered lists:
 
 Numbered lists:
 
-1.  Pay taxes
-2.  Die
+1. Pay taxes
+2. Die
 
 Todo list:
 
-- [ ] Buy groceries
-- [ ] Pay bills
+- Buy groceries
+- Pay bills
 
 Tables:
-| Name | Surname |
-|--|--|
-| Sheldon | Hart |
+
+| Name    | Surname |
+| ------- | ------- |
+| Sheldon | Hart    |
 
 ```html
 <html>

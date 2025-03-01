@@ -54,7 +54,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 **Bold Text Example**
 
-_Italic Text Example_
+*Italic Text Example*
 
 > Blockquote Example: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
@@ -77,6 +77,8 @@ def hello_world():
 ## Conclusion
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada.
+
+![Placeholder Image](https://via.placeholder.com/150)
 
 For more information, visit [example.com](https://www.example.com).
 
