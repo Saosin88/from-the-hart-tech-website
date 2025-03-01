@@ -20,21 +20,13 @@
   </section>
 </template>
 
-<script setup lang="ts">
-interface Repo {
-  id: number;
-  name: string;
-  description: string;
-  stargazers_count: number;
-  html_url: string;
-}
-
-const { error, status, data } = await useFetch<Repo[]>(
+<script setup>
+const { error, status, data } = await useFetch(
   "https://api.github.com/users/Saosin88/repos"
 );
 
-const pending = computed<boolean>(() => status.value === "pending");
-const repos = computed<Repo[]>(() =>
+const pending = computed(() => status.value === "pending");
+const repos = computed(() =>
   (data.value ?? []).sort((a, b) => b.stargazers_count - a.stargazers_count)
 );
 </script>

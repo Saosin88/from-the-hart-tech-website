@@ -24,15 +24,7 @@
   </section>
 </template>
 
-<script setup lang="ts">
-interface BlogPost {
-  path: string;
-  title: string;
-  date: string;
-  displayYear?: boolean;
-  year?: number;
-}
-
+<script setup>
 const { data } = await useAsyncData("blog-list", () =>
   queryCollection("blog")
     .where("path", "<>", "/blog")
@@ -41,21 +33,20 @@ const { data } = await useAsyncData("blog-list", () =>
     .all()
 );
 
-const posts = computed<BlogPost[]>(() => {
+const posts = computed(() => {
   if (!data.value) {
     return [];
   }
 
-  const result: BlogPost[] = [];
+  const result = [];
   let lastYear = 0;
 
   for (const post of data.value) {
-    const blogPost = post as unknown as BlogPost;
-    const year = new Date(blogPost.date).getFullYear();
+    const year = new Date(post.date).getFullYear();
     const displayYear = year !== lastYear;
-    blogPost.displayYear = displayYear;
-    blogPost.year = year;
-    result.push(blogPost);
+    post.displayYear = displayYear;
+    post.year = year;
+    result.push(post);
     lastYear = year;
   }
 
