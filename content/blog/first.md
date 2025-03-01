@@ -15,7 +15,7 @@ ogTitle: "This is an OpenGraph title"
 
 ogDescription: "This is the OpenGraph description"
 
-ogImage: "/logo/from-the-hart.png"
+ogImage: "https://www.fromthehart.tech/logo/from-the-hart.png"
 
 ogUrl: "https://www.fromtheharttech.com/blog/first"
 
@@ -23,7 +23,7 @@ twitterTitle: "Twitter Title"
 
 twitterDescription: "Twitter Description"
 
-twitterImage: "/logo/from-the-hart.png"
+twitterImage: "https://www.fromthehart.tech/logo/from-the-hart.png"
 
 twitterCard: "summary_large_image"
 
@@ -36,7 +36,7 @@ twitterCreator: "@sheldonhart"
 
 ## Introduction
 
-This is some text. *This is italic*.
+This is some text. _This is italic_.
 
 ## Second Part
 
