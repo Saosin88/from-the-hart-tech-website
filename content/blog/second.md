@@ -80,8 +80,6 @@ def hello_world():
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada.
 
-![Placeholder Image](https://via.placeholder.com/150)
-
 For more information, visit [example.com](https://www.example.com).
 
 | Syntax    | Description |
