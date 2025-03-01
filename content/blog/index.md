@@ -1,5 +1,5 @@
 ---
-title: "List of Blog Posts"
+title: "Blog"
 
 description: "List of all my blog posts"
 

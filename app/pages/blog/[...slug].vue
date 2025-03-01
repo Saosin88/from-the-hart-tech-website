@@ -1,30 +1,39 @@
 <template>
-  <article
-    v-if="post"
-    class="prose dark:prose-invert max-w-none prose-pre:bg-white dark:prose-pre:bg-gray-800 prose-pre:text-gray-700 dark:prose-pre:text-gray-300">
-    <div class="grid grid-cols-6 gap-16">
-      <div :class="{ 'col-span-4': post.toc, 'col-span-6': !post.toc }">
-        <ContentRenderer v-if="post" :value="post" />
+  <template v-if="post">
+    <article
+      class="prose dark:prose-invert max-w-none prose-pre:bg-white dark:prose-pre:bg-gray-800 prose-pre:text-gray-700 dark:prose-pre:text-gray-300">
+      <div class="grid grid-cols-6 gap-16">
+        <div
+          :class="{
+            'col-span-6 md:col-span-4': post.toc,
+            'col-span-6': !post.toc,
+          }">
+          <ContentRenderer :value="post" />
+        </div>
+        <div class="hidden md:col-span-2 md:block not-prose" v-if="post.toc">
+          <aside class="sticky top-8">
+            <div class="font-semibold mb-2">Table of Contents</div>
+            <nav>
+              <TocLinks :links="post.body.toc.links" :active-id="activeId" />
+            </nav>
+          </aside>
+        </div>
       </div>
-      <div class="col-span-2 not-prose" v-if="post.toc">
-        <aside class="sticky top-8">
-          <div class="font-semibold mb-2">Table of Contents</div>
-          <nav>
-            <TocLinks
-              :links="post.body.toc.links"
-              :level="1"
-              :active-id="activeId" />
-          </nav>
-        </aside>
-      </div>
+    </article>
+  </template>
+  <template v-else>
+    <div class="empty-page">
+      <h1>Page Not Found</h1>
+      <p>Oops! The content you're looking for doesn't exist.</p>
+      <NuxtLink to="/blog">Go back to Blog list</NuxtLink>
     </div>
-  </article>
+  </template>
 </template>
 
 <script setup>
 const route = useRoute();
 const { data: post } = await useAsyncData(route.path, () =>
-  queryCollection("blog").path(route.path).order("date", "DESC").first()
+  queryCollection("blog").path(route.path).first()
 );
 
 const activeId = ref(null);

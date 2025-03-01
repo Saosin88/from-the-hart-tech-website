@@ -1,37 +1,52 @@
 <template>
-  <section class="not-prose font-mono">
-    <div class="column text-gray-400 text-sm">
-      <div>date</div>
-      <div>title</div>
-    </div>
+  <slot :posts="posts">
+    <section class="not-prose font-mono">
+      <div class="column text-gray-400 text-sm">
+        <div>date</div>
+        <div>title</div>
+      </div>
 
-    <ul>
-      <li v-for="post in posts" :key="post.path">
-        <NuxtLink
-          :to="post.path"
-          class="column hover:bg-gray-100 dark:hover:bg-gray-800">
-          <div
-            :class="{
-              'text-white dark:text-gray-900': !post.displayYear,
-              'text-gray-400 dark:text-gray-500': post.displayYear,
-            }">
-            {{ post.year }}
-          </div>
-          <div>{{ post.title }}</div>
-        </NuxtLink>
-      </li>
-    </ul>
-  </section>
+      <ul>
+        <li v-for="post in posts" :key="post.path">
+          <NuxtLink
+            :to="post.path"
+            class="column group hover:bg-gray-100 dark:hover:bg-gray-800">
+            <div
+              :class="{
+                'text-white group-hover:text-gray-100 dark:text-gray-900 dark:group-hover:text-gray-800':
+                  !post.displayYear,
+                'text-gray-400 dark:text-gray-500': post.displayYear,
+              }">
+              {{ post.year }}
+            </div>
+            <div>{{ post.title }}</div>
+          </NuxtLink>
+        </li>
+      </ul>
+    </section>
+  </slot>
 </template>
 
 <script setup>
-const { data } = await useAsyncData("blog-list", () =>
-  queryCollection("blog")
+const props = defineProps({
+  limit: {
+    type: Number,
+    default: null,
+  },
+});
+
+const { data } = await useAsyncData("blog-list", () => {
+  const query = queryCollection("blog")
     .where("path", "<>", "/blog")
     .select("path", "title", "date")
-    .order("date", "DESC")
-    .all()
-);
+    .order("date", "DESC");
+
+  if (props.limit) {
+    query.limit(props.limit);
+  }
+
+  return query.all();
+});
 
 const posts = computed(() => {
   if (!data.value) {
