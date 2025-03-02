@@ -35,11 +35,9 @@ Hello! I'm **Sheldon Hart**, a solutions architect with a passion for technology
 - **AWS Certified Solutions Architect – Associate**
   - **Institution**: Amazon Web Services (AWS)
   - **Credential**: [Link](https://www.credly.com/badges/af7dd9e8-000e-442a-ae44-7728edaae9f3/public_url)
-
 - **TOGAF® Certification Program**
   - **Institution**: The Open Group
   - **Credential**: [Link](https://www.credly.com/badges/4cac01a9-6796-42a1-b28d-d01a9aa0416b/public_url)
-
 - **Digital Transformation: Platform Strategies for Success**
   - **Institution**: Emeritus
   - **Credential**: [Link](https://certificates.emeritus.org/d775348b-544f-466c-9986-1fbb71a4fb91)
@@ -47,15 +45,12 @@ Hello! I'm **Sheldon Hart**, a solutions architect with a passion for technology
 ### Professional Experience
 
 - **FNB (First National Bank)**
-
   - **Role**: Solutions Architect
-  - **Duration**: Jan 2022 - Present
-
+    - **Duration**: Jan 2022 - Present
   - **Role**: Systems Architect
-  - **Duration**: Jul 2016 - Dec 2021
-
+    - **Duration**: Jul 2016 - Dec 2021
   - **Role**: Java Developer
-  - **Duration**: Jan 2011 - Jun 2016
+    - **Duration**: Jan 2011 - Jun 2016
 
 ## Skills
 
@@ -72,8 +67,6 @@ Hello! I'm **Sheldon Hart**, a solutions architect with a passion for technology
 - **Description**: Developed Banking App.
 
 ## Hobbies and Interests
-
-![Hiking](https://www.fromthehart.tech/images/hiking.jpg)
 
 When I'm not working or being a parent to two amazing girls, I enjoy gaming, reading books and comics and watching a variety of shows, movies and anime.
 
