@@ -37,6 +37,9 @@ export default defineNuxtConfig({
         },
       },
     },
+    preview: {
+      api: "https://api.nuxt.studio",
+    },
   },
 
   // Color Mode Configuration
