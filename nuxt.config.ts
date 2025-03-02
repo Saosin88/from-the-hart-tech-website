@@ -56,8 +56,7 @@ export default defineNuxtConfig({
       prerender: true,
     },
     "/projects/**": {
-      // ssr: false,
-      prerender: true,
+      ssr: false,
     },
   },
 });
