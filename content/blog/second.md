@@ -1,36 +1,20 @@
 ---
-title: "Second Blog Bost"
-
-description: "Meta description of the first blog post"
-
-date: "2025-02-28 22:00:00"
-
+title: Second Blog Bost
+description: Meta description of the first blog post
+date: 2025-02-28 22:00:00
 toc: true
-
-keywords: "Technology"
-
-robots: "index, follow"
-
-author: "Sheldon Hart"
-
-ogTitle: "This is an OpenGraph title"
-
-ogDescription: "This is the OpenGraph description"
-
-ogImage: "https://www.fromthehart.tech/logo/from-the-hart.png"
-
-ogUrl: "https://www.fromtheharttech.com/blog/second"
-
-twitterTitle: "Twitter Title"
-
-twitterDescription: "Twitter Description"
-
-twitterImage: "https://www.fromthehart.tech/logo/from-the-hart.png"
-
-twitterCard: "summary_large_image"
-
+keywords: Technology
+robots: index, follow
+author: Sheldon Hart
+ogTitle: This is an OpenGraph title
+ogDescription: This is the OpenGraph description
+ogImage: https://www.fromthehart.tech/logo/from-the-hart.png
+ogUrl: https://www.fromtheharttech.com/blog/second
+twitterTitle: Twitter Title
+twitterDescription: Twitter Description
+twitterImage: https://www.fromthehart.tech/logo/from-the-hart.png
+twitterCard: summary_large_image
 twitterSite: "@fromtheharttech"
-
 twitterCreator: "@sheldonhart"
 ---
 
@@ -56,7 +40,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 **Bold Text Example**
 
-_Italic Text Example_
+*Italic Text Example*
 
 > Blockquote Example: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
