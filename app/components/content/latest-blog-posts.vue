@@ -2,7 +2,7 @@
   <BlogPosts :limit="limit" />
   <!-- <BlogPosts v-slot="{ posts }" :limit="limit">
     <div v-for="post in posts" :key="post.id">
-      <NuxtLink :to="post.path">{{ post.title }}</NuxtLink>
+      <ULink :to="post.path">{{ post.title }}</ULink>
     </div>
   </BlogPosts> -->
 </template>

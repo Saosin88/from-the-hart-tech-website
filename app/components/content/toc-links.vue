@@ -1,14 +1,15 @@
 <template>
   <ul>
     <li v-for="link in links" :key="link.id">
-      <NuxtLink
+      <ULink
         :to="{ path: route.path, hash: `#${link.id}` }"
+        :active="false"
         :class="{
           'ml-4': level,
           'text-green-600 dark:text-green-400': activeId === link.id,
         }">
         {{ link.text }}
-      </NuxtLink>
+      </ULink>
       <TocLinks
         :links="link.children"
         :level="level + 1"
