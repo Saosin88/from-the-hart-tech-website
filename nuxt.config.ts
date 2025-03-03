@@ -1,4 +1,3 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   // Site Information
   site: {
@@ -15,16 +14,36 @@ export default defineNuxtConfig({
   // Development Tools
   devtools: { enabled: true },
 
-  app: {
-    pageTransition: { name: "page", mode: "out-in" },
-  },
   // Modules
-  modules: [
-    "@nuxtjs/tailwindcss",
-    "@nuxtjs/sitemap",
-    "@nuxtjs/color-mode",
-    "@nuxt/content",
-  ],
+  modules: ["@nuxtjs/sitemap", "@nuxt/content", "@nuxt/ui"],
+
+  // Route Rules
+  routeRules: {
+    "/": {
+      prerender: true,
+    },
+    "/about/**": {
+      prerender: true,
+    },
+    "/blog/**": {
+      prerender: true,
+    },
+    "/projects/**": {
+      prerender: true,
+    },
+  },
+
+  css: ["~/assets/css/main.css"],
+
+  // ui: {
+  //   primary: "green",
+  //   gray: "cool",
+  // },
+
+  // Color Mode Configuration
+  // colorMode: {
+  //   classSuffix: "",
+  // },
 
   content: {
     build: {
@@ -42,24 +61,7 @@ export default defineNuxtConfig({
     },
   },
 
-  // Color Mode Configuration
-  colorMode: {
-    classSuffix: "",
-  },
-
-  // Route Rules
-  routeRules: {
-    "/": {
-      prerender: true,
-    },
-    "/about/**": {
-      prerender: true,
-    },
-    "/blog/**": {
-      prerender: true,
-    },
-    "/projects/**": {
-      prerender: true,
-    },
+  app: {
+    pageTransition: { name: "page", mode: "out-in" },
   },
 });

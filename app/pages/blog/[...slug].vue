@@ -25,7 +25,7 @@
     <div class="empty-page">
       <h1>Page Not Found</h1>
       <p>Oops! The content you're looking for doesn't exist.</p>
-      <NuxtLink to="/blog">Go back to Blog list</NuxtLink>
+      <ULink to="/blog">Go back to Blog list</ULink>
     </div>
   </template>
 </template>

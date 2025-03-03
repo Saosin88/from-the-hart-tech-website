@@ -1,0 +1,16 @@
+@import "tailwindcss" theme(static);
+@import "@nuxt/ui";
+@plugin "@tailwindcss/typography";
+
+:root {
+  --container-8xl: 90rem; /* Define the value for --container-8xl */
+  --ui-container: var(
+    --container-8xl
+  ); /* Set --ui-container to --container-8xl */
+}
+
+@media (max-width: 768px) {
+  :root {
+    --ui-container: 100%; /* Adjust the container width for smaller screens */
+  }
+}

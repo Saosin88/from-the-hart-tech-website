@@ -9,7 +9,7 @@
     <div class="empty-page">
       <h1>Page Not Found</h1>
       <p>Oops! The Page you're looking for doesn't exist.</p>
-      <NuxtLink to="/">Go back home</NuxtLink>
+      <ULink to="/">Go back home</ULink>
     </div>
   </template>
 </template>
