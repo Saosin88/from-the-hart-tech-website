@@ -1,8 +1,10 @@
 <template>
   <div>
-    <NuxtLayout>
-      <NuxtPage />
-    </NuxtLayout>
+    <UApp>
+      <NuxtLayout>
+        <NuxtPage />
+      </NuxtLayout>
+    </UApp>
   </div>
 </template>
 
@@ -46,8 +48,6 @@ useSeoMeta({
 <style>
 body {
   @apply bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300;
-  font-family: "Roboto", sans-serif;
-
   /* #10B981 */
 
   .page-enter-active,
