@@ -15,12 +15,12 @@
         </header>
 
         <!-- Blog Content and Sidebar Layout -->
-        <div class="grid grid-cols-1 md:grid-cols-6 gap-8 md:gap-12 lg:gap-16">
+        <div class="grid grid-cols-1 md:grid-cols-8 gap-8 md:gap-12 lg:gap-16">
           <!-- Main Content -->
           <div
             :class="{
-              'col-span-1 md:col-span-4': post.toc && !isIndexPage,
-              'col-span-1 md:col-span-6 lg:max-w-4xl lg:mx-auto': !post.toc || isIndexPage,
+              'col-span-1 md:col-span-6': post.toc && !isIndexPage,
+              'col-span-1 md:col-span-8': !post.toc || isIndexPage,
             }"
           >
             <div
