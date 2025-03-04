@@ -19,7 +19,7 @@
 .prose h4 a {
   cursor: default;
   pointer-events: none;
-  text-decoration: none !important;
+  text-decoration: none;
 }
 
 /* Hide the hash anchor symbol */
