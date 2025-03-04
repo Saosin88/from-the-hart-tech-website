@@ -1,28 +1,40 @@
 <template>
-  <ul>
-    <li v-for="link in links" :key="link.id">
-      <ULink
-        :to="{ path: route.path, hash: `#${link.id}` }"
-        :active="false"
-        :class="{
-          'ml-4': level,
-          'text-green-600 dark:text-green-400': activeId === link.id,
-        }"
-      >
-        {{ link.text }}
-      </ULink>
-      <TocLinks :links="link.children" :level="level + 1" :active-id="activeId" />
-    </li>
-  </ul>
+  <div class="text-sm">
+    <ul>
+      <li v-for="link in links" :key="link.id" class="mb-1">
+        <a
+          :href="`#${link.id}`"
+          :class="[
+            'block py-1 px-2 rounded-md transition-colors text-gray-700 dark:text-gray-300 hover:bg-gray-200/50 dark:hover:bg-gray-700/50',
+            activeId === link.id ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-400 font-medium' : '',
+          ]"
+        >
+          {{ link.text }}
+        </a>
+
+        <ul v-if="link.children && link.children.length" class="ml-4">
+          <li v-for="childLink in link.children" :key="childLink.id" class="mb-1">
+            <a
+              :href="`#${childLink.id}`"
+              :class="[
+                'block py-1 px-2 rounded-md transition-colors text-gray-700 dark:text-gray-300 hover:bg-gray-200/50 dark:hover:bg-gray-700/50',
+                activeId === childLink.id ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-400 font-medium' : '',
+              ]"
+            >
+              {{ childLink.text }}
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script setup>
-  const route = useRoute()
   defineProps({
-    links: Array,
-    level: {
-      type: Number,
-      default: 0,
+    links: {
+      type: Array,
+      default: () => [],
     },
     activeId: {
       type: String,

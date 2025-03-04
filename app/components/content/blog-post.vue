@@ -1,14 +1,36 @@
 <template>
-  <ULink :active="false" :to="post.path" class="flex flex-col p-6 divide-y border rounded-xl border-primary-600 h-full w-full">
-    <div class="p-3 space-y-1 flex-1">
-      <h3 class="text-3xl font-semibold">{{ post.title }}</h3>
-      <p class="text-sm">{{ truncatedDescription }}</p>
+  <ULink
+    :active="false"
+    :to="post.path"
+    class="group flex flex-col h-full w-full overflow-hidden border rounded-xl border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-all duration-200"
+  >
+    <!-- Post content -->
+    <div class="flex-1 p-5 space-y-3">
+      <h3 class="text-xl sm:text-2xl font-semibold line-clamp-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+        {{ post.title }}
+      </h3>
+      <p class="text-sm text-gray-600 dark:text-gray-300 line-clamp-3">
+        {{ truncatedDescription }}
+      </p>
     </div>
-    <div class="flex gap-3 p-3 flex-none">
-      <div class="space-y-1">
-        <p class="text-xs">{{ formattedDate }}</p>
-        <div class="flex flex-wrap gap-3">
-          <p v-for="keyword in keywords" :key="keyword" class="inline-block px-2 py-1 text-sm font-semibold rounded-md bg-primary-600 text-gray-50">{{ keyword }}</p>
+
+    <!-- Divider -->
+    <div class="border-t border-gray-200 dark:border-gray-700"></div>
+
+    <!-- Post metadata -->
+    <div class="flex items-start p-5">
+      <div class="w-full space-y-3">
+        <!-- Date -->
+        <time :datetime="post.date" class="text-xs text-gray-500 dark:text-gray-400 flex items-center">
+          <span class="i-lucide-calendar mr-1 text-primary-500 dark:text-primary-400"></span>
+          {{ formattedDate }}
+        </time>
+
+        <!-- Keywords/tags -->
+        <div class="flex flex-wrap gap-2">
+          <span v-for="keyword in keywords" :key="keyword" class="inline-flex px-2 py-0.5 text-xs font-medium rounded-full bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300">
+            {{ keyword }}
+          </span>
         </div>
       </div>
     </div>
@@ -27,12 +49,9 @@
     const date = new Date(props.post.date)
 
     const formatter = new Intl.DateTimeFormat('en-us', {
-      weekday: 'long',
       year: 'numeric',
       month: 'short',
       day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
       timeZone: 'UTC',
     })
 
@@ -44,13 +63,15 @@
       return []
     }
     const uniqueKeywords = [...new Set(props.post.keywords.split(','))]
-    return uniqueKeywords.slice(0, 10)
+    return uniqueKeywords.slice(0, 5) // Limit to 5 tags for better display
   })
 
   const truncatedDescription = computed(() => {
+    if (!props.post.description) return ''
+
     const words = props.post.description.split(' ')
-    if (words.length > 30) {
-      return words.slice(0, 30).join(' ') + '...'
+    if (words.length > 25) {
+      return words.slice(0, 25).join(' ') + '...'
     }
     return props.post.description
   })
