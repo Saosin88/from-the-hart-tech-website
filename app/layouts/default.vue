@@ -41,6 +41,8 @@
 </template>
 
 <script setup>
+  import BlogPost from '~/components/content/blog-post.vue'
+
   const isMenuOpen = ref(false)
   const toggleMenu = () => (isMenuOpen.value = !isMenuOpen.value)
 
@@ -75,9 +77,7 @@
 <style scoped>
   .slide-down-enter-active,
   .slide-down-leave-active {
-    transition:
-      transform 0.3s ease,
-      opacity 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease;
   }
 
   .slide-down-enter-from,
