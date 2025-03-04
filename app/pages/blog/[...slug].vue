@@ -24,7 +24,7 @@
             }"
           >
             <div
-              class="prose dark:prose-invert prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-gray-100 prose-a:text-primary-600 dark:prose-a:text-primary-400 prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg prose-img:shadow-md prose-pre:bg-gray-50 dark:prose-pre:bg-gray-800/80 prose-pre:text-gray-700 dark:prose-pre:text-gray-300 prose-pre:rounded-lg prose-pre:shadow-sm max-w-none"
+              class="prose dark:prose-invert prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-gray-100 prose-a:text-primary-600 dark:prose-a:text-primary-400 prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg prose-img:shadow-md prose-pre:bg-gray-50 dark:prose-pre:bg-gray-800/80 prose-pre:text-gray-700 dark:prose-pre:text-gray-300 prose-pre:rounded-lg prose-pre:shadow-sm prose-h2:no-underline prose-h3:no-underline prose-h4:no-underline prose-headings:hover:no-underline prose-h2:mt-8 prose-h3:mt-6 max-w-none"
             >
               <ContentRenderer :value="post" />
             </div>
@@ -69,41 +69,30 @@
     }).format(date)
   }
 
-  // Set up the Intersection Observer for TOC highlighting
   onMounted(() => {
-    if (isIndexPage.value) return
-
-    // Wait a bit for the content to render
-    setTimeout(() => {
-      const headings = document.querySelectorAll('h2[id], h3[id], h4[id]')
-      if (!headings.length) return
-
-      const observerOptions = {
-        rootMargin: '-100px 0px -80% 0px',
-        threshold: 0,
-      }
-
-      const headingsObserver = new IntersectionObserver(entries => {
-        // Get all visible headings
-        const visibleHeadings = entries.filter(entry => entry.isIntersecting).map(entry => entry.target)
-
-        // If we have visible headings, update activeId to the first one
-        if (visibleHeadings.length > 0) {
-          activeId.value = visibleHeadings[0].id
+    const callback = entries => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          activeId.value = entry.target.id
+          break
         }
-      }, observerOptions)
+      }
+    }
 
-      // Observe all headings
-      headings.forEach(heading => {
-        headingsObserver.observe(heading)
-      })
+    const observer = new IntersectionObserver(callback, {
+      root: null,
+      threshold: 0.5,
+    })
+    const elements = document.querySelectorAll('h2, h3')
 
-      // Clean up observer on component unmount
-      onBeforeUnmount(() => {
-        headings.forEach(heading => {
-          headingsObserver.unobserve(heading)
-        })
-      })
-    }, 500)
+    for (const element of elements) {
+      observer.observe(element)
+    }
+
+    onBeforeUnmount(() => {
+      for (const element of elements) {
+        observer.unobserve(element)
+      }
+    })
   })
 </script>

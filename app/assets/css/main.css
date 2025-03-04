@@ -12,3 +12,19 @@
     --ui-container: 100%; /* Adjust the container width for smaller screens */
   }
 }
+
+/* Keep heading colors but disable link behavior */
+.prose h2 a,
+.prose h3 a,
+.prose h4 a {
+  cursor: default;
+  pointer-events: none;
+  text-decoration: none !important;
+}
+
+/* Hide the hash anchor symbol */
+.prose h2 a::before,
+.prose h3 a::before,
+.prose h4 a::before {
+  display: none;
+}
