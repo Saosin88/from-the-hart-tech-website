@@ -1,28 +1,11 @@
 <template>
-  <slot :posts="posts">
-    <section class="not-prose font-mono">
-      <div class="flex items-center space-x-8 py-2 border-b border-gray-200 dark:border-gray-700 text-gray-400 text-sm">
-        <div>date</div>
-        <div>title</div>
+  <section class="not-prose">
+    <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
+      <div v-for="post in posts" :key="post.path">
+        <BlogPost :post="post" />
       </div>
-
-      <ul>
-        <li v-for="post in posts" :key="post.path">
-          <ULink :to="post.path" class="flex items-center space-x-8 py-2 border-b border-gray-200 dark:border-gray-700 group hover:bg-gray-100 dark:hover:bg-gray-800">
-            <div
-              :class="{
-                'text-white group-hover:text-gray-100 dark:text-gray-900 dark:group-hover:text-gray-800': !post.displayYear,
-                'text-gray-400 dark:text-gray-500': post.displayYear,
-              }"
-            >
-              {{ post.year }}
-            </div>
-            <div>{{ post.title }}</div>
-          </ULink>
-        </li>
-      </ul>
-    </section>
-  </slot>
+    </div>
+  </section>
 </template>
 
 <script setup>
@@ -34,7 +17,7 @@
   })
 
   const { data } = await useAsyncData('blog-list', () => {
-    const query = queryCollection('blog').where('path', '<>', '/blog').select('path', 'title', 'date').order('date', 'DESC')
+    const query = queryCollection('blog').where('path', '<>', '/blog').select('path', 'title', 'description', 'date', 'keywords').order('date', 'DESC')
 
     if (props.limit) {
       query.limit(props.limit)
@@ -59,7 +42,6 @@
       result.push(post)
       lastYear = year
     }
-
     return result
   })
 </script>
