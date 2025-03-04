@@ -25,38 +25,20 @@ Hello! I'm **Sheldon Hart**, a solutions architect with a passion for technology
 ## My Journey
 
 ### Education
-
-- **Bachelor of Sciences in Computer Sciences**
-  - University of Pretoria
-  - Graduated: 2010
+::education-display
+::
 
 ### Certifications
-
-- **AWS Certified Solutions Architect – Associate**
-  - **Institution**: Amazon Web Services (AWS)
-  - **Credential**: [Link](https://www.credly.com/badges/af7dd9e8-000e-442a-ae44-7728edaae9f3/public_url)
-- **TOGAF® Certification Program**
-  - **Institution**: The Open Group
-  - **Credential**: [Link](https://www.credly.com/badges/4cac01a9-6796-42a1-b28d-d01a9aa0416b/public_url)
-- **Digital Transformation: Platform Strategies for Success**
-  - **Institution**: Emeritus
-  - **Credential**: [Link](https://certificates.emeritus.org/d775348b-544f-466c-9986-1fbb71a4fb91)
+::certifications-list
+::
 
 ### Professional Experience
-
-- **FNB (First National Bank)**
-  - **Role**: Solutions Architect
-    - **Duration**: Jan 2022 - Present
-  - **Role**: Systems Architect
-    - **Duration**: Jul 2016 - Dec 2021
-  - **Role**: Java Developer
-    - **Duration**: Jan 2011 - Jun 2016
+::experience-display
+::
 
 ## Skills
-
-- **Programming Languages**: Java, Javascript
-- **Frameworks**: Vue.js, Nuxt, Node.js
-- **Tools**: Docker, Kubernetes, AWS, Git
+::skills-display
+::
 
 ## Projects
 
