@@ -24,7 +24,19 @@
   })
 
   const formattedDate = computed(() => {
-    return new Date(props.post.date).toLocaleDateString('en-us', { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' })
+    const date = new Date(props.post.date)
+
+    const formatter = new Intl.DateTimeFormat('en-us', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      timeZone: 'UTC',
+    })
+
+    return formatter.format(date)
   })
 
   const keywords = computed(() => {
