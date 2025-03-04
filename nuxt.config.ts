@@ -1,12 +1,12 @@
 export default defineNuxtConfig({
   // Site Information
   site: {
-    url: "https://www.fromthehart.tech",
-    name: "My frontend sandbox to play with tech",
+    url: 'https://www.fromthehart.tech',
+    name: 'My frontend sandbox to play with tech',
   },
 
   // Compatibility and Future Settings
-  compatibilityDate: "2024-11-01",
+  compatibilityDate: '2024-11-01',
   future: {
     compatibilityVersion: 4,
   },
@@ -15,53 +15,43 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   // Modules
-  modules: ["@nuxtjs/sitemap", "@nuxt/content", "@nuxt/ui"],
+  modules: ['@nuxtjs/sitemap', '@nuxt/content', '@nuxt/ui'],
 
   // Route Rules
   routeRules: {
-    "/": {
+    '/': {
       prerender: true,
     },
-    "/about/**": {
+    '/about/**': {
       prerender: true,
     },
-    "/blog/**": {
+    '/blog/**': {
       prerender: true,
     },
-    "/projects/**": {
+    '/projects/**': {
       prerender: true,
     },
   },
 
-  css: ["~/assets/css/main.css"],
-
-  // ui: {
-  //   primary: "green",
-  //   gray: "cool",
-  // },
-
-  // Color Mode Configuration
-  // colorMode: {
-  //   classSuffix: "",
-  // },
+  css: ['~/assets/css/main.css'],
 
   content: {
     build: {
       markdown: {
         highlight: {
           theme: {
-            default: "min-light",
-            dark: "min-dark",
+            default: 'min-light',
+            dark: 'min-dark',
           },
         },
       },
     },
     preview: {
-      api: "https://api.nuxt.studio",
+      api: 'https://api.nuxt.studio',
     },
   },
 
   app: {
-    pageTransition: { name: "page", mode: "out-in" },
+    pageTransition: { name: 'page', mode: 'out-in' },
   },
-});
+})

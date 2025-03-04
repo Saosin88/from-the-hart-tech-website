@@ -1,17 +1,17 @@
 export default {
   scrollBehavior(to, _from, savedPosition) {
     if (savedPosition) {
-      return savedPosition;
+      return savedPosition
     }
 
     if (to.hash) {
       return {
         el: to.hash,
-        behavior: "smooth",
+        behavior: 'smooth',
         top: 30,
-      };
+      }
     }
 
-    return { left: 0, top: 0, behavior: "smooth" };
+    return { left: 0, top: 0, behavior: 'smooth' }
   },
-};
+}
