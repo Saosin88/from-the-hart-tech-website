@@ -11,5 +11,5 @@
 </template>
 
 <script setup>
-defineProps({ error: Object });
+  defineProps({ error: Object })
 </script>
