@@ -1,48 +1,67 @@
 <template>
   <div class="max-w-(--ui-container) mx-auto px-4 sm:px-6 lg:px-8">
-    <header class="flex justify-between items-center mt-5 w-full">
-      <div class="flex-shrink-0 flex items-center space-x-4">
-        <img src="/logo/from-the-hart.png" alt="Logo" class="h-8 w-8" />
-        <ULink to="/" @click="closeMenu()">From The Hart</ULink>
+    <!-- Header Section -->
+    <header class="flex items-center justify-between w-full py-5">
+      <!-- Logo and Site Title -->
+      <div class="flex items-center space-x-4">
+        <img src="/logo/from-the-hart.png" alt="Logo" class="w-8 h-8" />
+        <ULink to="/" @click="closeMenu" class="text-lg font-medium">From The Hart</ULink>
       </div>
 
-      <div class="hidden md:block">
-        <div class="flex-grow text-center">
+      <!-- Desktop Navigation Menu -->
+      <div class="hidden md:block flex-1 px-4">
+        <div class="flex justify-center">
           <UNavigationMenu orientation="horizontal" :items="items" />
         </div>
       </div>
 
+      <!-- Right Side Actions -->
       <div class="flex items-center gap-4">
+        <!-- Theme Toggle -->
         <ColorModeSelector />
+
+        <!-- Desktop Authentication Buttons -->
         <div class="hidden md:block">
-          <div class="sm:flex sm:gap-4">
-            <UButton to="/login">Login</UButton>
-            <UButton to="/signup" color="neutral">Sign Up</UButton>
+          <div class="flex gap-3">
+            <UButton to="/login" size="sm">Login</UButton>
+            <UButton to="/signup" color="neutral" size="sm">Sign Up</UButton>
           </div>
         </div>
 
-        <div class="block md:hidden relative">
-          <UButton @click="toggleMenu()" :icon="isMenuOpen ? 'i-lucide-x' : 'i-lucide-align-justify'" />
+        <!-- Mobile Menu Toggle and Dropdown -->
+        <div class="relative md:hidden">
+          <UButton @click="toggleMenu" :icon="isMenuOpen ? 'i-lucide-x' : 'i-lucide-align-justify'" color="gray" variant="ghost" size="sm" />
+
+          <!-- Mobile Dropdown Menu -->
           <transition name="slide-down">
-            <div v-if="isMenuOpen" class="absolute right-0 mt-2 w-48 shadow-lg z-50 bg-gray-800 flex flex-col space-y-2 p-2">
-              <UNavigationMenu orientation="vertical" :items="items" />
-              <UButton to="/login" @click="closeMenu()" class="justify-center">Login</UButton>
-              <UButton to="/signup" @click="closeMenu()" color="neutral" class="justify-center">Sign Up</UButton>
+            <div v-if="isMenuOpen" class="absolute right-0 mt-2 w-56 rounded-lg shadow-lg z-50 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+              <!-- Navigation Items -->
+              <div class="p-3">
+                <UNavigationMenu orientation="vertical" :items="items" />
+              </div>
+
+              <!-- Divider -->
+              <div class="border-t border-gray-200 dark:border-gray-700 my-1"></div>
+
+              <!-- Authentication Buttons -->
+              <div class="p-3 space-y-2">
+                <UButton to="/login" @click="closeMenu" class="w-full justify-center" size="sm"> Login </UButton>
+                <UButton to="/signup" @click="closeMenu" color="neutral" class="w-full justify-center" size="sm"> Sign Up </UButton>
+              </div>
             </div>
           </transition>
         </div>
       </div>
     </header>
 
-    <main class="p-2 mt-10 w-full">
+    <!-- Main Content Area -->
+    <main class="w-full py-8">
       <slot />
     </main>
   </div>
 </template>
 
 <script setup>
-  import BlogPost from '~/components/content/blog-post.vue'
-
   const isMenuOpen = ref(false)
   const toggleMenu = () => (isMenuOpen.value = !isMenuOpen.value)
 

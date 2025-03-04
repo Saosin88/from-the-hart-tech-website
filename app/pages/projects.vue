@@ -1,8 +1,14 @@
 <template>
-  <div>
-    <h2 class="text-2xl font-semibold mb-10">Projects</h2>
-    <ProjectList />
-  </div>
+  <section>
+    <div class="container px-6 mx-auto mt-12">
+      <h1 class="text-5xl font-bold leading-none sm:text-6xl text-center mb-8">My <span class="text-primary-600">Projects</span></h1>
+      <p class="text-lg text-center mb-12 max-w-3xl mx-auto">Here you can find a collection of projects I've worked on.</p>
+    </div>
+
+    <div class="container px-6 mx-auto mt-6">
+      <ProjectList />
+    </div>
+  </section>
 </template>
 
 <script setup>
