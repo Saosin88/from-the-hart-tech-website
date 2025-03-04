@@ -12,14 +12,14 @@
   const props = defineProps({
     limit: {
       type: Number,
-      default: null,
+      default: 0,
     },
   })
 
-  const { data } = await useAsyncData('blog-list', () => {
+  const { data } = await useAsyncData('blog-list' + ' ' + props.limit, () => {
     const query = queryCollection('blog').where('path', '<>', '/blog').select('path', 'title', 'description', 'date', 'keywords').order('date', 'DESC')
 
-    if (props.limit) {
+    if (props.limit > 0) {
       query.limit(props.limit)
     }
 
