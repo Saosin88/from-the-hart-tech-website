@@ -8,7 +8,7 @@
       </ULink>
     </div>
 
-    <BlogPosts :limit="limit" />
+    <BlogPostsDisplay :limit="limit" />
   </div>
 </template>
 

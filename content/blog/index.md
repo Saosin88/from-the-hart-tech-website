@@ -22,5 +22,5 @@ twitterCreator: "@sheldonhart"
 
 This is the list of my recent blog posts
 
-::blog-posts
+::blog-posts-display
 ::

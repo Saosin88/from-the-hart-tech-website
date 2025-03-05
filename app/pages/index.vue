@@ -25,7 +25,7 @@
     </div>
 
     <div class="container px-6 mx-auto mt-6">
-      <LatestBlogPosts :limit="3" />
+      <LatestBlogPostsDisplay :limit="3" />
     </div>
   </section>
 </template>

@@ -29,7 +29,7 @@ Hello! I'm **Sheldon Hart**, a solutions architect with a passion for technology
 ::
 
 ### Certifications
-::certifications-list
+::certification-display
 ::
 
 ### Professional Experience
