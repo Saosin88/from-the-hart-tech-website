@@ -6,7 +6,7 @@
   </UApp>
 </template>
 
-<script setup>
+<script setup lang="ts">
   useHead({
     titleTemplate: '%s - From The Hart',
     htmlAttrs: {

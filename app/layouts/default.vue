@@ -23,14 +23,14 @@
         <!-- Desktop Authentication Buttons -->
         <div class="hidden md:block">
           <div class="flex gap-3">
-            <UButton to="/login" size="sm">Login</UButton>
-            <UButton to="/signup" color="neutral" size="sm">Sign Up</UButton>
+            <UButton to="/#" size="sm">Login</UButton>
+            <UButton to="/#" color="neutral" size="sm">Sign Up</UButton>
           </div>
         </div>
 
         <!-- Mobile Menu Toggle and Dropdown -->
         <div class="relative md:hidden">
-          <UButton @click="toggleMenu" :icon="isMenuOpen ? 'i-lucide-x' : 'i-lucide-align-justify'" color="gray" variant="ghost" size="sm" />
+          <UButton @click="toggleMenu" :icon="isMenuOpen ? 'i-lucide-x' : 'i-lucide-align-justify'" variant="ghost" size="sm" />
 
           <!-- Mobile Dropdown Menu -->
           <transition name="slide-down">
@@ -45,8 +45,8 @@
 
               <!-- Authentication Buttons -->
               <div class="p-3 space-y-2">
-                <UButton to="/login" @click="closeMenu" class="w-full justify-center" size="sm"> Login </UButton>
-                <UButton to="/signup" @click="closeMenu" color="neutral" class="w-full justify-center" size="sm"> Sign Up </UButton>
+                <UButton to="/#" @click="closeMenu" class="w-full justify-center" size="sm"> Login </UButton>
+                <UButton to="/#" @click="closeMenu" color="neutral" class="w-full justify-center" size="sm"> Sign Up </UButton>
               </div>
             </div>
           </transition>
@@ -61,11 +61,14 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
   const isMenuOpen = ref(false)
-  const toggleMenu = () => (isMenuOpen.value = !isMenuOpen.value)
 
-  const closeMenu = _e => {
+  const toggleMenu = () => {
+    isMenuOpen.value = !isMenuOpen.value
+  }
+
+  const closeMenu = () => {
     isMenuOpen.value = false
   }
 

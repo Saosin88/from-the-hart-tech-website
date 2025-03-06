@@ -6,7 +6,7 @@
         <header v-if="!isIndexPage" class="mb-8">
           <h1 class="text-4xl sm:text-5xl font-bold mb-4">{{ post.title }}</h1>
           <div class="flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
-            <time v-if="post.date" :datetime="post.date">{{ formatDate(post.date) }}</time>
+            <time v-if="post.formattedDate" :datetime="post.formattedDate">{{ post.formattedDate }}</time>
             <div v-if="post.author" class="flex items-center">
               <span class="mx-2">•</span>
               <span>{{ post.author }}</span>
@@ -40,37 +40,34 @@
         </div>
       </article>
     </template>
-
-    <template v-else>
-      <TheError :error="{ statusCode: 404, statusMessage: 'Post not found' }" />
-    </template>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+  import type { BlogPostDataObject } from '~/app/types/blog'
+
   const route = useRoute()
-  const { data: post } = await useAsyncData(route.path, () => queryCollection('blog').path(route.path).first())
+  const { data } = await useAsyncData<BlogPostDataObject>(route.path, () => queryCollection('blog').path(route.path).first())
+
+  if (!data.value) {
+    throw createError({ statusCode: 404, statusMessage: 'Post Not Found' })
+  }
+
+  let post = null
+
+  if (data.value !== null || data.value !== undefined) {
+    post = useBlogUtils().mapBlogPostData(data.value)
+  }
 
   // Check if this is the index page
   const isIndexPage = computed(() => {
-    return post.value && (route.path === '/blog' || post.value.path === '/blog')
+    return post && (route.path === '/blog' || post.path === '/blog')
   })
 
-  const activeId = ref(null)
-
-  // Format date function for displaying post date
-  const formatDate = dateString => {
-    const date = new Date(dateString)
-    return new Intl.DateTimeFormat('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      timeZone: 'UTC',
-    }).format(date)
-  }
+  const activeId = ref('')
 
   onMounted(() => {
-    const callback = entries => {
+    const callback = (entries: any) => {
       for (const entry of entries) {
         if (entry.isIntersecting) {
           activeId.value = entry.target.id

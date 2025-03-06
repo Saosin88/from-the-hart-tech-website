@@ -1,5 +1,5 @@
 <template>
-  <div class="not-prose my-6">
+  <div class="my-6">
     <UCard class="transition-all duration-200 hover:shadow-md dark:hover:shadow-gray-800/40">
       <!-- Company Header with Logo -->
       <div class="flex items-center gap-4 mb-6">
@@ -36,7 +36,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
   const experienceData = {
     companyName: 'FNB (First National Bank)',
     logo: '/assets/fnb-logo.png',

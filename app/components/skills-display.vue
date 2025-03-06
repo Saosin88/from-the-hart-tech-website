@@ -1,5 +1,5 @@
 <template>
-  <div class="not-prose my-6">
+  <div class="my-6">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <!-- Category Cards -->
       <UCard v-for="(category, categoryIndex) in skillCategories" :key="categoryIndex" class="transition-all duration-200 hover:shadow-md dark:hover:shadow-gray-800/40">
@@ -23,23 +23,46 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
   const skillCategories = [
+    {
+      name: 'Architecture & Design',
+      icon: 'i-lucide-layout-template',
+      skills: [
+        { name: 'Enterprise Architecture', icon: 'i-lucide-building-2' },
+        { name: 'Domain-Driven Design', icon: 'i-lucide-box-select' },
+        { name: 'API Design', icon: 'i-lucide-webhook' },
+        { name: 'Software Patterns', icon: 'i-lucide-iteration-cw' },
+        { name: 'Scalable Systems', icon: 'i-lucide-expand' },
+      ],
+    },
     {
       name: 'Programming Languages',
       icon: 'i-lucide-code-2',
       skills: [
         { name: 'Java', icon: 'i-logos-java' },
-        { name: 'JavaScript', icon: 'i-logos-javascript' },
+        { name: 'JavaScript/TypeScript', icon: 'i-logos-javascript' },
+        { name: 'PHP', icon: 'i-logos-php' },
       ],
     },
     {
       name: 'Frameworks',
       icon: 'i-lucide-package',
       skills: [
-        { name: 'Vue.js/Nuxt', icon: 'i-logos-vue' },
+        { name: 'Spring Boot', icon: 'i-logos-spring' },
         { name: 'Node.js', icon: 'i-logos-nodejs' },
-        { name: 'Spring', icon: 'i-logos-spring' },
+        { name: 'Express.js', icon: 'i-lucide-server' },
+        { name: 'Vue.js/Nuxt', icon: 'i-logos-vue' },
+        { name: 'WordPress', icon: 'i-logos-wordpress-icon' },
+      ],
+    },
+    {
+      name: 'Databases',
+      icon: 'i-lucide-database',
+      skills: [
+        { name: 'MySQL/MariaDB', icon: 'i-logos-mysql' },
+        { name: 'Cassandra', icon: 'i-lucide-disc' },
+        { name: 'InfluxDB', icon: 'i-logos-influxdb' },
       ],
     },
     {
@@ -50,14 +73,15 @@
         { name: 'Kubernetes', icon: 'i-logos-kubernetes' },
         { name: 'AWS', icon: 'i-logos-aws' },
         { name: 'Git', icon: 'i-logos-git-icon' },
-      ],
-    },
-    {
-      name: 'Databases',
-      icon: 'i-lucide-database',
-      skills: [
-        { name: 'MySQL', icon: 'i-logos-mysql' },
-        { name: 'Cassandra', icon: 'i-lucide-disc' },
+        { name: 'GitHub Actions', icon: 'i-logos-github-actions' },
+        { name: 'Swagger', icon: 'i-logos-swagger' },
+        { name: 'Prometheus', icon: 'i-logos-prometheus' },
+        { name: 'Grafana', icon: 'i-logos-grafana' },
+        { name: 'ELK Stack', icon: 'i-logos-elasticsearch' },
+        { name: 'Jira', icon: 'i-logos-jira' },
+        { name: 'Confluence', icon: 'i-logos-confluence' },
+        { name: 'VS Code', icon: 'i-logos-visual-studio-code' },
+        { name: 'IntelliJ IDEA', icon: 'i-logos-intellij-idea' },
       ],
     },
   ]

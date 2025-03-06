@@ -6,12 +6,12 @@
     </div>
 
     <div class="container px-6 mx-auto mt-6">
-      <ProjectList />
+      <GithubProjectList />
     </div>
   </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
   useSeoMeta({
     title: 'Projects',
     description: 'Meta description of the projects page',

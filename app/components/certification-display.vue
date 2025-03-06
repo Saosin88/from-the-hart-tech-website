@@ -1,5 +1,5 @@
 <template>
-  <div class="not-prose space-y-6">
+  <div class="space-y-6">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <!-- Individual Certification Cards -->
       <UCard v-for="(cert, index) in certifications" :key="index" class="transition-all duration-200 hover:shadow-md dark:hover:shadow-gray-800/40 h-full">
@@ -47,7 +47,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
   const certifications = [
     {
       name: 'AWS Certified Solutions Architect – Associate',

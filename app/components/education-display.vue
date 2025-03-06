@@ -1,5 +1,5 @@
 <template>
-  <div class="not-prose my-6">
+  <div class="my-6">
     <UCard class="transition-all duration-200 hover:shadow-md dark:hover:shadow-gray-800/40">
       <div class="flex flex-col sm:flex-row sm:items-center gap-4">
         <!-- University Logo -->
@@ -24,7 +24,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
   const educationData = {
     degree: 'Bachelor of Sciences in Computer Sciences',
     university: 'University of Pretoria',
