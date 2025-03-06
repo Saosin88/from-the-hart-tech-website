@@ -8,11 +8,11 @@
       </ULink>
     </div>
 
-    <BlogPosts :limit="limit" />
+    <BlogPostsDisplay :limit="limit" />
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
   defineProps({
     limit: {
       type: Number,

@@ -30,12 +30,16 @@
   </div>
 </template>
 
-<script setup>
-  import { NuxtLink } from '#components'
+<script setup lang="ts">
+  interface TocLink {
+    id: string
+    text: string
+    children?: TocLink[]
+  }
 
   defineProps({
     links: {
-      type: Array,
+      type: Array as PropType<TocLink[]>,
       default: () => [],
     },
     activeId: {

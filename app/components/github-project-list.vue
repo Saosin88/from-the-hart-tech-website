@@ -5,7 +5,7 @@
 
   <div v-else-if="error" class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-6 text-center">
     <p class="text-red-600 dark:text-red-400 font-medium">Something went wrong while fetching projects.</p>
-    <button @click="refetch" class="mt-4 px-4 py-2 bg-red-100 dark:bg-red-800/30 hover:bg-red-200 dark:hover:bg-red-800/50 text-red-600 dark:text-red-400 rounded-md transition-colors">
+    <button @click="() => refetch()" class="mt-4 px-4 py-2 bg-red-100 dark:bg-red-800/30 hover:bg-red-200 dark:hover:bg-red-800/50 text-red-600 dark:text-red-400 rounded-md transition-colors">
       Try again
     </button>
   </div>
@@ -39,7 +39,7 @@
                 {{ repo.language || 'Unknown' }}
               </div>
               <span class="mx-2">•</span>
-              <div>Updated {{ formatDate(repo.updated_at) }}</div>
+              <div>Updated {{ useFormatters().formatDateInAgoTerms(repo.updated_at) }}</div>
             </div>
           </div>
         </a>
@@ -48,14 +48,24 @@
   </div>
 </template>
 
-<script setup>
-  const { error, status, data, refresh: refetch } = await useFetch('https://api.github.com/users/Saosin88/repos')
+<script setup lang="ts">
+  interface GitHubRepo {
+    id: number
+    name: string
+    description: string | null
+    html_url: string
+    stargazers_count: number
+    language: string | null
+    updated_at: string
+  }
 
+  const { error, status, data, refresh: refetch } = await useFetch('https://api.github.com/users/Saosin88/repos')
   const pending = computed(() => status.value === 'pending')
-  const repos = computed(() => (data.value ?? []).sort((a, b) => b.stargazers_count - a.stargazers_count))
+  const repos = computed<GitHubRepo[]>(() => ((data.value ?? []) as GitHubRepo[]).sort((a, b) => b.stargazers_count - a.stargazers_count))
+  console.log(status)
 
   // Common GitHub language colors
-  const languageColors = {
+  const languageColors: { [key: string]: string } = {
     JavaScript: '#f1e05a',
     TypeScript: '#3178c6',
     Vue: '#41b883',
@@ -66,18 +76,5 @@
     PHP: '#4F5D95',
     'C#': '#178600',
     Ruby: '#701516',
-  }
-
-  // Format date to relative time
-  const formatDate = dateString => {
-    const date = new Date(dateString)
-    const now = new Date()
-    const diffInDays = Math.floor((now - date) / (1000 * 60 * 60 * 24))
-
-    if (diffInDays === 0) return 'today'
-    if (diffInDays === 1) return 'yesterday'
-    if (diffInDays < 30) return `${diffInDays} days ago`
-    if (diffInDays < 365) return `${Math.floor(diffInDays / 30)} months ago`
-    return `${Math.floor(diffInDays / 365)} years ago`
   }
 </script>
