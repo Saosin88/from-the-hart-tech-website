@@ -62,7 +62,6 @@
   const { error, status, data, refresh: refetch } = await useFetch('https://api.github.com/users/Saosin88/repos')
   const pending = computed(() => status.value === 'pending')
   const repos = computed<GitHubRepo[]>(() => ((data.value ?? []) as GitHubRepo[]).sort((a, b) => b.stargazers_count - a.stargazers_count))
-  console.log(status)
 
   // Common GitHub language colors
   const languageColors: { [key: string]: string } = {

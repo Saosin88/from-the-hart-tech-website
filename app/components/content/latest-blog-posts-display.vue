@@ -13,10 +13,12 @@
 </template>
 
 <script setup lang="ts">
-  defineProps({
-    limit: {
-      type: Number,
-      default: 3,
+  withDefaults(
+    defineProps<{
+      limit: number
+    }>(),
+    {
+      limit: 3,
     },
-  })
+  )
 </script>
