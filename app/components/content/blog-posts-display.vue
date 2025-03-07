@@ -63,20 +63,15 @@
     },
   })
 
-  // Fetch blog posts data
-  const { data } = await useAsyncData<BlogPostDataObject[]>('blog-list' + ' ' + props.limit, () => {
+  console.log('Fetching queries')
+  const { data } = await useAsyncData<BlogPostDataObject[]>('blog-list-all', () => {
     const query = queryCollection('blog').where('path', '<>', '/blog').select('path', 'title', 'description', 'date', 'keywords', 'author', 'toc', 'body').order('date', 'DESC')
-
-    if (props.limit > 0) {
-      query.limit(props.limit)
-    }
 
     return query.all()
   })
 
-  let posts: BlogPost[] = []
-
-  if (data.value !== null || data.value !== undefined) {
-    posts = useBlogUtils().mapBlogPostDataArray(data.value)
+  let posts = reactive<BlogPost[]>([])
+  if (data.value) {
+    posts = useBlogUtils().mapBlogPostDataArray(data.value, props.limit)
   }
 </script>

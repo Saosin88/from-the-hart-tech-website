@@ -1,9 +1,13 @@
 import type { BlogPost, BlogPostDataObject } from '~/app/types/blog' // Adjust import path if needed
 
 export function useBlogUtils() {
-  function mapBlogPostDataArray(data?: BlogPostDataObject[]): BlogPost[] | [] {
+  function mapBlogPostDataArray(data?: BlogPostDataObject[], limit?: number): BlogPost[] | [] {
     if (!data) {
       return []
+    }
+
+    if (limit && limit > 0 && data.length > limit) {
+      data = data.slice(0, limit)
     }
 
     return data.map(item => ({
