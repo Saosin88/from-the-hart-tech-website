@@ -23,8 +23,8 @@
         <!-- Desktop Authentication Buttons -->
         <div class="hidden md:block">
           <div class="flex gap-3">
-            <UButton to="/#" size="sm">Login</UButton>
-            <UButton to="/#" color="neutral" size="sm">Sign Up</UButton>
+            <UButton href="#" size="sm">Login</UButton>
+            <UButton href="#" color="neutral" size="sm">Sign Up</UButton>
           </div>
         </div>
 
