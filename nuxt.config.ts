@@ -1,57 +1,75 @@
+// Nuxt Configuration
+// This is the main configuration file for the Nuxt.js application
+
 export default defineNuxtConfig({
   // Site Information
+  // Defines the site URL and name for SEO and metadata purposes
   site: {
-    url: 'https://www.fromthehart.tech',
-    name: 'My frontend sandbox to play with tech',
+    url: 'https://www.fromthehart.tech', // Production URL for the website
+    name: 'My frontend sandbox to play with tech', // Site name for metadata
   },
 
   // Compatibility and Future Settings
-  compatibilityDate: '2024-11-01',
+  // Controls Nuxt version compatibility and future features
+  compatibilityDate: '2024-11-01', // Set compatibility baseline date
   future: {
-    compatibilityVersion: 4,
+    compatibilityVersion: 4, // Target future Nuxt version for compatibility
   },
 
   // Development Tools
-  devtools: { enabled: true },
+  // Configure development experience and debugging options
+  devtools: { enabled: true }, // Enable built-in Nuxt DevTools
 
   // Modules
-  modules: ['@nuxtjs/sitemap', '@nuxt/content', '@nuxt/ui'],
+  // External Nuxt modules that extend functionality
+  modules: [
+    '@nuxtjs/sitemap', // Automatic sitemap generation
+    '@nuxt/content', // Content management system
+    '@nuxt/ui', // UI component library
+  ],
 
   // Route Rules
+  // Define routing behavior and rendering strategy for different paths
   routeRules: {
     '/': {
-      prerender: true,
+      prerender: true, // Statically generate the homepage
     },
     '/about/**': {
-      prerender: true,
+      prerender: true, // Statically generate all about pages
     },
     '/blog/**': {
-      prerender: true,
+      prerender: true, // Statically generate all blog pages
     },
     '/projects/**': {
-      ssr: false,
+      ssr: false, // Client-side render projects pages
     },
   },
 
-  css: ['~/assets/css/main.css'],
+  // Global CSS
+  // Styles applied throughout the application
+  css: ['~/assets/css/main.css'], // Main CSS file for global styling
 
+  // Content Module Configuration
+  // Settings for the Nuxt Content module
   content: {
     build: {
       markdown: {
         highlight: {
           theme: {
-            default: 'min-light',
-            dark: 'min-dark',
+            default: 'min-light', // Light theme for code blocks
+            dark: 'min-dark', // Dark theme for code blocks
           },
         },
       },
     },
     preview: {
-      api: 'https://api.nuxt.studio',
+      api: 'https://api.nuxt.studio', // API endpoint for content previews
     },
   },
 
+  // App Settings
+  // Configure application-level behaviors
   app: {
-    pageTransition: { name: 'page', mode: 'out-in' },
+    pageTransition: { name: 'page', mode: 'out-in' }, // Page transition animations
   },
 })
