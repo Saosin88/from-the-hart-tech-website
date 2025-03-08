@@ -45,7 +45,7 @@
 
               <!-- Authentication Buttons -->
               <div class="p-3 space-y-2">
-                <UButton href="#"" @click="closeMenu" class="w-full justify-center" size="sm"> Login </UButton>
+                <UButton href="#" @click="closeMenu" class="w-full justify-center" size="sm"> Login </UButton>
                 <UButton href="#" @click="closeMenu" color="neutral" class="w-full justify-center" size="sm"> Sign Up </UButton>
               </div>
             </div>
