@@ -40,6 +40,9 @@
         </div>
       </article>
     </template>
+    <template v-else>
+      <TheError :statusCode="404" :statusMessage="'Blog post not found'" />
+    </template>
   </div>
 </template>
 
@@ -49,13 +52,9 @@
   const route = useRoute()
   const { data } = await useAsyncData<BlogPostDataObject>(route.path, () => queryCollection('blog').path(route.path).first())
 
-  if (!data.value) {
-    throw createError({ statusCode: 404, statusMessage: 'Post Not Found' })
-  }
-
   let post = null
 
-  if (data.value !== null || data.value !== undefined) {
+  if (data.value) {
     post = useBlogUtils().mapBlogPostData(data.value)
   }
 

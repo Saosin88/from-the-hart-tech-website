@@ -56,14 +56,15 @@
 <script setup lang="ts">
   import type { BlogPostDataObject, BlogPost } from '~/app/types/blog'
 
-  const props = defineProps({
-    limit: {
-      type: Number,
-      default: 0,
+  const props = withDefaults(
+    defineProps<{
+      limit: number
+    }>(),
+    {
+      limit: 0,
     },
-  })
+  )
 
-  console.log('Fetching queries')
   const { data } = await useAsyncData<BlogPostDataObject[]>('blog-list-all', () => {
     const query = queryCollection('blog').where('path', '<>', '/blog').select('path', 'title', 'description', 'date', 'keywords', 'author', 'toc', 'body').order('date', 'DESC')
 

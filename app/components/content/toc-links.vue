@@ -37,14 +37,14 @@
     children?: TocLink[]
   }
 
-  defineProps({
-    links: {
-      type: Array as PropType<TocLink[]>,
-      default: () => [],
+  withDefaults(
+    defineProps<{
+      links: TocLink[]
+      activeId: string
+    }>(),
+    {
+      links: () => [],
+      activeId: '',
     },
-    activeId: {
-      type: String,
-      default: null,
-    },
-  })
+  )
 </script>
