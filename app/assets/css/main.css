@@ -3,17 +3,16 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  --container-8xl: 90rem; /* Define the value for --container-8xl */
-  --ui-container: var(--container-8xl); /* Set --ui-container to --container-8xl */
+  --container-8xl: 90rem;
+  --ui-container: var(--container-8xl);
 }
 
 @media (max-width: 768px) {
   :root {
-    --ui-container: 100%; /* Adjust the container width for smaller screens */
+    --ui-container: 100%;
   }
 }
 
-/* Keep heading colors but disable link behavior */
 .prose h2 a,
 .prose h3 a,
 .prose h4 a {
@@ -22,7 +21,6 @@
   text-decoration: none;
 }
 
-/* Hide the hash anchor symbol */
 .prose h2 a::before,
 .prose h3 a::before,
 .prose h4 a::before {

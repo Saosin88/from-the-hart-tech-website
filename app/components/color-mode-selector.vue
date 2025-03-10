@@ -1,7 +1,5 @@
 <template>
-  <!-- Color Mode Toggle with Client-Side Only Rendering -->
   <ClientOnly v-if="!colorMode?.forced">
-    <!-- Theme Toggle Button with Dynamic Icon -->
     <UButton
       :icon="isDark ? 'i-lucide-moon' : 'i-lucide-sun'"
       color="neutral"
@@ -11,7 +9,6 @@
       @click="isDark = !isDark"
     />
 
-    <!-- Fallback Placeholder When Client-Side JS Not Available -->
     <template #fallback>
       <div class="w-8 h-8" />
     </template>
@@ -19,12 +16,8 @@
 </template>
 
 <script setup lang="ts">
-  // Access Nuxt's Color Mode Composable
   const colorMode = useColorMode()
 
-  // Computed Property for Dark Mode Toggle
-  // - Getter: Returns true if current mode is 'dark'
-  // - Setter: Toggles between 'light' and 'dark' modes
   const isDark = computed({
     get() {
       return colorMode.value === 'dark'

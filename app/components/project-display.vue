@@ -1,27 +1,19 @@
 <template>
-  <!-- Main Container - Non-Prose for Better Layout Control -->
   <div class="not-prose space-y-6">
-    <!-- Projects Grid - Responsive Layout with 1 Column on Mobile, 2 on Larger Screens -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <!-- Individual Project Cards - Using Loop to Render Each Project -->
       <UCard v-for="(project, index) in projects" :key="index" class="h-full flex flex-col overflow-hidden">
-        <!-- Project Header with Logo - Flexbox Layout with Title and Optional Logo -->
         <div class="flex justify-between items-center mb-3">
-          <!-- Project Title with Consistent Styling -->
           <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200">{{ project.title }}</h3>
-          <!-- Optional Logo Display with Fixed Size Container -->
+
           <div v-if="project.logo" class="w-12 h-12 flex-shrink-0">
             <img :src="project.logo" :alt="`${project.title} logo`" class="w-full h-full object-contain" />
           </div>
         </div>
 
-        <!-- Project Description - Flexible Growth for Different Text Lengths -->
         <p class="text-gray-700 dark:text-gray-300 mb-4 text-sm flex-grow">{{ project.description }}</p>
 
-        <!-- Technologies Used - Tag Pills Display for Skills -->
         <div v-if="project.technologies && project.technologies.length" class="mb-4">
           <div class="flex flex-wrap gap-2">
-            <!-- Technology Tag with Consistent Styling -->
             <span
               v-for="tech in project.technologies"
               :key="tech"
@@ -32,9 +24,7 @@
           </div>
         </div>
 
-        <!-- Action Button - Pushed to Bottom with Auto Margin -->
         <div class="mt-auto pt-3">
-          <!-- Optional External Link Button with Icon -->
           <UButton v-if="project.url" :to="project.url" target="_blank" icon="i-lucide-external-link" color="primary" variant="soft" class="w-full text-center">
             {{ project.urlLabel || 'View Project' }}
           </UButton>
@@ -45,18 +35,15 @@
 </template>
 
 <script setup lang="ts">
-  // Project Data Structure Definition
-  // Contains all required information about each project
   interface Project {
-    title: string // Project name/title
-    description: string // Project description text
-    url?: string // Optional link to project (external)
-    urlLabel?: string // Optional custom button text
-    logo?: string // Optional path to project logo
-    technologies?: string[] // Optional array of technologies used
+    title: string
+    description: string
+    url?: string
+    urlLabel?: string
+    logo?: string
+    technologies?: string[]
   }
 
-  // Project Data Array - List of Important Projects
   const projects: Project[] = [
     {
       title: 'FNB Banking App',
