@@ -48,8 +48,6 @@
 </template>
 
 <script setup lang="ts">
-  import type { BlogPostDataObject, BlogPost } from '~/app/types/blog'
-
   const props = withDefaults(
     defineProps<{
       limit: number
@@ -59,19 +57,5 @@
     },
   )
 
-  const { data } = await useAsyncData<BlogPostDataObject[]>('blog-posts-summary-list-limit-' + props.limit, () => {
-    const query = queryCollection('blog').where('path', '<>', '/blog').select('path', 'title', 'description', 'date', 'keywords', 'author', 'toc', 'body').order('date', 'DESC')
-
-    if (props.limit > 0) {
-      query.limit(props.limit)
-    }
-
-    return query.all()
-  })
-
-  let posts = reactive<BlogPost[]>([])
-
-  if (data.value) {
-    posts = useBlogUtils().mapBlogPostDataArray(data.value)
-  }
+  const posts = await useBlogUtils().fetchBlogPostsSummaries(props.limit)
 </script>

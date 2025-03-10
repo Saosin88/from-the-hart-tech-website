@@ -47,16 +47,9 @@
 </template>
 
 <script setup lang="ts">
-  import type { BlogPostDataObject } from '~/app/types/blog'
-
   const route = useRoute()
 
-  const { data } = await useAsyncData<BlogPostDataObject>(route.path, () => queryCollection('blog').path(route.path).first())
-
-  let post = null
-  if (data.value) {
-    post = useBlogUtils().mapBlogPostData(data.value)
-  }
+  const post = await useBlogUtils().fetchBlogPost(route.path)
 
   const isIndexPage = computed(() => {
     return post && (route.path === '/blog' || post.path === '/blog')
