@@ -8,11 +8,11 @@ robots: index, follow
 author: Sheldon Hart
 ogTitle: This is an OpenGraph title
 ogDescription: This is the OpenGraph description
-ogImage: https://www.fromthehart.tech/logo/from-the-hart.png
+ogImage: https://www.fromthehart.tech/logo/from-the-hart-social.png
 ogUrl: https://www.fromtheharttech.com/blog/first
 twitterTitle: Twitter Title
 twitterDescription: Twitter Description
-twitterImage: https://www.fromthehart.tech/logo/from-the-hart.png
+twitterImage: https://www.fromthehart.tech/logo/from-the-hart-social.png
 twitterCard: summary_large_image
 twitterSite: "@SheldonHart7"
 twitterCreator: "@SheldonHart7"

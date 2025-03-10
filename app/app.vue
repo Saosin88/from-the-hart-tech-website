@@ -29,12 +29,12 @@
 
     ogTitle: 'From The Hart',
     ogDescription: 'A website to play with technologies and share my experiences.',
-    ogImage: 'https://www.fromthehart.tech/logo/from-the-hart.png',
+    ogImage: 'https://www.fromthehart.tech/logo/from-the-hart-social.png',
     ogUrl: 'https://www.fromthehart.tech',
 
     twitterTitle: 'From The Hart',
     twitterDescription: 'A website to play with technologies and share my experiences.',
-    twitterImage: 'https://www.fromthehart.tech/logo/from-the-hart.png',
+    twitterImage: 'https://www.fromthehart.tech/logo/from-the-hart-social.png',
     twitterCard: 'summary_large_image',
     twitterSite: '@SheldonHart7',
     twitterCreator: '@SheldonHart7',
