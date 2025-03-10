@@ -8,11 +8,11 @@ robots: index, follow
 author: Sheldon Hart
 ogTitle: This is an OpenGraph title
 ogDescription: This is the OpenGraph description
-ogImage: https://www.fromthehart.tech/logo/from-the-hart-social.png
+ogImage: https://www.fromthehart.tech/logo/from-the-hart-social.svg
 ogUrl: https://www.fromtheharttech.com/blog/Third
 twitterTitle: Twitter Title
 twitterDescription: Twitter Description
-twitterImage: https://www.fromthehart.tech/logo/from-the-hart-social.png
+twitterImage: https://www.fromthehart.tech/logo/from-the-hart-social.svg
 twitterCard: summary_large_image
 twitterSite: "@SheldonHart7"
 twitterCreator: "@SheldonHart7"
@@ -92,7 +92,7 @@ Tables:
 </html>
 ```
 
-![From-The-Hart](/logo/from-the-hart.png)
+![From-The-Hart](/logo/from-the-hart.svg)
 
 ```javascript
 const { createApp } = Vue;
