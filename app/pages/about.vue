@@ -1,79 +1,82 @@
 <template>
-  <section>
-    <div class="container px-6 mx-auto mt-12">
-      <h1 class="text-5xl font-bold leading-none sm:text-6xl text-center mb-8">About <span class="text-primary-600">Me</span></h1>
+  <section class="py-8">
+    <div class="container mx-auto px-6">
+      <div class="mb-12">
+        <h1 class="text-5xl font-bold leading-none sm:text-6xl text-center mb-8">About <span class="text-primary-600">Me</span></h1>
 
-      <div class="max-w-3xl mx-auto mb-12">
-        <UCard class="p-6">
-          <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-            Hello! I'm <span class="font-semibold text-primary-700 dark:text-primary-400">Sheldon Hart</span>, a solutions architect with a passion for technology, development and architecture. I
-            studied Computer Sciences and began my career at FNB, a leading bank in South Africa. Starting as a graduate developer, I have grown into a solutions architect, leveraging my expertise to
-            design and implement innovative tech solutions.
-          </p>
-        </UCard>
+        <div class="max-w-3xl mx-auto">
+          <UCard class="p-6">
+            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+              Hello! I'm <span class="font-semibold text-primary-700 dark:text-primary-400">Sheldon Hart</span>, a solutions architect with a passion for technology, development and architecture. I
+              studied Computer Sciences and began my career at FNB, a leading bank in South Africa. Starting as a graduate developer, I have grown into a solutions architect, leveraging my expertise
+              to design and implement innovative tech solutions.
+            </p>
+          </UCard>
+        </div>
       </div>
-    </div>
 
-    <div class="container px-6 mx-auto mt-6 prose prose-lg dark:prose-invert max-w-none">
-      <section class="mb-12">
-        <h2 class="text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center">
-          <UIcon name="i-lucide-award" class="mr-2 text-primary-600 dark:text-primary-400" />
-          Certifications
-        </h2>
+      <div class="prose prose-lg dark:prose-invert max-w-none">
+        <section class="mb-12">
+          <!-- Standardize section headings -->
+          <h2 class="text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center">
+            <UIcon name="i-lucide-award" class="mr-2 text-primary-600 dark:text-primary-400" />
+            Certifications
+          </h2>
 
-        <AboutCertificationDisplay />
+          <AboutCertificationDisplay />
 
-        <h2 class="text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center">
-          <UIcon name="i-lucide-code" class="mr-2 text-primary-600 dark:text-primary-400" />
-          Skills
-        </h2>
+          <h2 class="text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center">
+            <UIcon name="i-lucide-code" class="mr-2 text-primary-600 dark:text-primary-400" />
+            Skills
+          </h2>
 
-        <AboutSkillsDisplay />
+          <AboutSkillsDisplay />
 
-        <h2 class="text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center">
-          <UIcon name="i-lucide-briefcase" class="mr-2 text-primary-600 dark:text-primary-400" />
-          Professional Experience
-        </h2>
+          <h2 class="text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center">
+            <UIcon name="i-lucide-briefcase" class="mr-2 text-primary-600 dark:text-primary-400" />
+            Professional Experience
+          </h2>
 
-        <AboutExperienceDisplay />
+          <AboutExperienceDisplay />
 
-        <h2 class="text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center">
-          <UIcon name="i-lucide-folder" class="mr-2 text-primary-600 dark:text-primary-400" />
-          Projects
-        </h2>
+          <h2 class="text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center">
+            <UIcon name="i-lucide-folder" class="mr-2 text-primary-600 dark:text-primary-400" />
+            Projects
+          </h2>
 
-        <AboutProjectDisplay />
+          <AboutProjectDisplay />
 
-        <h2 class="text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center">
-          <UIcon name="i-lucide-graduation-cap" class="mr-2 text-primary-600 dark:text-primary-400" />
-          Education
-        </h2>
+          <h2 class="text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center">
+            <UIcon name="i-lucide-graduation-cap" class="mr-2 text-primary-600 dark:text-primary-400" />
+            Education
+          </h2>
 
-        <AboutEducationDisplay />
+          <AboutEducationDisplay />
 
-        <h2 class="text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center">
-          <UIcon name="i-lucide-heart" class="mr-2 text-primary-600 dark:text-primary-400" />
-          Hobbies and Interests
-        </h2>
+          <h2 class="text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center">
+            <UIcon name="i-lucide-heart" class="mr-2 text-primary-600 dark:text-primary-400" />
+            Hobbies and Interests
+          </h2>
 
-        <AboutHobbiesDisplay />
+          <AboutHobbiesDisplay />
 
-        <h2 class="text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center">
-          <UIcon name="i-lucide-mail" class="mr-2 text-primary-600 dark:text-primary-400" />
-          Contact Me
-        </h2>
+          <h2 class="text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center">
+            <UIcon name="i-lucide-mail" class="mr-2 text-primary-600 dark:text-primary-400" />
+            Contact Me
+          </h2>
 
-        <UCard class="p-6">
-          <div class="flex flex-wrap gap-4">
-            <UButton to="https://www.linkedin.com/in/sheldon-hart/" target="_blank" icon="i-lucide-linkedin" color="primary"> LinkedIn </UButton>
-            <UButton to="mailto:sheldon.hart88@gmail.com" target="_blank" icon="i-lucide-mail" color="primary"> Email Me </UButton>
-          </div>
-        </UCard>
-      </section>
+          <UCard class="p-6">
+            <div class="flex flex-wrap gap-4">
+              <UButton to="https://www.linkedin.com/in/sheldon-hart/" target="_blank" icon="i-lucide-linkedin" color="primary"> LinkedIn </UButton>
+              <UButton to="mailto:sheldon.hart88@gmail.com" target="_blank" icon="i-lucide-mail" color="primary"> Email Me </UButton>
+            </div>
+          </UCard>
+        </section>
 
-      <USeparator />
+        <USeparator />
 
-      <div class="text-center my-8 text-gray-700 dark:text-gray-300">Thank you for visiting my page! I look forward to connecting with you.</div>
+        <div class="text-center my-8 text-gray-700 dark:text-gray-300">Thank you for visiting my page! I look forward to connecting with you.</div>
+      </div>
     </div>
   </section>
 </template>

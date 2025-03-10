@@ -3,7 +3,7 @@
     <template v-if="post">
       <!-- Blog Index Page -->
       <template v-if="isIndexPage">
-        <div class="container px-6 mx-auto mt-12">
+        <div class="container mx-auto px-6 py-8">
           <h1 class="text-5xl font-bold leading-none sm:text-6xl text-center mb-8">My <span class="text-primary-600">Blog</span></h1>
 
           <div class="prose dark:prose-invert max-w-none">
@@ -13,7 +13,7 @@
       </template>
 
       <!-- Individual Blog Post Page -->
-      <div v-else class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div v-else class="container mx-auto px-6 py-8">
         <header class="mb-8">
           <h1 class="text-4xl sm:text-5xl font-bold mb-4">{{ post.title }}</h1>
 
@@ -52,7 +52,7 @@
     </template>
 
     <template v-else>
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="container mx-auto px-6 py-8">
         <TheError :statusCode="404" :statusMessage="'Blog post not found'" />
       </div>
     </template>

@@ -43,15 +43,13 @@
 </script>
 
 <style>
-  body {
-    .page-enter-active,
-    .page-leave-active {
-      transition: opacity 0.1s ease-out;
-    }
+  .page-enter-active,
+  .page-leave-active {
+    transition: opacity 0.1s ease-out;
+  }
 
-    .page-leave-to,
-    .page-enter-from {
-      opacity: 0;
-    }
+  .page-leave-to,
+  .page-enter-from {
+    opacity: 0;
   }
 </style>

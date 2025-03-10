@@ -1,12 +1,11 @@
 <template>
-  <section>
-    <div class="container px-6 mx-auto mt-12">
-      <h1 class="text-5xl font-bold leading-none sm:text-6xl text-center mb-8">My <span class="text-primary-600">Projects</span></h1>
+  <section class="py-8">
+    <div class="container mx-auto px-6">
+      <div class="mb-12">
+        <h1 class="text-5xl font-bold leading-none sm:text-6xl text-center mb-4">My <span class="text-primary-600">Projects</span></h1>
+        <p class="text-lg text-center max-w-3xl mx-auto">Here you can find a collection of my personal projects</p>
+      </div>
 
-      <p class="text-lg text-center mb-12 max-w-3xl mx-auto">Here you can find a collection of my personal projects</p>
-    </div>
-
-    <div class="container px-6 mx-auto mt-6">
       <ProjectsGithubList />
     </div>
   </section>
