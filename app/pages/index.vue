@@ -37,12 +37,12 @@
 
     ogTitle: 'From The Hart Tech - Solutions Architecture & Development',
     ogDescription: 'Solutions architect and developer exploring enterprise architecture, cloud solutions, and modern development practices',
-    ogImage: 'https://www.fromthehart.tech/logo/from-the-hart.png',
+    ogImage: 'https://www.fromthehart.tech/logo/from-the-hart-social.png',
     ogUrl: 'https://www.fromthehart.tech/',
 
     twitterTitle: 'From The Hart Tech - Solutions Architecture & Development',
     twitterDescription: 'Solutions architect and developer exploring enterprise architecture, cloud solutions, and modern development practices',
-    twitterImage: 'https://www.fromthehart.tech/logo/from-the-hart.png',
+    twitterImage: 'https://www.fromthehart.tech/logo/from-the-hart-social.png',
     twitterCard: 'summary_large_image',
   })
 </script>
