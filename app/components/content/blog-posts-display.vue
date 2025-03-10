@@ -50,7 +50,7 @@
 <script setup lang="ts">
   const props = withDefaults(
     defineProps<{
-      limit: number
+      limit?: number
     }>(),
     {
       limit: 0,

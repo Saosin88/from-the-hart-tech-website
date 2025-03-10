@@ -3,7 +3,7 @@
     <div class="container px-6 mx-auto mt-12">
       <h1 class="text-5xl font-bold leading-none sm:text-6xl text-center mb-8">My <span class="text-primary-600">Projects</span></h1>
 
-      <p class="text-lg text-center mb-12 max-w-3xl mx-auto">Here you can find a collection of projects I've worked on.</p>
+      <p class="text-lg text-center mb-12 max-w-3xl mx-auto">Here you can find a collection of my personal projects</p>
     </div>
 
     <div class="container px-6 mx-auto mt-6">

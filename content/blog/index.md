@@ -17,10 +17,5 @@ twitterCard: summary_large_image
 twitterSite: "@sheldonhart"
 twitterCreator: "@sheldonhart"
 ---
-
-# Blog Posts
-
-This is the list of my recent blog posts
-
 ::blog-posts-display
 ::

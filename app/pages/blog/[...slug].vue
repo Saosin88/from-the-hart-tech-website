@@ -1,8 +1,20 @@
 <template>
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <section>
     <template v-if="post">
-      <article>
-        <header v-if="!isIndexPage" class="mb-8">
+      <!-- Blog Index Page -->
+      <template v-if="isIndexPage">
+        <div class="container px-6 mx-auto mt-12">
+          <h1 class="text-5xl font-bold leading-none sm:text-6xl text-center mb-8">My <span class="text-primary-600">Blog</span></h1>
+
+          <div class="prose dark:prose-invert max-w-none">
+            <ContentRenderer :value="post" />
+          </div>
+        </div>
+      </template>
+
+      <!-- Individual Blog Post Page -->
+      <div v-else class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <header class="mb-8">
           <h1 class="text-4xl sm:text-5xl font-bold mb-4">{{ post.title }}</h1>
 
           <div class="flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
@@ -32,18 +44,19 @@
           <aside v-if="post.toc && !isIndexPage" class="hidden md:block md:col-span-2 not-prose">
             <div class="sticky top-8 p-4 bg-gray-50 dark:bg-gray-800/40 rounded-lg border border-gray-200 dark:border-gray-700">
               <h2 class="font-semibold text-lg mb-4">Table of Contents</h2>
-
               <TocLinks :links="post.body.toc.links" :active-id="activeId" />
             </div>
           </aside>
         </div>
-      </article>
+      </div>
     </template>
 
     <template v-else>
-      <TheError :statusCode="404" :statusMessage="'Blog post not found'" />
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <TheError :statusCode="404" :statusMessage="'Blog post not found'" />
+      </div>
     </template>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">
