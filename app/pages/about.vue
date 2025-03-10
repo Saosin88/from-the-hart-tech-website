@@ -8,9 +8,9 @@
           <UCard class="p-6">
             <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
               Hello! I'm <span class="font-semibold text-primary-700 dark:text-primary-400">Sheldon Hart</span>, a solutions architect with over 15 years of experience creating innovative technology
-              solutions. My professional journey began after completing my Computer Sciences degree, joining First National Bank (FNB) — one of South Africa's premier financial institutions. What
-              started as a graduate developer position evolved into a fulfilling career as a solutions architect, where I now design and implement enterprise-scale systems that balance technical
-              excellence with business value.
+              solutions. My professional journey began after completing my BSc Computer Science degree, and then joining First National Bank (FNB), one of South Africa's biggest financial
+              institutions. What started as a graduate developer position evolved into a fulfilling career as a solutions architect, where I now design and implement enterprise-scale systems that
+              balance technical excellence with business value.
             </p>
           </UCard>
         </div>
