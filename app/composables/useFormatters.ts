@@ -47,10 +47,29 @@ export function useFormatters() {
     return uniqueKeywords.slice(0, limit)
   }
 
+  function getLanguageColour(language: string | null, fallback: string = '#888'): string {
+    const languageColours: { [key: string]: string } = {
+      JavaScript: '#f1e05a',
+      TypeScript: '#3178c6',
+      Vue: '#41b883',
+      HTML: '#e34c26',
+      CSS: '#563d7c',
+      Python: '#3572A5',
+      Java: '#b07219',
+      PHP: '#4F5D95',
+      'C#': '#178600',
+      Ruby: '#701516',
+    }
+
+    if (!language) return fallback
+    return languageColours[language] || fallback
+  }
+
   return {
     formatDate,
     formatDateInAgoTerms,
     truncateDescription,
     getUniqueKeywords,
+    getLanguageColour,
   }
 }

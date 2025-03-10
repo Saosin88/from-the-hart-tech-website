@@ -5,7 +5,7 @@
 
   <div v-else-if="error" class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-6 text-center">
     <p class="text-red-600 dark:text-red-400 font-medium">Something went wrong while fetching projects.</p>
-    <button @click="() => refetch()" class="mt-4 px-4 py-2 bg-red-100 dark:bg-red-800/30 hover:bg-red-200 dark:hover:bg-red-800/50 text-red-600 dark:text-red-400 rounded-md transition-colors">
+    <button @click="() => refresh()" class="mt-4 px-4 py-2 bg-red-100 dark:bg-red-800/30 hover:bg-red-200 dark:hover:bg-red-800/50 text-red-600 dark:text-red-400 rounded-md transition-colors">
       Try again
     </button>
   </div>
@@ -36,13 +36,13 @@
 
             <div class="flex items-center text-xs text-gray-500 dark:text-gray-400">
               <div class="flex items-center">
-                <span class="w-3 h-3 rounded-full mr-1" :style="`background-color: ${repo.language ? languageColors[repo.language] || '#888' : '#888'}`"></span>
+                <span class="w-3 h-3 rounded-full mr-1" :style="{ backgroundColor: getLanguageColour(repo.language) }"></span>
                 {{ repo.language || 'Unknown' }}
               </div>
 
               <span class="mx-2">•</span>
 
-              <div>Updated {{ useFormatters().formatDateInAgoTerms(repo.updated_at) }}</div>
+              <div>Updated {{ formatDateInAgoTerms(repo.updated_at) }}</div>
             </div>
           </div>
         </a>
@@ -52,32 +52,6 @@
 </template>
 
 <script setup lang="ts">
-  interface GitHubRepo {
-    id: number
-    name: string
-    description: string | null
-    html_url: string
-    stargazers_count: number
-    language: string | null
-    updated_at: string
-  }
-
-  const { error, status, data, refresh: refetch } = await useFetch('https://api.github.com/users/Saosin88/repos')
-
-  const pending = computed(() => status.value === 'pending')
-
-  const repos = computed<GitHubRepo[]>(() => ((data.value ?? []) as GitHubRepo[]).sort((a, b) => b.stargazers_count - a.stargazers_count))
-
-  const languageColors: { [key: string]: string } = {
-    JavaScript: '#f1e05a',
-    TypeScript: '#3178c6',
-    Vue: '#41b883',
-    HTML: '#e34c26',
-    CSS: '#563d7c',
-    Python: '#3572A5',
-    Java: '#b07219',
-    PHP: '#4F5D95',
-    'C#': '#178600',
-    Ruby: '#701516',
-  }
+  const { repos, error, pending, refresh } = useAPI().getGitHubRepos()
+  const { formatDateInAgoTerms, getLanguageColour } = useFormatters()
 </script>
