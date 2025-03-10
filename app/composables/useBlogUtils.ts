@@ -1,7 +1,7 @@
-import type { BlogPost, BlogPostDataObject, BlogPostSummary, BlogPostSummaryDataObject } from '~/app/types/blog'
+import type { BlogPost, BlogPostSummary } from '~/app/types/blog'
 
 export function useBlogUtils() {
-  function mapBlogPostDataArray(data: BlogPostSummaryDataObject[]): BlogPostSummary[] {
+  function mapBlogPostSummary(data: BlogPostSummary[]): BlogPostSummary[] {
     if (!data) {
       return []
     }
@@ -14,21 +14,8 @@ export function useBlogUtils() {
     }))
   }
 
-  function mapBlogPostData(data?: BlogPostDataObject): BlogPost | null {
-    if (!data) {
-      return null
-    }
-
-    return {
-      ...data,
-      formattedDescription: useFormatters().truncateDescription(data.description, 25),
-      formattedDate: useFormatters().formatDate(data.date),
-      uniqueKeywords: useFormatters().getUniqueKeywords(data.keywords, 5),
-    }
-  }
-
   async function fetchBlogPostsSummaries(limit = 0) {
-    const { data } = await useAsyncData<BlogPostSummaryDataObject[]>('blog-posts-summary-list-limit-' + limit, () => {
+    const { data } = await useAsyncData<BlogPostSummary[]>('blog-posts-summary-list-limit-' + limit, () => {
       const query = queryCollection('blog').where('path', '<>', '/blog').select('path', 'title', 'description', 'date', 'keywords').order('date', 'DESC')
 
       if (limit > 0) {
@@ -41,26 +28,25 @@ export function useBlogUtils() {
     let posts: BlogPostSummary[] = []
 
     if (data.value) {
-      posts = mapBlogPostDataArray(data.value)
+      posts = mapBlogPostSummary(data.value)
     }
 
     return posts
   }
 
   async function fetchBlogPost(path: string) {
-    const { data } = await useAsyncData<BlogPostDataObject>(path, () => queryCollection('blog').path(path).first())
+    const { data } = await useAsyncData<BlogPost>(path, () => queryCollection('blog').path(path).first())
 
     let post = null
     if (data.value) {
-      post = mapBlogPostData(data.value)
+      post = data.value
+      post.formattedDate = useFormatters().formatDate(post.date)
     }
 
     return post
   }
 
   return {
-    mapBlogPostDataArray,
-    mapBlogPostData,
     fetchBlogPostsSummaries,
     fetchBlogPost,
   }

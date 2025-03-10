@@ -14,8 +14,8 @@ twitterTitle: Twitter Title
 twitterDescription: Twitter Description
 twitterImage: https://www.fromthehart.tech/logo/from-the-hart.png
 twitterCard: summary_large_image
-twitterSite: "@sheldonhart"
-twitterCreator: "@sheldonhart"
+twitterSite: "@SheldonHart7"
+twitterCreator: "@SheldonHart7"
 ---
 
 # Third post on our website

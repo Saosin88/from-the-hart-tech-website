@@ -8,7 +8,6 @@
 
 <script setup lang="ts">
   useHead({
-    titleTemplate: '%s - From The Hart',
     htmlAttrs: {
       lang: 'en',
     },
@@ -22,7 +21,7 @@
   })
 
   useSeoMeta({
-    title: 'From The Hart',
+    title: 'From The Hart Tech',
     description: 'A website to play with technologies and share my experiences.',
     keywords: 'Sheldon Hart, From The Hart, blog, technology, architecture, development, sandbox',
     robots: 'index, follow',
@@ -37,8 +36,8 @@
     twitterDescription: 'A website to play with technologies and share my experiences.',
     twitterImage: 'https://www.fromthehart.tech/logo/from-the-hart.png',
     twitterCard: 'summary_large_image',
-    twitterSite: '@sheldonhart',
-    twitterCreator: '@sheldonhart',
+    twitterSite: '@SheldonHart7',
+    twitterCreator: '@SheldonHart7',
   })
 </script>
 

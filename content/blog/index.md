@@ -1,21 +1,21 @@
 ---
-title: Blog
-description: List of all my blog posts
+title: Blog - From The Hart Tech
+description: Explore articles on architecture, cloud computing, and software development best practices by Sheldon Hart, Solutions Architect.
 date: 2025-02-28 12:00:00
 toc: false
-keywords: blog, articles, posts, index, list, table of contents
+keywords: architecture, cloud solutions, AWS, microservices, Java, solutions architecture, software development, technical blog, Sheldon Hart
 robots: index, follow
 author: Sheldon Hart
-ogTitle: List of Blog Posts
-ogDescription: List of all my blog posts
+ogTitle: Blog | Sheldon Hart - Solutions Architect
+ogDescription: Read  articles on  architecture, cloud computing, and software development from an experienced Solutions Architect.
 ogImage: https://www.fromthehart.tech/logo/from-the-hart.png
-ogUrl: https://www.fromtheharttech.com/blog
-twitterTitle: List of Blog Posts
-twitterDescription: List of all my blog posts
+ogUrl: https://www.fromthehart.tech/blog
+twitterTitle: Blog | Sheldon Hart - Solutions Architect
+twitterDescription: Insights on architecture, microservices, and cloud computing from Solutions Architect Sheldon Hart.
 twitterImage: https://www.fromthehart.tech/logo/from-the-hart.png
 twitterCard: summary_large_image
-twitterSite: "@sheldonhart"
-twitterCreator: "@sheldonhart"
+twitterSite: "@SheldonHart7"
+twitterCreator: "@SheldonHart7"
 ---
 ::blog-posts-display
 ::

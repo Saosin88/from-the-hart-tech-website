@@ -15,7 +15,7 @@ twitterDescription: Twitter Description
 twitterImage: https://www.fromthehart.tech/logo/from-the-hart.png
 twitterCard: summary_large_image
 twitterSite: "@fromtheharttech"
-twitterCreator: "@sheldonhart"
+twitterCreator: "@SheldonHart7"
 ---
 
 # Lorem Ipsum
