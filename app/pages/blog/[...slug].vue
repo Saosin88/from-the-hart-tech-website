@@ -97,4 +97,21 @@
       }
     })
   })
+
+  useSeoMeta({
+    title: post?.title,
+    description: post?.description,
+    keywords: post?.keywords,
+    robots: post?.robots,
+    author: post?.author,
+    ogDescription: post?.ogDescription,
+    ogImage: post?.ogImage,
+    ogUrl: post?.ogUrl,
+    twitterTitle: post?.twitterTitle,
+    twitterDescription: post?.twitterDescription,
+    twitterImage: post?.twitterImage,
+    twitterCard: 'summary_large_image',
+    twitterSite: post?.twitterSite,
+    twitterCreator: post?.twitterCreator,
+  })
 </script>

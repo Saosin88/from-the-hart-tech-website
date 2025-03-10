@@ -7,7 +7,7 @@
 
         <div class="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4 sm:justify-center lg:justify-start">
           <UButton to="/projects" class="px-8 py-3 text-lg font-semibold rounded">
-            <span class="text-center w-full">Check out my Personal Projects</span>
+            <span class="text-center w-full">Check out my personal projects</span>
           </UButton>
 
           <UButton to="/about" color="neutral" class="px-8 py-3 text-lg font-semibold rounded">
@@ -30,8 +30,8 @@
 
 <script setup lang="ts">
   useSeoMeta({
-    title: 'From The Hart Tech - Sheldon Hart',
-    description: 'Solutions architect and developer sharing insights on Java, microservices, and enterprise architecture',
+    title: 'From The Hart Tech',
+    description: 'Solutions architect and developer sharing insights on architecture, design and development',
     keywords: 'solutions architect, software development, Java, AWS, microservices, enterprise architecture',
     robots: 'index, follow',
 
