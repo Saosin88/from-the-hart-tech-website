@@ -7,7 +7,7 @@
     </div>
 
     <div class="container px-6 mx-auto mt-6">
-      <GithubProjectList />
+      <ProjectsGithubList />
     </div>
   </section>
 </template>

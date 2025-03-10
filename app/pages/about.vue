@@ -16,42 +16,42 @@
         Certifications
       </h2>
 
-      <CertificationDisplay />
+      <AboutCertificationDisplay />
 
       <h2 class="text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center">
         <UIcon name="i-lucide-code" class="mr-2 text-primary-600 dark:text-primary-400" />
         Skills
       </h2>
 
-      <SkillsDisplay />
+      <AboutSkillsDisplay />
 
       <h2 class="text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center">
         <UIcon name="i-lucide-briefcase" class="mr-2 text-primary-600 dark:text-primary-400" />
         Professional Experience
       </h2>
 
-      <ExperienceDisplay />
+      <AboutExperienceDisplay />
 
       <h2 class="text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center">
         <UIcon name="i-lucide-folder" class="mr-2 text-primary-600 dark:text-primary-400" />
         Projects
       </h2>
 
-      <ProjectDisplay />
+      <AboutProjectDisplay />
 
       <h2 class="text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center">
         <UIcon name="i-lucide-graduation-cap" class="mr-2 text-primary-600 dark:text-primary-400" />
         Education
       </h2>
 
-      <EducationDisplay />
+      <AboutEducationDisplay />
 
       <h2 class="text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center">
         <UIcon name="i-lucide-heart" class="mr-2 text-primary-600 dark:text-primary-400" />
         Hobbies and Interests
       </h2>
 
-      <HobbiesDisplay />
+      <AboutHobbiesDisplay />
 
       <h2 class="text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center">
         <UIcon name="i-lucide-mail" class="mr-2 text-primary-600 dark:text-primary-400" />

@@ -12,7 +12,7 @@
 
         <div class="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4 sm:justify-center lg:justify-start">
           <UButton to="/projects" class="flex items-center justify-center px-8 py-3 text-lg font-semibold rounded">
-            <span class="text-center w-full">Check out my Projects</span>
+            <span class="text-center w-full">Check out my Personal Projects</span>
           </UButton>
 
           <UButton to="/about" color="neutral" class="flex items-center justify-center px-8 py-3 text-lg font-semibold rounded">

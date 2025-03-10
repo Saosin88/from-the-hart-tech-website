@@ -1,7 +1,7 @@
 <template>
   <ClientOnly v-if="!colorMode?.forced">
     <UButton
-      :icon="isDark ? 'i-lucide-moon' : 'i-lucide-sun'"
+      :icon="isDark ? 'i-lucide-sun' : 'i-lucide-moon'"
       color="neutral"
       variant="ghost"
       class="rounded-full w-8 h-8 flex items-center justify-center p-0 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
