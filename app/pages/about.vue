@@ -4,12 +4,13 @@
       <div class="mb-12">
         <h1 class="text-5xl font-bold leading-none sm:text-6xl text-center mb-8">About <span class="text-primary-600">Me</span></h1>
 
-        <div class="max-w-3xl mx-auto">
+        <div class="mx-auto">
           <UCard class="p-6">
             <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-              Hello! I'm <span class="font-semibold text-primary-700 dark:text-primary-400">Sheldon Hart</span>, a solutions architect with a passion for technology, development and architecture. I
-              studied Computer Sciences and began my career at FNB, a leading bank in South Africa. Starting as a graduate developer, I have grown into a solutions architect, leveraging my expertise
-              to design and implement innovative tech solutions.
+              Hello! I'm <span class="font-semibold text-primary-700 dark:text-primary-400">Sheldon Hart</span>, a solutions architect with over 15 years of experience creating innovative technology
+              solutions. My professional journey began after completing my Computer Sciences degree, joining First National Bank (FNB) — one of South Africa's premier financial institutions. What
+              started as a graduate developer position evolved into a fulfilling career as a solutions architect, where I now design and implement enterprise-scale systems that balance technical
+              excellence with business value.
             </p>
           </UCard>
         </div>

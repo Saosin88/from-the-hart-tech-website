@@ -65,6 +65,15 @@
       ],
     },
     {
+      name: 'Application Servers',
+      icon: 'i-lucide-server-cog',
+      skills: [
+        { name: 'Tomcat', icon: 'i-logos-tomcat' },
+        { name: 'Wildfly/JBoss', icon: 'i-lucide-server' },
+        { name: 'Jetty', icon: 'i-lucide-server' },
+      ],
+    },
+    {
       name: 'Tools',
       icon: 'i-lucide-wrench',
       skills: [
