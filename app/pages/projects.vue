@@ -9,7 +9,14 @@
         </p>
       </div>
 
-      <ProjectsGithubList />
+      <ClientOnly>
+        <ProjectsGithubList />
+        <template #fallback>
+          <div class="flex justify-center p-8">
+            <UIcon name="i-lucide-loader-2" class="animate-spin text-primary-600" size="xl" />
+          </div>
+        </template>
+      </ClientOnly>
     </div>
   </section>
 </template>
@@ -33,5 +40,9 @@
     twitterCard: 'summary_large_image',
     twitterSite: '@sheldonhart',
     twitterCreator: '@sheldonhart',
+  })
+
+  definePageMeta({
+    prerender: true,
   })
 </script>
