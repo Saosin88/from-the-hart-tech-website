@@ -5,7 +5,7 @@
         <NuxtLink
           :to="$route.path + '#' + link.id"
           :class="[
-            'block py-1 px-2 rounded-md transition-colors text-gray-700 dark:text-gray-300 hover:bg-gray-200/50 dark:hover:bg-gray-700/50',
+            'block py-1 px-2 rounded-md transition-colors text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200/50 dark:hover:bg-neutral-700/50',
             activeId === link.id ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-400 font-medium' : '',
           ]"
         >
@@ -17,7 +17,7 @@
             <NuxtLink
               :to="$route.path + '#' + childLink.id"
               :class="[
-                'block py-1 px-2 rounded-md transition-colors text-gray-700 dark:text-gray-300 hover:bg-gray-200/50 dark:hover:bg-gray-700/50',
+                'block py-1 px-2 rounded-md transition-colors text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200/50 dark:hover:bg-neutral-700/50',
                 activeId === childLink.id ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-400 font-medium' : '',
               ]"
             >

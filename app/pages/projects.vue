@@ -4,7 +4,7 @@
       <div class="mb-12">
         <h1 class="text-5xl font-bold leading-none sm:text-6xl text-center mb-4">My <span class="text-primary-600">Projects</span></h1>
         <p class="text-lg text-center max-w-3xl mx-auto">Here you can find a collection of my personal projects</p>
-        <p class="text-xs text-center mt-2 text-gray-500 dark:text-gray-400">
+        <p class="text-xs text-center mt-2 text-neutral-500 dark:text-neutral-400">
           If you want to see details of my work projects, please <a href="/about#projects" class="text-primary-600 hover:underline">click here</a>
         </p>
       </div>

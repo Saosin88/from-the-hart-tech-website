@@ -17,7 +17,7 @@
         <header class="mb-8">
           <h1 class="text-4xl sm:text-5xl font-bold mb-4">{{ post.title }}</h1>
 
-          <div class="flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+          <div class="flex flex-wrap items-center gap-4 text-sm text-neutral-600 dark:text-neutral-400">
             <time v-if="post.formattedDate" :datetime="post.formattedDate">{{ post.formattedDate }}</time>
 
             <div v-if="post.author" class="flex items-center">
@@ -35,14 +35,14 @@
             }"
           >
             <div
-              class="prose dark:prose-invert prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-gray-100 prose-a:text-primary-600 dark:prose-a:text-primary-400 prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg prose-img:shadow-md prose-pre:bg-gray-50 dark:prose-pre:bg-gray-800/80 prose-pre:text-gray-700 dark:prose-pre:text-gray-300 prose-pre:rounded-lg prose-pre:shadow-sm prose-h2:no-underline prose-h3:no-underline prose-h4:no-underline prose-headings:hover:no-underline prose-h2:mt-8 prose-h3:mt-6 max-w-none"
+              class="prose dark:prose-invert prose-headings:font-bold prose-headings:text-neutral-900 dark:prose-headings:text-neutral-100 prose-a:text-primary-600 dark:prose-a:text-primary-400 prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg prose-img:shadow-md prose-pre:bg-neutral-50 dark:prose-pre:bg-neutral-800/80 prose-pre:text-neutral-700 dark:prose-pre:text-neutral-300 prose-pre:rounded-lg prose-pre:shadow-sm prose-h2:no-underline prose-h3:no-underline prose-h4:no-underline prose-headings:hover:no-underline prose-h2:mt-8 prose-h3:mt-6 max-w-none"
             >
               <ContentRenderer :value="post" />
             </div>
           </div>
 
           <aside v-if="post.toc && !isIndexPage" class="hidden md:block md:col-span-2 not-prose">
-            <div class="sticky top-8 p-4 bg-gray-50 dark:bg-gray-800/40 rounded-lg border border-gray-200 dark:border-gray-700">
+            <div class="sticky top-8 p-4 bg-neutral-50 dark:bg-neutral-800/40 rounded-lg border border-neutral-200 dark:border-neutral-700">
               <h2 class="font-semibold text-lg mb-4">Table of Contents</h2>
               <TocLinks :links="post.body.toc.links" :active-id="activeId" />
             </div>

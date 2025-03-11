@@ -1,6 +1,6 @@
 <template>
   <section class="flex flex-col items-center justify-center min-h-[50vh] px-6 py-12 text-center">
-    <div class="mb-8 text-red-500 dark:text-red-400">
+    <div class="mb-8 text-error-500 dark:text-error-400">
       <UIcon name="lucide:alert-triangle" class="w-24 h-24 mx-auto" />
     </div>
 
@@ -8,7 +8,7 @@
       Error <span class="text-primary-600">{{ statusCode }}</span>
     </h1>
 
-    <h2 class="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-lg">
+    <h2 class="text-xl text-neutral-600 dark:text-neutral-300 mb-8 max-w-lg">
       {{ statusMessage || 'Something went wrong' }}
     </h2>
 
