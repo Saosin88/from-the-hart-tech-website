@@ -1,17 +1,17 @@
 <template>
   <div class="my-6">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <UCard v-for="(category, categoryIndex) in skillCategories" :key="categoryIndex" class="transition-all duration-200 hover:shadow-md dark:hover:shadow-gray-800/40">
+      <UCard v-for="(category, categoryIndex) in skillCategories" :key="categoryIndex" class="transition-all duration-200 hover:shadow-md dark:hover:shadow-neutral-800/40">
         <div class="flex items-center gap-3 mb-4">
           <div class="bg-primary-100 dark:bg-primary-900/30 p-2 rounded-lg flex items-center justify-center">
             <UIcon :name="category.icon" class="text-primary-600 dark:text-primary-400 text-xl" />
           </div>
 
-          <h3 class="font-semibold text-lg text-gray-900 dark:text-gray-100">{{ category.name }}</h3>
+          <h3 class="font-semibold text-lg text-neutral-900 dark:text-neutral-100">{{ category.name }}</h3>
         </div>
 
         <div class="flex flex-wrap gap-2">
-          <div v-for="(skill, skillIndex) in category.skills" :key="skillIndex" class="bg-gray-100 dark:bg-gray-800 px-3 py-1.5 rounded-full flex items-center gap-1.5">
+          <div v-for="(skill, skillIndex) in category.skills" :key="skillIndex" class="bg-neutral-100 dark:bg-neutral-800 px-3 py-1.5 rounded-full flex items-center gap-1.5">
             <UIcon :name="skill.icon" class="text-base" />
 
             <span>{{ skill.name }}</span>

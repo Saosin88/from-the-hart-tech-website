@@ -8,7 +8,7 @@
       </div>
     </div>
 
-    <p class="text-gray-700 dark:text-gray-300 mt-6">
+    <p class="text-neutral-700 dark:text-neutral-300 mt-6">
       {{ description }}
     </p>
   </UCard>

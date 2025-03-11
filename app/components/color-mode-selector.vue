@@ -4,7 +4,7 @@
       :icon="isDark ? 'i-lucide-sun' : 'i-lucide-moon'"
       color="neutral"
       variant="ghost"
-      class="rounded-full w-8 h-8 flex items-center justify-center p-0 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
+      class="rounded-full w-8 h-8 flex items-center justify-center p-0 transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-800"
       aria-label="Toggle color mode"
       @click="isDark = !isDark"
     />

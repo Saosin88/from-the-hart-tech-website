@@ -3,19 +3,19 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <UCard v-for="(project, index) in projects" :key="index" class="h-full flex flex-col overflow-hidden">
         <div class="flex justify-between items-center mb-3">
-          <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200">{{ project.title }}</h3>
+          <h3 class="text-lg font-semibold text-neutral-800 dark:text-neutral-200">{{ project.title }}</h3>
 
           <div v-if="project.logo" class="flex items-center gap-2">
-            <span v-if="project.logoLabel" class="text-xs font-medium px-2 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded self-center">
+            <span v-if="project.logoLabel" class="text-xs font-medium px-2 py-0.5 bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-200 rounded self-center">
               {{ project.logoLabel }}
             </span>
-            <div class="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-white dark:bg-gray-800 rounded-md p-1">
+            <div class="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-white dark:bg-neutral-800 rounded-md p-1">
               <img :src="project.logo" :alt="`${project.title} logo`" class="max-w-[32px] max-h-[32px] w-auto h-auto object-contain" />
             </div>
           </div>
         </div>
 
-        <p class="text-gray-700 dark:text-gray-300 mb-4 text-base flex-grow">{{ project.description }}</p>
+        <p class="text-neutral-700 dark:text-neutral-300 mb-4 text-base flex-grow">{{ project.description }}</p>
 
         <div v-if="project.technologies && project.technologies.length" class="mb-4">
           <div class="flex flex-wrap gap-2">

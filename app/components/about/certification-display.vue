@@ -1,10 +1,10 @@
 <template>
   <div class="space-y-6">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <UCard v-for="(cert, index) in certifications" :key="index" class="transition-all duration-200 hover:shadow-md dark:hover:shadow-gray-800/40 h-full">
+      <UCard v-for="(cert, index) in certifications" :key="index" class="transition-all duration-200 hover:shadow-md dark:hover:shadow-neutral-800/40 h-full">
         <div class="flex flex-col h-full">
           <div class="flex justify-center mb-4">
-            <div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-2 flex items-center justify-center w-24 h-24 overflow-hidden">
+            <div class="bg-neutral-100 dark:bg-neutral-800 rounded-lg p-2 flex items-center justify-center w-24 h-24 overflow-hidden">
               <img v-if="cert.image" :src="cert.image" :alt="`${cert.name} badge`" class="max-w-full max-h-full object-contain" />
               <div v-else class="text-2xl text-primary-600 dark:text-primary-400">
                 <span class="i-lucide-award"></span>
@@ -13,14 +13,14 @@
           </div>
 
           <div class="h-16 flex items-center justify-center">
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 text-center line-clamp-2">
+            <h3 class="text-lg font-semibold text-neutral-900 dark:text-neutral-100 text-center line-clamp-2">
               {{ cert.name }}
             </h3>
           </div>
 
           <div class="flex-grow"></div>
 
-          <div class="h-6 text-xs text-gray-500 dark:text-gray-400 mb-3 text-center overflow-hidden"><span class="font-medium">Institution:</span> {{ cert.institution }}</div>
+          <div class="h-6 text-xs text-neutral-500 dark:text-neutral-400 mb-3 text-center overflow-hidden"><span class="font-medium">Institution:</span> {{ cert.institution }}</div>
 
           <UButton
             v-if="cert.credentialUrl"

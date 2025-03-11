@@ -1,6 +1,6 @@
 <template>
   <section class="not-prose w-full">
-    <div v-if="!posts.length" class="flex justify-center items-center py-12 text-gray-500 dark:text-gray-400">
+    <div v-if="!posts.length" class="flex justify-center items-center py-12 text-neutral-500 dark:text-neutral-400">
       <p class="text-center">No blog posts found</p>
     </div>
 
@@ -9,23 +9,23 @@
         <ULink
           :active="false"
           :to="post.path"
-          class="group flex flex-col h-full w-full overflow-hidden border rounded-xl border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-all duration-200"
+          class="group flex flex-col h-full w-full overflow-hidden border rounded-xl border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 shadow-sm hover:shadow-md transition-all duration-200"
         >
           <div class="flex-1 p-5 space-y-3">
             <h3 class="text-xl sm:text-2xl font-semibold line-clamp-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
               {{ post.title }}
             </h3>
 
-            <p class="text-sm text-gray-600 dark:text-gray-300 line-clamp-3">
+            <p class="text-sm text-neutral-600 dark:text-neutral-300 line-clamp-3">
               {{ post.formattedDescription }}
             </p>
           </div>
 
-          <div class="border-t border-gray-200 dark:border-gray-700"></div>
+          <div class="border-t border-neutral-200 dark:border-neutral-700"></div>
 
           <div class="flex items-start p-5">
             <div class="w-full space-y-3">
-              <time :datetime="post.formattedDate" class="text-xs text-gray-500 dark:text-gray-400 flex items-center">
+              <time :datetime="post.formattedDate" class="text-xs text-neutral-500 dark:text-neutral-400 flex items-center">
                 <span class="i-lucide-calendar mr-1 text-primary-500 dark:text-primary-400"></span>
                 {{ post.formattedDate }}
               </time>
