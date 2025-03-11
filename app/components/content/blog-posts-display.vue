@@ -6,8 +6,22 @@
 
     <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-4 md:gap-6 lg:gap-8">
       <div v-for="post in posts" :key="post.path" class="flex">
-        <UCard class="p-0 flex flex-col h-full w-full overflow-hidden hover:shadow-md transition-all duration-200">
+        <UCard
+          :ui="{
+            body: 'p-0 sm:p-0',
+          }"
+          class="p-0 flex flex-col h-full w-full overflow-hidden hover:shadow-md transition-all duration-200"
+        >
           <ULink :active="false" :to="post.path" class="group flex flex-col h-full">
+            <div class="w-full h-48 overflow-hidden">
+              <img
+                :src="post.image || '/assets/content/default-post-image.png'"
+                :alt="post.title"
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                style="margin-top: -1px; margin-bottom: -1px; margin-left: -1px; width: calc(100% + 2px)"
+              />
+            </div>
+
             <div class="flex-1 p-5 space-y-3">
               <h3 class="text-xl sm:text-2xl font-semibold line-clamp-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
                 {{ post.title }}

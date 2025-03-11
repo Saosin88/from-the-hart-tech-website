@@ -4,6 +4,7 @@ description: This is the meta description for the first blog post on our website
 date: 2025-02-28 12:00:00
 toc: true
 keywords: keywords, test 1, test 2, test 3, test 4, test 5, test 6, test 7, test 8, test 9, test 10, test 11  
+image: /assets/content/from-the-hart-tech-website-architecture.svg
 robots: index, follow
 author: Sheldon Hart
 ogTitle: Lets Talk About This Website
@@ -18,7 +19,6 @@ twitterSite: "@SheldonHart7"
 twitterCreator: "@SheldonHart7"
 ---
 ## The why
-
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac erat ante. Integer nec facilisis lorem. Sed euismod, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla. Curabitur ac felis arcu. Sed vehicula, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla.
 
 Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac erat ante. Integer nec facilisis lorem. Sed euismod, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla. Curabitur ac felis arcu. Sed vehicula, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla.
@@ -27,6 +27,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vi
 
 
 ## Architecture
+
+::blog-image{src="from-the-hart-tech-website-architecture.svg" alt="From The Hart Website Architecture" caption="From The Hart Website Architecture"}
+::
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac erat ante. Integer nec facilisis lorem. Sed euismod, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla. Curabitur ac felis arcu. Sed vehicula, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla.
 

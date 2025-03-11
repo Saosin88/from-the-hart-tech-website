@@ -8,7 +8,7 @@ export function useBlogUtils() {
 
     return data.map(item => ({
       ...item,
-      formattedDescription: useFormatters().truncateDescription(item.description, 25),
+      formattedDescription: useFormatters().truncateDescription(item.description, 40),
       formattedDate: useFormatters().formatDate(item.date),
       uniqueKeywords: useFormatters().getUniqueKeywords(item.keywords, 5),
     }))
@@ -16,7 +16,7 @@ export function useBlogUtils() {
 
   async function fetchBlogPostsSummaries(limit = 0) {
     const { data } = await useAsyncData<BlogPostSummary[]>('blog-posts-summary-list-limit-' + limit, () => {
-      const query = queryCollection('blog').where('path', '<>', '/blog').select('path', 'title', 'description', 'date', 'keywords').order('date', 'DESC')
+      const query = queryCollection('blog').where('path', '<>', '/blog').select('path', 'title', 'description', 'date', 'keywords', 'image').order('date', 'DESC')
 
       if (limit > 0) {
         query.limit(limit)

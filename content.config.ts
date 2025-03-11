@@ -11,6 +11,7 @@ export default defineContentConfig({
         date: z.date(),
         toc: z.boolean(),
         keywords: z.string(),
+        image: z.string(),
 
         robots: z.string(),
         author: z.string(),

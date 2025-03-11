@@ -1,10 +1,23 @@
 <mxfile host="65bd71144e">
     <diagram id="Ht1M8jgEwFfnCIfOTk4-" name="Page-1">
-        <mxGraphModel dx="1178" dy="573" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+        <mxGraphModel dx="1350" dy="573" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="el8LdiSVNWTU0y29hnF0-39" value="&lt;b&gt;AWS&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 8;verticalAlign=top;fillColor=none;" parent="1" vertex="1">
+                <mxCell id="el8LdiSVNWTU0y29hnF0-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;" parent="1" source="el8LdiSVNWTU0y29hnF0-2" target="el8LdiSVNWTU0y29hnF0-29" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="409" y="550"/>
+                            <mxPoint x="789" y="550"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="el8LdiSVNWTU0y29hnF0-37" value="&lt;font style=&quot;color: rgb(84, 91, 100);&quot;&gt;STS&amp;nbsp;&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;color: rgb(84, 91, 100);&quot;&gt;AssumeRoleWithWebIdentity&lt;/font&gt;&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=none;fontColor=#545B64;" parent="el8LdiSVNWTU0y29hnF0-36" vertex="1" connectable="0">
+                    <mxGeometry x="0.6438" y="1" relative="1" as="geometry">
+                        <mxPoint x="-78" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="el8LdiSVNWTU0y29hnF0-39" value="&lt;b&gt;&lt;font style=&quot;color: rgb(84, 91, 100);&quot;&gt;AWS&lt;/font&gt;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 8;verticalAlign=top;fillColor=none;fontColor=#545B64;strokeColor=#545B64;" parent="1" vertex="1">
                     <mxGeometry x="210" y="120" width="670" height="440" as="geometry"/>
                 </mxCell>
                 <mxCell id="UEzPUAAOIrF-is8g5C7q-142" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=open;startFill=0;endArrow=open;endFill=0;strokeWidth=2;strokeColor=#808080;fontColor=#545B64;labelBackgroundColor=none;" parent="1" source="el8LdiSVNWTU0y29hnF0-1" target="UEzPUAAOIrF-is8g5C7q-116" edge="1">
@@ -19,7 +32,7 @@
                         <mxPoint y="-19" as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="el8LdiSVNWTU0y29hnF0-40" value="&lt;b&gt;GitHub&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 8;verticalAlign=top;fillColor=none;" parent="1" vertex="1">
+                <mxCell id="el8LdiSVNWTU0y29hnF0-40" value="&lt;b&gt;&lt;font style=&quot;color: rgb(84, 91, 100);&quot;&gt;GitHub&lt;/font&gt;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 8;verticalAlign=top;fillColor=none;strokeColor=#545B64;fontColor=#545B64;" parent="1" vertex="1">
                     <mxGeometry x="360" y="580" width="320" height="160" as="geometry"/>
                 </mxCell>
                 <mxCell id="UEzPUAAOIrF-is8g5C7q-109" value="&lt;font style=&quot;color: rgb(84, 91, 100);&quot;&gt;User&lt;/font&gt;" style="outlineConnect=0;gradientColor=none;fontColor=#545B64;strokeColor=none;fillColor=#879196;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.illustration_desktop;pointerEvents=1;labelBackgroundColor=none;" parent="1" vertex="1">
@@ -63,9 +76,6 @@
                 <mxCell id="el8LdiSVNWTU0y29hnF0-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=#808080;strokeWidth=2;" parent="1" source="el8LdiSVNWTU0y29hnF0-26" target="el8LdiSVNWTU0y29hnF0-15" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="el8LdiSVNWTU0y29hnF0-29" value="&lt;font style=&quot;color: rgb(84, 91, 100);&quot;&gt;IAM&amp;nbsp;&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;color: rgb(84, 91, 100);&quot;&gt;GitHub Actions Role&lt;/font&gt;&lt;/div&gt;" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#545B64;fillColor=#DD344C;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.identity_and_access_management;" parent="1" vertex="1">
-                    <mxGeometry x="750" y="336" width="78" height="78" as="geometry"/>
-                </mxCell>
                 <mxCell id="el8LdiSVNWTU0y29hnF0-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=#808080;strokeWidth=2;" parent="1" source="el8LdiSVNWTU0y29hnF0-2" target="el8LdiSVNWTU0y29hnF0-1" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
@@ -87,21 +97,11 @@
                         <mxPoint x="-48" y="6" as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="el8LdiSVNWTU0y29hnF0-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;" parent="1" source="el8LdiSVNWTU0y29hnF0-2" target="el8LdiSVNWTU0y29hnF0-29" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <Array as="points">
-                            <mxPoint x="409" y="550"/>
-                            <mxPoint x="789" y="550"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="el8LdiSVNWTU0y29hnF0-37" value="&lt;font style=&quot;color: rgb(84, 91, 100);&quot;&gt;STS&amp;nbsp;&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;color: rgb(84, 91, 100);&quot;&gt;AssumeRoleWithWebIdentity&lt;/font&gt;&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=none;fontColor=#545B64;" parent="el8LdiSVNWTU0y29hnF0-36" vertex="1" connectable="0">
-                    <mxGeometry x="0.6438" y="1" relative="1" as="geometry">
-                        <mxPoint x="-78" as="offset"/>
-                    </mxGeometry>
-                </mxCell>
                 <mxCell id="el8LdiSVNWTU0y29hnF0-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;startArrow=classic;startFill=1;strokeColor=#808080;strokeWidth=2;" parent="1" source="UEzPUAAOIrF-is8g5C7q-109" target="el8LdiSVNWTU0y29hnF0-1" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="el8LdiSVNWTU0y29hnF0-29" value="&lt;font style=&quot;color: rgb(84, 91, 100);&quot;&gt;IAM&amp;nbsp;&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;color: rgb(84, 91, 100);&quot;&gt;GitHub Actions Role&lt;/font&gt;&lt;/div&gt;" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#545B64;fillColor=#DD344C;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.identity_and_access_management;horizontal=1;" parent="1" vertex="1">
+                    <mxGeometry x="750" y="336" width="78" height="78" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
