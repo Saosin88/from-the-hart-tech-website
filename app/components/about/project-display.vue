@@ -58,7 +58,7 @@
       url: 'https://web.archive.org/web/20150326065043/https://www.fnbconnect.co.za/',
       urlLabel: 'FNB Connect',
       logoLabel: 'Work',
-      logo: '/assets/fnb-logo.png',
+      logo: '/assets/about/fnb-logo.png',
       technologies: ['JBoss', 'Tomcat', 'Java', 'MySQL/MariaDB'],
     },
     {
@@ -68,7 +68,7 @@
       url: 'https://www.fnb.co.za/ways-to-bank/digital/',
       urlLabel: 'FNB Digital Banking',
       logoLabel: 'Work',
-      logo: '/assets/fnb-logo.png',
+      logo: '/assets/about/fnb-logo.png',
       technologies: ['Scalable Systems', 'Java', 'Microservices', 'MySQL/MariaDB', 'Cassandra', 'InfluxDB', 'Kubernetes'],
     },
     {
@@ -76,7 +76,7 @@
       description:
         'Designed and implemented an enterprise-grade application framework (OCEP) that revolutionized cross-functional software development within the organization. This architectural solution empowered individual business units to independently develop and maintain their domain-specific application flows while ensuring UI consistency and adherence to brand standards through centralized governance. By adopting a microservice approach with clear boundaries, teams could deploy their features independently, significantly reducing release dependencies and improving time-to-market for critical banking features while maintaining the cohesive user experience essential for the FNB brand.',
       logoLabel: 'Work',
-      logo: '/assets/fnb-logo.png',
+      logo: '/assets/about/fnb-logo.png',
       technologies: ['Enterprise Architecture', 'Domain-Driven Design', 'Software Patterns', 'API Design', 'Scalable Systems', 'Java', 'Microservices'],
     },
     {
@@ -86,7 +86,7 @@
       url: 'https://www.fnb.co.za/ways-to-bank/digital/messaging.html',
       urlLabel: 'FNB Messaging',
       logoLabel: 'Work',
-      logo: '/assets/fnb-logo.png',
+      logo: '/assets/about/fnb-logo.png',
       technologies: ['Scalable Systems', 'API Design', 'Java', 'Microservices', 'MySQL/MariaDB', 'Cassandra', 'Kubernetes'],
     },
     {
@@ -94,7 +94,7 @@
       description:
         'Architected and implemented an AI-powered conversational banking solution using Amazon Lex, enabling automated customer service for routine banking inquiries and transactions. The architecture integrated with the existing FNB App Messaging platform through a API layer, providing contextual handoffs between automated and human support channels. By extending the OCEP architectural principles, the solution featured a modular framework that empowered business units to independently develop and deploy domain-specific conversation flows while maintaining centralized governance.',
       logoLabel: 'Work',
-      logo: '/assets/fnb-logo.png',
+      logo: '/assets/about/fnb-logo.png',
       technologies: ['Enterprise Architecture', 'Domain-Driven Design', 'Software Patterns', 'API Design', 'Node.js', 'Microservices', 'AWS'],
     },
     {
@@ -104,7 +104,7 @@
       url: 'https://www.fnb.co.za/ways-to-bank/digital/nav/earth/',
       urlLabel: 'nav» Earth',
       logoLabel: 'Work',
-      logo: '/assets/fnb-logo.png',
+      logo: '/assets/about/fnb-logo.png',
       technologies: ['Domain-Driven Design', 'Software Patterns', 'API Design', 'Scalable Systems', 'MySQL/MariaDB', 'Kubernetes'],
     },
     {
@@ -112,7 +112,7 @@
       description:
         "Architected nav» Payroll, an enterprise-grade payroll management solution for FNB's commercial banking clients. Designed a comprehensive technical architecture featuring secure API services and well-designed database models. The system enables businesses to efficiently create and manage customizable payroll schedules (monthly, bi-weekly, or weekly), process bulk payments with automated tax calculations, and generate comprehensive compliance reports. Implemented robust validation rules ensuring adherence to South African tax regulations and labor laws, while maintaining seamless integration with FNB's banking infrastructure for secure payment execution.",
       logoLabel: 'Work',
-      logo: '/assets/fnb-logo.png',
+      logo: '/assets/about/fnb-logo.png',
       technologies: ['Domain-Driven Design', 'Software Patterns', 'API Design', 'Scalable Systems', 'MySQL/MariaDB', 'Kubernetes'],
     },
     {
@@ -120,7 +120,7 @@
       description:
         'Designed and deployed a scalable e-commerce website (fromthehart.co.za) for educational resource distribution. Implemented a WordPress solution with WooCommerce integration and Payfast payment gateway for seamless transactions. Architected a high-availability AWS infrastructure leveraging EC2 with auto-scaling capabilities, RDS for database management, Application Load Balancer for traffic distribution, and CloudFront CDN for optimized content delivery. This enabled my wife, who is a teacher, to sell her teaching resources online.',
       logoLabel: 'Personal',
-      logo: '/assets/person-svgrepo-com.png',
+      logo: '/assets/about/person-svgrepo-com.png',
       technologies: ['PHP', 'MySQL/MariaDB', 'AWS'],
     },
     {
@@ -128,7 +128,7 @@
       description:
         "Architect, designed and developed this website as a professional portfolio and technology showcase, combining modern front-end architecture with cloud-based infrastructure. Leveraging Vue.js/Nuxt for component-driven development and AWS for scalable hosting. The implementation features responsive design principles and optimized performance. Explore the blog section for more info behind this project's development.",
       logoLabel: 'Personal',
-      logo: '/assets/person-svgrepo-com.png',
+      logo: '/assets/about/person-svgrepo-com.png',
       technologies: ['Scalable Systems', 'JavaScript/TypeScript', 'Vue.js/Nuxt', 'AWS'],
     },
   ]
