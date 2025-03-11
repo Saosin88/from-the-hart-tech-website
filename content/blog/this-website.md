@@ -1,39 +1,35 @@
 ---
-title: Fourth Blog Bost
-description: This is the meta description for the fourth blog post on our website. In this post, we introduce our readers to the purpose and vision of our blog. We delve into various topics related to technology, providing insights, tips, and in-depth analysis. Our goal is to create a platform where tech enthusiasts can find valuable information and engage in meaningful discussions. Join us as we embark on this exciting journey, exploring the latest trends, innovations, and developments in the tech world. Stay tuned for more updates and articles that will keep you informed and inspired.
-date: 2025-03-04 13:40:00
+title: Lets Talk About This Website
+description: This is the meta description for the first blog post on our website. In this post, we introduce our readers to the purpose and vision of our blog. We delve into various topics related to technology, providing insights, tips, and in-depth analysis. Our goal is to create a platform where tech enthusiasts can find valuable information and engage in meaningful discussions. Join us as we embark on this exciting journey, exploring the latest trends, innovations, and developments in the tech world. Stay tuned for more updates and articles that will keep you informed and inspired.
+date: 2025-02-28 12:00:00
 toc: true
-keywords: Tag 1, Tag 2, Tag 3, Tag 4  
+keywords: Website, Vue, AWS, S3, CloudFront, IAM, Route 53, ACM, Cloudfront Functions, GitHub Actions, Technology, Blog, Architecture, Nuxt, Tailwind CSS, Cloud, Serverless
+image: /assets/content/from-the-hart-tech-website-architecture.svg
 robots: index, follow
 author: Sheldon Hart
-ogTitle: This is an OpenGraph title
+ogTitle: Lets Talk About This Website
 ogDescription: This is the OpenGraph description
 ogImage: https://www.fromthehart.tech/logo/from-the-hart-social.svg
-ogUrl: https://www.fromtheharttech.com/blog/fourth
-twitterTitle: Twitter Title
+ogUrl: https://www.fromtheharttech.com/blog/this-website
+twitterTitle: Lets Talk About This Website
 twitterDescription: Twitter Description
 twitterImage: https://www.fromthehart.tech/logo/from-the-hart-social.svg
 twitterCard: summary_large_image
 twitterSite: "@SheldonHart7"
 twitterCreator: "@SheldonHart7"
 ---
-
-# Fourth post on our website
-
-## Introduction
-
-This is some text. *This is italic*.
+## The why
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac erat ante. Integer nec facilisis lorem. Sed euismod, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla. Curabitur ac felis arcu. Sed vehicula, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla.
 
 Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac erat ante. Integer nec facilisis lorem. Sed euismod, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla. Curabitur ac felis arcu. Sed vehicula, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla.
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac erat ante. Integer nec facilisis lorem. Sed euismod, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla. Curabitur ac felis arcu. Sed vehicula, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac erat ante. Integer nec facilisis lorem. Sed euismod, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla. Curabitur ac felis arcu. Sed vehicula, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla.
 
-Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac erat ante. Integer nec facilisis lorem. Sed euismod, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla. Curabitur ac felis arcu. Sed vehicula, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla.
+## Architecture
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac erat ante. Integer nec facilisis lorem. Sed euismod, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla. Curabitur ac felis arcu. Sed vehicula, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla.
+::blog-image{src="from-the-hart-tech-website-architecture.svg" alt="From The Hart Website Architecture" caption="From The Hart Website Architecture"}
+::
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac erat ante. Integer nec facilisis lorem. Sed euismod, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla. Curabitur ac felis arcu. Sed vehicula, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla.
 
@@ -41,9 +37,7 @@ Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentes
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac erat ante. Integer nec facilisis lorem. Sed euismod, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla. Curabitur ac felis arcu. Sed vehicula, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla.
 
-## Second Part
-
-Something more. **This is bold**.
+## The journey
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac erat ante. Integer nec facilisis lorem. Sed euismod, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla. Curabitur ac felis arcu. Sed vehicula, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla.
 
@@ -51,11 +45,7 @@ Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentes
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac erat ante. Integer nec facilisis lorem. Sed euismod, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla. Curabitur ac felis arcu. Sed vehicula, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac erat ante. Integer nec facilisis lorem. Sed euismod, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla. Curabitur ac felis arcu. Sed vehicula, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla.
-
-Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac erat ante. Integer nec facilisis lorem. Sed euismod, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla. Curabitur ac felis arcu. Sed vehicula, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla.
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac erat ante. Integer nec facilisis lorem. Sed euismod, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla. Curabitur ac felis arcu. Sed vehicula, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla.
+### Vue and Nuxt
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac erat ante. Integer nec facilisis lorem. Sed euismod, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla. Curabitur ac felis arcu. Sed vehicula, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla.
 
@@ -63,47 +53,26 @@ Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentes
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac erat ante. Integer nec facilisis lorem. Sed euismod, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla. Curabitur ac felis arcu. Sed vehicula, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla.
 
-### Also try lists
+### A little bit of a helping hand
 
-Unordered lists:
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac erat ante. Integer nec facilisis lorem. Sed euismod, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla. Curabitur ac felis arcu. Sed vehicula, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla.
 
-- Do the work
-- Collect benefits
+Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac erat ante. Integer nec facilisis lorem. Sed euismod, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla. Curabitur ac felis arcu. Sed vehicula, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla.
 
-Numbered lists:
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac erat ante. Integer nec facilisis lorem. Sed euismod, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla. Curabitur ac felis arcu. Sed vehicula, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla.
 
-1. Pay taxes
-2. Die
+### Some Struggles
 
-Todo list:
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac erat ante. Integer nec facilisis lorem. Sed euismod, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla. Curabitur ac felis arcu. Sed vehicula, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla.
 
-- Buy groceries
-- Pay bills
+Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac erat ante. Integer nec facilisis lorem. Sed euismod, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla. Curabitur ac felis arcu. Sed vehicula, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla.
 
-Tables:
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac erat ante. Integer nec facilisis lorem. Sed euismod, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla. Curabitur ac felis arcu. Sed vehicula, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla.
 
-| Name    | Surname |
-| ------- | ------- |
-| Sheldon | Hart    |
+## The Journey Continues
 
-```html
-<html>
-  <div>Hello!</div>
-</html>
-```
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac erat ante. Integer nec facilisis lorem. Sed euismod, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla. Curabitur ac felis arcu. Sed vehicula, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla.
 
-![From-The-Hart](/logo/from-the-hart.svg)
+Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac erat ante. Integer nec facilisis lorem. Sed euismod, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla. Curabitur ac felis arcu. Sed vehicula, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla.
 
-```javascript
-const { createApp } = Vue;
-const app = createApp({
-  data() {
-    return {
-      message: "Hello Vue 3!",
-    };
-  },
-});
-app.mount("#app");
-```
-
-[Go to the second article](/blog/second)
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac erat ante. Integer nec facilisis lorem. Sed euismod, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla. Curabitur ac felis arcu. Sed vehicula, urna eu tincidunt consectetur, nisi nisl aliquet nisi, quis convallis nunc felis in nulla.

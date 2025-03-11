@@ -5,6 +5,7 @@ export interface BlogPost {
   date: Date
   formattedDate?: string
   keywords: string
+  image: string
   author: string
   robots: string
   toc: boolean
@@ -27,6 +28,7 @@ export interface BlogPostSummary {
   description: string
   date: Date
   keywords: string
+  image: string
   formattedDescription?: string
   formattedDate?: string
   uniqueKeywords?: string[]

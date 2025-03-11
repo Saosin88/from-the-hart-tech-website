@@ -28,6 +28,6 @@
     degree: 'Bachelor of Sciences in Computer Sciences',
     university: 'University of Pretoria',
     year: '2010',
-    logo: '/assets/up-logo.png',
+    logo: '/assets/about/up-logo.png',
   }
 </script>

@@ -36,7 +36,7 @@
 <script setup lang="ts">
   const experienceData = {
     companyName: 'FNB (First National Bank)',
-    logo: '/assets/fnb-logo.png',
+    logo: '/assets/about/fnb-logo.png',
     roles: [
       {
         title: 'Solutions Architect',
