@@ -9,7 +9,7 @@
             <span v-if="project.logoLabel" class="text-xs font-medium px-2 py-0.5 bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-200 rounded self-center">
               {{ project.logoLabel }}
             </span>
-            <div class="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-white dark:bg-neutral-800 rounded-md p-1">
+            <div class="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-neutral dark:bg-neutral-800 rounded-md p-1">
               <img :src="project.logo" :alt="`${project.title} logo`" class="max-w-[32px] max-h-[32px] w-auto h-auto object-contain" />
             </div>
           </div>

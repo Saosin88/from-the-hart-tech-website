@@ -1,11 +1,10 @@
 export default defineAppConfig({
   ui: {
-    strategy: 'override',
     colors: {
       primary: 'green',
       neutral: 'slate',
-      secondary: 'purple',
-      info: 'purple',
+      secondary: 'blue',
+      info: 'blue',
       success: 'green',
       warning: 'yellow',
       error: 'red',
