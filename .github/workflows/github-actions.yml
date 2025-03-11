@@ -36,8 +36,16 @@ jobs:
 
       - name: Sync files to S3
         run: |
+          # Hashed assets - aggressive caching
+          aws s3 sync ${{ vars.SOURCE_DIR }}/_nuxt s3://${{ vars.AWS_S3_BUCKET }}/_nuxt/ \
+            --delete \
+            --cache-control "public, s-maxage=31536000, max-age=31536000, immutable"
+
+          # Other assets - moderate caching
           aws s3 sync ${{ vars.SOURCE_DIR }} s3://${{ vars.AWS_S3_BUCKET }}/ \
-            --delete --exclude '.*git*' \
+            --delete \
+            --exclude "_nuxt/*" \
+            --exclude ".*git*" \
             --cache-control "public, s-maxage=2629800, max-age=3600"
 
       - name: Invalidate CloudFront Cache
