@@ -3,7 +3,7 @@ title: Lets Talk About This Website
 description: This is the meta description for the first blog post on our website. In this post, we introduce our readers to the purpose and vision of our blog. We delve into various topics related to technology, providing insights, tips, and in-depth analysis. Our goal is to create a platform where tech enthusiasts can find valuable information and engage in meaningful discussions. Join us as we embark on this exciting journey, exploring the latest trends, innovations, and developments in the tech world. Stay tuned for more updates and articles that will keep you informed and inspired.
 date: 2025-02-28 12:00:00
 toc: true
-keywords: keywords, test 1, test 2, test 3, test 4, test 5, test 6, test 7, test 8, test 9, test 10, test 11  
+keywords: Website, Vue, AWS, S3, CloudFront, IAM, Route 53, ACM, Cloudfront Functions, GitHub Actions, Technology, Blog, Architecture, Nuxt, Tailwind CSS, Cloud, Serverless
 image: /assets/content/from-the-hart-tech-website-architecture.svg
 robots: index, follow
 author: Sheldon Hart
