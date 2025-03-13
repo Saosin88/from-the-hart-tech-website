@@ -5,7 +5,7 @@
         {{ caption }}
       </div>
       <div class="relative">
-        <img :src="`/assets/content/${src}`" :alt="alt" class="w-full h-auto object-contain" />
+        <NuxtImg :src="`/assets/blog/${src}`" :alt="alt" class="w-full h-auto object-contain" />
       </div>
     </UCard>
   </div>

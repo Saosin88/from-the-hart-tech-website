@@ -35,7 +35,7 @@
             }"
           >
             <div
-              class="prose dark:prose-invert prose-headings:font-bold prose-headings:text-neutral-900 dark:prose-headings:text-neutral-100 prose-a:text-primary-600 dark:prose-a:text-primary-400 prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg prose-img:shadow-md prose-pre:bg-neutral-50 dark:prose-pre:bg-neutral-800/80 prose-pre:text-neutral-700 dark:prose-pre:text-neutral-300 prose-pre:rounded-lg prose-pre:shadow-sm prose-h2:no-underline prose-h3:no-underline prose-h4:no-underline prose-headings:hover:no-underline prose-h2:mt-8 prose-h3:mt-6 max-w-none"
+              class="prose dark:prose-invert prose-headings:font-bold prose-headings:text-neutral-900 dark:prose-headings:text-neutral-100 prose-a:text-primary-600 dark:prose-a:text-primary-400 prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg prose-img:shadow-md prose-blockquote:text-sm prose-blockquote:font-normal prose-pre:rounded-lg prose-pre:shadow-sm prose-pre:border prose-pre:border-secondary-500 dark:prose-pre:border-secondary-700 prose-h2:no-underline prose-h3:no-underline prose-h4:no-underline prose-headings:hover:no-underline prose-h2:mt-8 prose-h3:mt-6 prose-code:text-inherit prose-pre:bg-transparent dark:prose-pre:bg-transparent max-w-none"
             >
               <ContentRenderer :value="post" />
             </div>
