@@ -4,16 +4,16 @@ description: Explore my journey building a personal website with Vue, Nuxt, and 
 date: 2025-03-12 21:05:36
 toc: true
 keywords: Website, Vue, Nuxt, Typescript, S3, CloudFront, AWS, IAM, Route 53, ACM, Cloudfront Functions, GitHub Actions, Technology, Blog, Architecture, Tailwind CSS, Cloud, Serverless
-image: /assets/blog/from-the-hart-tech-website-architecture.png
+image: /assets/blog/from-the-hart-tech-website-architecture.svg
 robots: index, follow
 author: Sheldon Hart
 ogTitle: Lets Talk About This Website
 ogDescription: Explore my journey building a personal website with Vue, Nuxt, and TypeScript to sharpen my technical skills. I share my serverless AWS architecture using S3 and CloudFront, how GitHub Copilot helped with frontend design challenges, and solutions to technical roadblocks I encountered.
-ogImage: https://www.fromthehart.tech/assets/blog/from-the-hart-tech-website-architecture.png
+ogImage: https://www.fromthehart.tech/assets/blog/from-the-hart-tech-website-architecture.svg
 ogUrl: https://www.fromtheharttech.com/blog/this-website
 twitterTitle: Lets Talk About This Website
 twitterDescription: Explore my journey building a personal website with Vue, Nuxt, and TypeScript to sharpen my technical skills. I share my serverless AWS architecture using S3 and CloudFront, how GitHub Copilot helped with frontend design challenges, and solutions to technical roadblocks I encountered.
-twitterImage: https://www.fromthehart.tech/assets/blog/from-the-hart-tech-website-architecture.png
+twitterImage: https://www.fromthehart.tech/assets/blog/from-the-hart-tech-website-architecture.svg
 twitterCard: summary_large_image
 twitterSite: "@SheldonHart7"
 twitterCreator: "@SheldonHart7"
@@ -28,7 +28,7 @@ I decided the best approach was to create personal projects where I could explor
 
 ## Architecture
 
-::blog-image{src="from-the-hart-tech-website-architecture.png" alt="From The Hart Website Architecture" caption="From The Hart Website Architecture"}
+::blog-image{src="from-the-hart-tech-website-architecture.svg" alt="From The Hart Website Architecture" caption="From The Hart Website Architecture"}
 ::
 
 As this is a personal project, I did not want to spend a lot of money, if any, on hosting. Secondary considerations were high availability and performance. Going the serverless route made the most sense to me, as serverless offerings are typically billed by usage rather than provisioned time, and they often have a free tier up to a certain point. They also generally provide high availability and scale automatically.
