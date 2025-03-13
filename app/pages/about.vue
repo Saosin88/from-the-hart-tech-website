@@ -92,12 +92,13 @@
 
     ogTitle: 'About Sheldon Hart | Solutions Architect',
     ogDescription: 'Learn about my journey from developer to solutions architect, skills in architecture, design, and development.',
-    ogImage: 'https://www.fromthehart.tech/logo/from-the-hart-social.svg',
+    ogImage: 'https://www.fromthehart.tech/logo/from-the-hart-social.png',
     ogUrl: 'https://www.fromthehart.tech/about',
+    ogType: 'website',
 
     twitterTitle: 'Sheldon Hart - Enterprise Solutions Architect Portfolio',
     twitterDescription: 'View my professional experience at FNB, certifications including AWS Solutions Architect, and expertise in enterprise-scale system design.',
-    twitterImage: 'https://www.fromthehart.tech/logo/from-the-hart-social.svg',
+    twitterImage: 'https://www.fromthehart.tech/logo/from-the-hart-social.png',
     twitterCard: 'summary_large_image',
     twitterSite: '@SheldonHart7',
     twitterCreator: '@SheldonHart7',

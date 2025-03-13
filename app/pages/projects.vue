@@ -31,12 +31,13 @@
 
     ogTitle: 'Personal Coding Projects | Sheldon Hart',
     ogDescription: 'Browse my personal software development portfolio featuring open-source projects, technical experiments, and GitHub repositories.',
-    ogImage: 'https://www.fromthehart.tech/logo/from-the-hart-social.svg',
+    ogImage: 'https://www.fromthehart.tech/logo/from-the-hart-social.png',
     ogUrl: 'https://www.fromthehart.tech/projects',
+    ogType: 'website',
 
     twitterTitle: 'Personal Projects | Sheldon Hart',
     twitterDescription: 'Discover my collection of personal coding projects and open-source contributions. For professional work examples, see my work portfolio.',
-    twitterImage: 'https://www.fromthehart.tech/logo/from-the-hart-social.svg',
+    twitterImage: 'https://www.fromthehart.tech/logo/from-the-hart-social.png',
     twitterCard: 'summary_large_image',
     twitterSite: '@sheldonhart',
     twitterCreator: '@sheldonhart',

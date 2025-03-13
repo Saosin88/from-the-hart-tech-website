@@ -8,11 +8,11 @@ robots: index, follow
 author: Sheldon Hart
 ogTitle: Blog | Sheldon Hart - Solutions Architect
 ogDescription: Read  articles on  architecture, cloud computing, and software development from an experienced Solutions Architect.
-ogImage: https://www.fromthehart.tech/logo/from-the-hart-social.svg
+ogImage: https://www.fromthehart.tech/logo/from-the-hart-social.png
 ogUrl: https://www.fromthehart.tech/blog
 twitterTitle: Blog | Sheldon Hart - Solutions Architect
 twitterDescription: Insights on architecture, microservices, and cloud computing from Solutions Architect Sheldon Hart.
-twitterImage: https://www.fromthehart.tech/logo/from-the-hart-social.svg
+twitterImage: https://www.fromthehart.tech/logo/from-the-hart-social.png
 twitterCard: summary_large_image
 twitterSite: "@SheldonHart7"
 twitterCreator: "@SheldonHart7"
