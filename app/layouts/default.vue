@@ -27,7 +27,7 @@
             <UButton @click="toggleMenu" :icon="isMenuOpen ? 'i-lucide-x' : 'i-lucide-align-justify'" variant="ghost" size="sm" />
 
             <transition name="slide-down">
-              <div v-if="isMenuOpen" class="absolute right-0 mt-2 w-56 rounded-lg shadow-lg z-50 bg-neutral dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700">
+              <div v-if="isMenuOpen" class="absolute right-0 mt-2 w-56 rounded-lg shadow-lg z-50 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700">
                 <div class="p-3">
                   <UNavigationMenu orientation="vertical" :items="items" />
                 </div>
