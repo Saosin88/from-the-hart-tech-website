@@ -11,7 +11,7 @@ export default defineNuxtConfig({
 
   devtools: { enabled: true },
 
-  modules: ['@nuxtjs/sitemap', '@nuxt/content', '@nuxt/ui'],
+  modules: ['@nuxtjs/sitemap', '@nuxt/content', '@nuxt/ui', '@nuxt/image'],
 
   routeRules: {
     '/': {
@@ -35,14 +35,26 @@ export default defineNuxtConfig({
       markdown: {
         highlight: {
           theme: {
-            default: 'min-light',
-            dark: 'min-dark',
+            default: 'vitesse-light',
+            dark: 'dracula',
           },
         },
       },
     },
     preview: {
       api: 'https://api.nuxt.studio',
+    },
+  },
+
+  image: {
+    screens: {
+      xs: 320,
+      sm: 640,
+      md: 768,
+      lg: 1024,
+      xl: 1280,
+      xxl: 1536,
+      '2xl': 1536,
     },
   },
 

@@ -3,7 +3,7 @@
     <UCard class="transition-all duration-200 hover:shadow-md dark:hover:shadow-neutral-800/40">
       <div class="flex items-center gap-4 mb-6">
         <div class="bg-neutral-100 dark:bg-neutral-800 rounded-lg p-3 flex items-center justify-center w-16 h-16 overflow-hidden">
-          <img v-if="experienceData.logo" :src="experienceData.logo" :alt="`${experienceData.companyName} logo`" class="max-w-full max-h-full object-contain" />
+          <NuxtImg v-if="experienceData.logo" :src="experienceData.logo" :alt="`${experienceData.companyName} logo`" class="max-w-full max-h-full object-contain" />
           <span v-else class="i-lucide-building text-2xl text-primary-600 dark:text-primary-400"></span>
         </div>
 

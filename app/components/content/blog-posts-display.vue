@@ -14,8 +14,8 @@
         >
           <ULink :active="false" :to="post.path" class="group flex flex-col h-full">
             <div class="w-full h-48 overflow-hidden">
-              <img
-                :src="post.image || '/assets/content/default-post-image.png'"
+              <NuxtImg
+                :src="post.image || '/assets/blog/default-post-image.png'"
                 :alt="post.title"
                 class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 style="margin-top: -1px; margin-bottom: -1px; margin-left: -1px; width: calc(100% + 2px)"

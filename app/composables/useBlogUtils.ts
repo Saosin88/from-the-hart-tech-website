@@ -10,7 +10,7 @@ export function useBlogUtils() {
       ...item,
       formattedDescription: useFormatters().truncateDescription(item.description, 40),
       formattedDate: useFormatters().formatDate(item.date),
-      uniqueKeywords: useFormatters().getUniqueKeywords(item.keywords, 5),
+      uniqueKeywords: useFormatters().getUniqueKeywords(item.keywords, 7),
     }))
   }
 

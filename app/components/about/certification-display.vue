@@ -5,7 +5,7 @@
         <div class="flex flex-col h-full">
           <div class="flex justify-center mb-4">
             <div class="bg-neutral-100 dark:bg-neutral-800 rounded-lg p-2 flex items-center justify-center w-24 h-24 overflow-hidden">
-              <img v-if="cert.image" :src="cert.image" :alt="`${cert.name} badge`" class="max-w-full max-h-full object-contain" />
+              <NuxtImg v-if="cert.image" :src="cert.image" :alt="`${cert.name} badge`" class="max-w-full max-h-full object-contain" />
               <div v-else class="text-2xl text-primary-600 dark:text-primary-400">
                 <span class="i-lucide-award"></span>
               </div>
