@@ -107,6 +107,7 @@
     ogDescription: post?.ogDescription,
     ogImage: post?.ogImage,
     ogUrl: post?.ogUrl,
+    ogType: 'article',
     twitterTitle: post?.twitterTitle,
     twitterDescription: post?.twitterDescription,
     twitterImage: post?.twitterImage,

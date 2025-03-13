@@ -9,11 +9,11 @@ robots: index, follow
 author: Sheldon Hart
 ogTitle: Lets Talk About This Website
 ogDescription: Explore my journey building a personal website with Vue, Nuxt, and TypeScript to sharpen my technical skills. I share my serverless AWS architecture using S3 and CloudFront, how GitHub Copilot helped with frontend design challenges, and solutions to technical roadblocks I encountered.
-ogImage: https://www.fromthehart.tech/assets/blog/from-the-hart-tech-website-architecture.svg
+ogImage: https://www.fromthehart.tech/assets/blog/from-the-hart-tech-website-architecture.png
 ogUrl: https://www.fromtheharttech.com/blog/this-website
 twitterTitle: Lets Talk About This Website
 twitterDescription: Explore my journey building a personal website with Vue, Nuxt, and TypeScript to sharpen my technical skills. I share my serverless AWS architecture using S3 and CloudFront, how GitHub Copilot helped with frontend design challenges, and solutions to technical roadblocks I encountered.
-twitterImage: https://www.fromthehart.tech/assets/blog/from-the-hart-tech-website-architecture.svg
+twitterImage: https://www.fromthehart.tech/assets/blog/from-the-hart-tech-website-architecture.png
 twitterCard: summary_large_image
 twitterSite: "@SheldonHart7"
 twitterCreator: "@SheldonHart7"
