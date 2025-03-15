@@ -33,6 +33,7 @@ jobs:
 
       - name: Start server for static files
         run: npm run serve
+        background: true
 
       - name: Run Cypress tests
         run: npm run cypress
