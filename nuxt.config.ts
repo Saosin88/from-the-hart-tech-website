@@ -46,6 +46,13 @@ export default defineNuxtConfig({
     },
   },
 
+  icon: {
+    clientBundle: {
+      icons: ['lucide:align-justify', 'lucide:x', 'lucide:sun', 'lucide:moon'],
+      scan: true,
+    },
+  },
+
   image: {
     screens: {
       xs: 320,

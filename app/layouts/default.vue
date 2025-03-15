@@ -3,7 +3,7 @@
     <header class="w-full py-5 border-b border-neutral-200 dark:border-neutral-700 bg-neutral dark:bg-neutral-900">
       <div class="max-w-(--ui-container) mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         <div class="flex items-center space-x-4">
-          <NuxtImg src="/logo/from-the-hart.svg" alt="Logo" class="w-8 h-8" />
+          <NuxtImg src="/logo/from-the-hart.svg" alt="Logo" class="w-12 h-12" />
           <ULink to="/" @click="closeMenu" class="text-lg font-medium">From The Hart</ULink>
         </div>
 
@@ -24,7 +24,7 @@
           </div>
 
           <div class="relative md:hidden">
-            <UButton @click="toggleMenu" :icon="isMenuOpen ? 'i-lucide-x' : 'i-lucide-align-justify'" variant="ghost" size="sm" />
+            <UButton id="mobile-button" @click="toggleMenu" :icon="isMenuOpen ? 'i-lucide-x' : 'i-lucide-align-justify'" variant="ghost" size="sm" />
 
             <transition name="slide-down">
               <div v-if="isMenuOpen" class="absolute right-0 mt-2 w-56 rounded-lg shadow-lg z-50 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700">
