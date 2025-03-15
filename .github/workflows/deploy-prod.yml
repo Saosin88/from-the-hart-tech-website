@@ -28,14 +28,14 @@ jobs:
       - name: Generate static files
         run: npm run generate
 
-      - name: Install server for static files
-        run: npm install -g serve
-
-      - name: Start server for static files
-        run: npm run serve &
-
-      - name: Run Cypress tests
-        run: npm run cypress
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm run serve
+          wait-on: 'http://localhost:3000'
+          wait-on-timeout: 60
+          install: false
+          browser: chrome
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
