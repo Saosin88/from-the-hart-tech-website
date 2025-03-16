@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-and-deploy:
+  build-and-test-and-deploy:
     runs-on: ubuntu-latest
     environment: prod
 
@@ -42,7 +42,7 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ vars.AWS_ROLENAME }}
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ secrets.AWS_ROLENAME }}
           aws-region: ${{ vars.AWS_REGION }}
 
       - name: Sync files to S3
@@ -61,6 +61,13 @@ jobs:
 
       - name: Invalidate CloudFront Cache
         run: |
+          DISTRIBUTION_ID=$(aws cloudfront list-distributions --query "DistributionList.Items[?contains(Aliases.Items, '${{ vars.CLOUDFRONT_DISTRIBUTION_ALTERNATE_DOMAIN_NAME }}')].Id" --output text)
+
+          if [ -z "$DISTRIBUTION_ID" ]; then
+            echo "Error: No CloudFront distribution found for domain ${{ vars.CLOUDFRONT_DISTRIBUTION_ALTERNATE_DOMAIN_NAME }}"
+            exit 1
+          fi
+
           aws cloudfront create-invalidation \
-            --distribution-id ${{ vars.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --distribution-id $DISTRIBUTION_ID \
             --paths "/*"
