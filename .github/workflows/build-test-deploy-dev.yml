@@ -1,0 +1,73 @@
+name: Deploy to S3 and invalidate CloudFront cache
+on:
+  push:
+    branches:
+      - dev
+  workflow_dispatch:
+
+jobs:
+  build-and-test-and-deploy:
+    runs-on: ubuntu-latest
+    environment: dev
+
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Generate static files
+        run: npm run generate
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        if: ${{ vars.RUN_TESTS == 'true' }}
+        with:
+          start: npm run serve
+          wait-on: 'http://localhost:3000'
+          wait-on-timeout: 60
+          install: false
+          browser: chrome
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ secrets.AWS_ROLENAME }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Sync files to S3
+        run: |
+          # Hashed assets - aggressive caching
+          aws s3 sync ${{ vars.SOURCE_DIR }}/_nuxt s3://${{ vars.AWS_S3_BUCKET }}/_nuxt/ \
+            --delete \
+            --cache-control "public, s-maxage=31536000, max-age=31536000, immutable"
+
+          # Other assets - moderate caching
+          aws s3 sync ${{ vars.SOURCE_DIR }} s3://${{ vars.AWS_S3_BUCKET }}/ \
+            --delete \
+            --exclude "_nuxt/*" \
+            --exclude ".*git*" \
+            --cache-control "public, s-maxage=2629800, max-age=3600"
+
+      - name: Invalidate CloudFront Cache
+        run: |
+          DISTRIBUTION_ID=$(aws cloudfront list-distributions --query "DistributionList.Items[?contains(Aliases.Items, '${{ vars.CLOUDFRONT_DISTRIBUTION_ALTERNATE_DOMAIN_NAME }}')].Id" --output text)
+
+          if [ -z "$DISTRIBUTION_ID" ]; then
+            echo "Error: No CloudFront distribution found for domain ${{ vars.CLOUDFRONT_DISTRIBUTION_ALTERNATE_DOMAIN_NAME }}"
+            exit 1
+          fi
+
+          aws cloudfront create-invalidation \
+            --distribution-id $DISTRIBUTION_ID \
+            --paths "/*"
