@@ -59,6 +59,7 @@ export function useFormatters() {
       PHP: '#4F5D95',
       'C#': '#178600',
       Ruby: '#701516',
+      HCL: '#844FBA',
     }
 
     if (!language) return fallback
