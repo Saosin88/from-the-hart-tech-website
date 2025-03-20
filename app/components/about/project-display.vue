@@ -100,7 +100,7 @@
     {
       title: 'nav» Earth',
       description:
-        "Architected nav» Earth, a sustainability offering within FNB's banking ecosystem that enables customers to quantify their carbon footprint based on transaction history. Designed a comprehensive technical architecture comprising API services and well-designed database models. The solution applies sophisticated categorization algorithms to transaction data, mapping financial activities to their corresponding environmental impact. The offering includes interactive educational components, cand a donation mechanism allowing customers to contribute directly to verified environmental organizations for carbon offsetting.",
+        "Architected nav» Earth, a sustainability offering within FNB's banking ecosystem that enables customers to quantify their carbon footprint based on transaction history. Designed a comprehensive technical architecture comprising API services and well-designed database models. The solution applies sophisticated categorization algorithms to transaction data, mapping financial activities to their corresponding environmental impact. The offering includes interactive educational components, and a donation mechanism allowing customers to contribute directly to verified environmental organizations for carbon offsetting.",
       url: 'https://www.fnb.co.za/ways-to-bank/digital/nav/earth/',
       urlLabel: 'nav» Earth',
       logoLabel: 'Work',
