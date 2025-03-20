@@ -2,7 +2,7 @@
   <ClientOnly v-if="!colorMode?.forced">
     <UButton
       id="color-mode-selector"
-      :icon="isDark ? 'i-lucide-sun' : 'i-lucide-moon'"
+      :icon="isDark ? 'lucide:sun' : 'lucide:moon'"
       color="neutral"
       variant="ghost"
       class="rounded-full w-8 h-8 flex items-center justify-center p-0 transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-800"

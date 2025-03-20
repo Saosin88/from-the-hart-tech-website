@@ -13,7 +13,7 @@
         <ProjectsGithubList />
         <template #fallback>
           <div class="flex justify-center p-8">
-            <UIcon name="i-lucide-loader-2" class="animate-spin text-primary-600" size="xl" />
+            <UIcon name="lucide:loader-2" class="animate-spin text-primary-600" size="xl" />
           </div>
         </template>
       </ClientOnly>

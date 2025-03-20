@@ -21,10 +21,10 @@
   }
 
   const hobbies: Hobby[] = [
-    { name: 'Gaming', icon: 'i-lucide-gamepad-2' },
-    { name: 'Reading', icon: 'i-lucide-book-open' },
-    { name: 'Movies & TV', icon: 'i-lucide-film' },
-    { name: 'Family', icon: 'i-lucide-heart' },
+    { name: 'Gaming', icon: 'lucide:gamepad-2' },
+    { name: 'Reading', icon: 'lucide:book-open' },
+    { name: 'Movies & TV', icon: 'lucide:film' },
+    { name: 'Family', icon: 'lucide:heart' },
   ]
 
   const description = "When I'm not working or being a parent to two amazing girls, I enjoy gaming, reading books and comics, and watching a variety of shows, movies, and anime."

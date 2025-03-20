@@ -24,7 +24,7 @@
           </div>
 
           <div class="relative md:hidden">
-            <UButton id="mobile-button" @click="toggleMenu" :icon="isMenuOpen ? 'i-lucide-x' : 'i-lucide-align-justify'" variant="ghost" size="sm" />
+            <UButton id="mobile-button" @click="toggleMenu" :icon="isMenuOpen ? 'lucide:x' : 'lucide:align-justify'" variant="ghost" size="sm" />
 
             <transition name="slide-down">
               <div v-if="isMenuOpen" class="absolute right-0 mt-2 w-56 rounded-lg shadow-lg z-50 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700">
@@ -66,19 +66,19 @@
     [
       {
         label: 'About',
-        icon: 'i-lucide-person-standing',
+        icon: 'lucide:person-standing',
         to: '/about',
         onSelect: closeMenu,
       },
       {
         label: 'Blog',
-        icon: 'i-lucide-book-open',
+        icon: 'lucide:book-open',
         to: '/blog',
         onSelect: closeMenu,
       },
       {
         label: 'Projects',
-        icon: 'i-lucide-codepen',
+        icon: 'lucide:codepen',
         to: '/projects',
         onSelect: closeMenu,
       },
