@@ -55,7 +55,7 @@ While learning Vue, I discovered Nuxt, a higher-level framework built on top of 
 ### A little bit of a helping hand
 >I can't carry it for you, but I can carry you. — Samwise Gamgee, The Return of the King
 
-As I've already stated, most of my experience is in backend development. Even though I have created server-side front-end frameworks for the FNB App, I never really had to deal too much with styling and layouts. This was handled by our front-end teams (Android, iOS, and mobi). Despite adopting Tailwind CSS, I still struggled with creating visually appealing layouts. Hours of effort resulted in designs that never quite matched my vision.
+As I've already stated, most of my experience is in backend development. Even though I have created server-side front-end frameworks, I never really had to deal too much with styling and layouts. This was handled by our front-end teams (Android, iOS, and mobi). Despite adopting Tailwind CSS, I still struggled with creating visually appealing layouts. Hours of effort resulted in designs that never quite matched my vision.
 
 VS Code, my IDE, has a built-in GitHub Copilot AI, so I decided to give it a try. I gave it my landing page and explained the layout, styling, and theme I wanted, then waited while it processed. I wasn't expecting much to be honest, but the results were genuinely impressive. It generated a clean, responsive layout that captured exactly what I was trying to achieve. With just minor tweaks here and there, it saved me hours of frustrating work. I subsequently used it for other pages on the site, which significantly boosted my productivity and allowed me to focus on implementing the functionality rather than wrestling with CSS.
 

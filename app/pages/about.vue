@@ -8,9 +8,9 @@
           <UCard class="p-6">
             <p class="text-neutral-700 dark:text-neutral-300 leading-relaxed">
               Hello! I'm <span class="font-semibold text-primary-700 dark:text-primary-400">Sheldon Hart</span>, a solutions architect with over 14 years of experience creating innovative technology
-              solutions. My professional journey began after completing my BSc Computer Science degree, and then joining First National Bank (FNB), one of South Africa's biggest financial
-              institutions. What started as a graduate developer position evolved into a fulfilling career as a solutions architect, where I now design and implement enterprise-scale systems that
-              balance technical excellence with business value.
+              solutions. My professional journey began after completing my BSc Computer Science degree, and then joining one of South Africa's biggest financial institutions. What started as a
+              graduate developer position evolved into a fulfilling career as a solutions architect, where I now design and implement enterprise-scale systems that balance technical excellence with
+              business value.
             </p>
           </UCard>
         </div>
@@ -20,56 +20,49 @@
         <section class="mb-12">
           <!-- Standardize section headings -->
           <h2 id="certifications" class="text-3xl font-semibold text-neutral-800 dark:text-neutral-200 mb-4 flex items-center">
-            <UIcon name="i-lucide-award" class="mr-2 text-primary-600 dark:text-primary-400" />
+            <UIcon name="lucide:award" class="mr-2 text-primary-600 dark:text-primary-400" />
             Certifications
           </h2>
 
           <AboutCertificationDisplay />
 
           <h2 id="skills" class="text-3xl font-semibold text-neutral-800 dark:text-neutral-200 mb-4 flex items-center">
-            <UIcon name="i-lucide-code" class="mr-2 text-primary-600 dark:text-primary-400" />
+            <UIcon name="lucide:code" class="mr-2 text-primary-600 dark:text-primary-400" />
             Skills
           </h2>
 
           <AboutSkillsDisplay />
 
           <h2 id="projects" class="text-3xl font-semibold text-neutral-800 dark:text-neutral-200 mb-4 flex items-center">
-            <UIcon name="i-lucide-folder" class="mr-2 text-primary-600 dark:text-primary-400" />
+            <UIcon name="lucide:folder" class="mr-2 text-primary-600 dark:text-primary-400" />
             Projects
           </h2>
 
           <AboutProjectDisplay />
 
-          <h2 id="experience" class="text-3xl font-semibold text-neutral-800 dark:text-neutral-200 mb-4 flex items-center">
-            <UIcon name="i-lucide-briefcase" class="mr-2 text-primary-600 dark:text-primary-400" />
-            Professional Experience
-          </h2>
-
-          <AboutExperienceDisplay />
-
           <h2 id="education" class="text-3xl font-semibold text-neutral-800 dark:text-neutral-200 mb-4 flex items-center">
-            <UIcon name="i-lucide-graduation-cap" class="mr-2 text-primary-600 dark:text-primary-400" />
+            <UIcon name="lucide:graduation-cap" class="mr-2 text-primary-600 dark:text-primary-400" />
             Education
           </h2>
 
           <AboutEducationDisplay />
 
           <h2 id="hobbies" class="text-3xl font-semibold text-neutral-800 dark:text-neutral-200 mb-4 flex items-center">
-            <UIcon name="i-lucide-heart" class="mr-2 text-primary-600 dark:text-primary-400" />
+            <UIcon name="lucide:heart" class="mr-2 text-primary-600 dark:text-primary-400" />
             Hobbies and Interests
           </h2>
 
           <AboutHobbiesDisplay />
 
           <h2 id="contact" class="text-3xl font-semibold text-neutral-800 dark:text-neutral-200 mb-4 flex items-center">
-            <UIcon name="i-lucide-mail" class="mr-2 text-primary-600 dark:text-primary-400" />
+            <UIcon name="lucide:mail" class="mr-2 text-primary-600 dark:text-primary-400" />
             Contact Me
           </h2>
 
           <UCard class="p-6">
             <div class="flex flex-wrap gap-4">
-              <UButton to="https://www.linkedin.com/in/sheldon-hart/" target="_blank" icon="i-lucide-linkedin" color="primary"> LinkedIn </UButton>
-              <UButton to="mailto:sheldon.hart88@gmail.com" target="_blank" icon="i-lucide-mail" color="primary"> Email Me </UButton>
+              <UButton to="https://www.linkedin.com/in/sheldon-hart/" target="_blank" icon="lucide:linkedin" color="primary"> LinkedIn </UButton>
+              <UButton to="mailto:sheldon.hart88@gmail.com" target="_blank" icon="lucide:mail" color="primary"> Email Me </UButton>
             </div>
           </UCard>
         </section>
@@ -85,8 +78,8 @@
 <script setup lang="ts">
   useSeoMeta({
     title: 'About Sheldon Hart - From The Hart Tech',
-    description: 'Professional profile of Sheldon Hart, Solutions Architect with 14+ years of experience in architecture, design, and development at FNB.',
-    keywords: 'Sheldon Hart, solutions architect, enterprise architecture, microservices, AWS, Java, domain-driven design, FNB, banking technology, cloud architecture',
+    description: 'Professional profile of Sheldon Hart, Solutions Architect with 14+ years of experience in architecture, design, and development.',
+    keywords: 'Sheldon Hart, solutions architect, enterprise architecture, microservices, AWS, Java, domain-driven design, banking technology, cloud architecture',
     robots: 'index, follow',
     author: 'Sheldon Hart',
 
@@ -97,7 +90,7 @@
     ogType: 'website',
 
     twitterTitle: 'Sheldon Hart - Enterprise Solutions Architect Portfolio',
-    twitterDescription: 'View my professional experience at FNB, certifications including AWS Solutions Architect, and expertise in enterprise-scale system design.',
+    twitterDescription: 'View my professional experience, certifications including AWS Solutions Architect, and expertise in enterprise-scale system design.',
     twitterImage: 'https://www.fromthehart.tech/logo/from-the-hart-social.png',
     twitterCard: 'summary_large_image',
     twitterSite: '@SheldonHart7',

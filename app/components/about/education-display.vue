@@ -5,7 +5,7 @@
         <div class="flex-shrink-0 mx-auto sm:mx-0">
           <div class="bg-neutral-100 dark:bg-neutral-800 rounded-lg p-3 flex items-center justify-center w-24 h-24 overflow-hidden">
             <NuxtImg v-if="educationData.logo" :src="educationData.logo" alt="University logo" class="max-w-full max-h-full object-contain" />
-            <span v-else class="i-lucide-graduation-cap text-3xl text-primary-600 dark:text-primary-400"></span>
+            <span v-else class="lucide:graduation-cap text-3xl text-primary-600 dark:text-primary-400"></span>
           </div>
         </div>
 

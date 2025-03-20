@@ -37,7 +37,7 @@
             <div class="flex items-start p-5">
               <div class="w-full space-y-3">
                 <time :datetime="post.formattedDate" class="text-xs text-neutral-500 dark:text-neutral-400 flex items-center">
-                  <span class="i-lucide-calendar mr-1 text-primary-500 dark:text-primary-400"></span>
+                  <span class="lucide:calendar mr-1 text-primary-500 dark:text-primary-400"></span>
                   {{ post.formattedDate }}
                 </time>
 
