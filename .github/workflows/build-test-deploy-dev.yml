@@ -1,4 +1,4 @@
-name: Deploy to S3 and invalidate CloudFront cache
+name: Deploy Infrastructure and Application to Dev Environment
 on:
   push:
     branches:
@@ -6,7 +6,38 @@ on:
   workflow_dispatch:
 
 jobs:
+  terraform-deploy:
+    runs-on: ubuntu-latest
+    environment: dev
+
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: '1.11.2'
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_INFRA_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Deploy Dev Environment
+        run: |
+          cd terraform/dev
+          terraform init
+          # terraform apply -auto-approve
+          terraform plan
+
   build-and-test-and-deploy:
+    needs: terraform-deploy
     runs-on: ubuntu-latest
     environment: dev
 
@@ -42,7 +73,7 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          role-to-assume: ${{ secrets.AWS_APP_ROLE_ARN }}
           aws-region: ${{ vars.AWS_REGION }}
 
       - name: Sync files to S3
