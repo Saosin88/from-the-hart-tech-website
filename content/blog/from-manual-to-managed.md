@@ -32,13 +32,13 @@ These components can be orchestrated together to create custom modules, enabling
 
 Finally, there is the state. The state keeps track of the current state of your infrastructure and is stored as a file or can be remotely stored in block storage like S3. Remote state storage allows for locking, ensuring that only one run can be done concurrently to avoid conflicts.
 
+In my experience, an operations team would provision VMs and use tools like Ansible, Chef, or Puppet for configuration management. However, this approach was often hit or miss. Many VMs weren't managed by these tools, and migrating them took time. Additionally, enforcement was inconsistent, leading to changes being made outside the tools and not being tracked properly. For example, a developer might ask the operations team to make a change on an HAProxy in the dev environment, which was done manually. When it came time to go to production, the infrastructure configuration and code were successfully promoted, but the manual change wasn't tracked and applied, causing downtime in the production system.
+
 ::blog-image{src="terraform.png" alt="Terraform" caption=""}
 ::
 
 ### From Theory to Practice
 >To create, it is necessary first to destroy.— Kwaan, Mistborn: The Final Empire
-
-In my experience, an operations team would provision VMs and use tools like Ansible, Chef, or Puppet for configuration management. However, this approach was often hit or miss. Many VMs weren't managed by these tools, and migrating them took time. Additionally, enforcement was inconsistent, leading to changes being made outside the tools and not being tracked properly. For example, a developer might ask the operations team to make a change on an HAProxy in the dev environment, which was done manually. When it came time to go to production, the infrastructure configuration and code were successfully promoted, but the manual change wasn't tracked and applied, causing downtime in the production system.
 
 After completing the first phase of my website (which you can read about [here](/blog/this-website)), I realized the importance of implementing Infrastructure as Code (IaC) as early as possible. Delaying this implementation only makes migration more challenging as your infrastructure grows. Despite the relatively small scale of my website, the process took longer than anticipated. I began by focusing on shared resources—components my website needs that shouldn't be controlled by any specific project, such as ACM Certificates, IAM Roles and permissions, and Route53 DNS records. To manage these resources effectively, I store their state centrally in an S3 bucket, allowing for consistent tracking and version control. Changes to this shared infrastructure are applied through a CI/CD workflow that automatically executes whenever a pull request is merged to the main branch. Due to the sensitive information contained within this repository, I've opted to keep it private.
 
@@ -83,9 +83,6 @@ Going forward, I need to maintain the discipline of applying changes exclusively
 ## Tying Up Some Loose Ends
 
 ### Test/Dev Environement
->Trust, but verify.— Navani Kholin, Rhythm of War
-
-I needed to follow industry standards and have a test/dev environment. This environment allows me to test new features and changes before deploying them to production. Setting this up, however, only took me a few minutes. I simply added another configuration that re-used my static website module. I then created a new CI/CD workflow that would apply the infrastructure changes and deploy to this environment when a pull request was opened. This way, I could test the changes before merging them into the main branch. Terraform truly made this a super simple and painless process.
 
 As my website gained visibility and traffic began to grow, implementing a proper test/dev environment became necessary to follow industry best practices. Such an environment would allow me to safely experiment with new features before deploying them to production. Thanks to the module I had created, setting up this parallel environment took just minutes—I simply duplicated my configuration with environment-specific variables. To complete the workflow, I implemented a separate dev CI/CD pipeline that automatically applies infrastructure changes and deploys code to this new environement. This allows me to test changes before merging them into the main branch. Terraform transformed what could have been a complex infrastructure duplication process into an elegantly simple process.
 
@@ -104,6 +101,7 @@ module "website" {
 }
 ``` 
 ### End-to-End (E2E) Testing
+>Trust, but verify.— Navani Kholin, Rhythm of War
 
 Automated testing became another essential addition to my workflow. During development, I encountered a particularly troublesome bug—the inconsistent blog post list issue (detailed [here](/blog/this-website))—which consumed hours of debugging time. Even after resolving the issue, I found myself compulsively checking whether posts were disappearing with each new change. This repetitive manual testing gradually accumulated to significant lost development time. The solution was clear: automate these checks to eliminate both the tedious verification process and the lingering anxiety about regression. With proper automated tests, I could move forward with confidence, knowing any recurrence of the bug would be caught immediately.
 
