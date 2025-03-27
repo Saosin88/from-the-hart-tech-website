@@ -19,6 +19,7 @@ twitterSite: "@SheldonHart7"
 twitterCreator: "@SheldonHart7"
 ---
 ## The Growth Problem: How Infrastructure Multiplies
+>Growth comes from challenge, from pushing yourself beyond what is comfortable.— Dalinar Kholin, The Way of Kings
 
 Managing infrastructure and configuration for a small project can be straightforward, especially if you start with just three servers for the full stack. This setup works well before your project launches. However, once you go live, it's best practice not to test new code and features directly on the production environment. You'll need a dev/test environment, which will at least double your infrastructure. To ensure high availability, you might need to double or even triple your infrastructure. As you build more features, especially if you adopt a microservices architecture, the need for additional servers will grow. Depending on the technology you use, you might require more than one server just to initialize (e.g., Quorum-type technologies). Finally, if your project is successful, you'll need to scale, and possibly scale quickly.
 
