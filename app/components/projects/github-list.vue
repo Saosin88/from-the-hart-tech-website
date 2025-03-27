@@ -14,8 +14,7 @@
       </button>
     </div>
 
-    <div v-else>
-      <div v-for="repo in repos" :key="repo.id" lass="flex flex-col space-y-4"></div>
+    <div v-else class="flex flex-col space-y-4">
       <UCard v-for="repo in repos" :key="repo.id" class="transition-all duration-200 hover:shadow-md dark:hover:shadow-neutral-800/40 h-full">
         <a :href="repo.html_url" target="_blank" rel="noopener noreferrer" class="flex justify-between p-4 group">
           <div class="flex flex-col">
