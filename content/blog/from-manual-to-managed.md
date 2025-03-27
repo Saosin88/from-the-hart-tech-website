@@ -75,7 +75,7 @@ data "terraform_remote_state" "shared" {
 
 Following the principle that each project should own its infrastructure, I've integrated this Terraform configuration directly into my website's CI/CD workflow. This integration creates a seamless deployment process: the workflow first validates the infrastructure state and applies any necessary changes before proceeding to the build and deployment phases. By structuring the process this way, infrastructure updates become a natural prerequisite to code deployment, ensuring that my website always runs on correctly provisioned resources.
 
-![AI Response](/assets/blog/terraform-ci-cd.png)
+![Terraform CICD](/assets/blog/terraform-ci-cd.png)
 
 After setting up the infrastructure pipeline, I needed to thoroughly test my configuration. While I conducted most testing in isolation from production (which I'll explain shortly), I ultimately decided to perform one real-world test on my live environment. Despite recognizing this as poor practice, I rationalized that the risk was minimal given my website's limited audience at this early stage. The process began with running terraform destroy :boom: and watching my entire infrastructure disappear from the AWS console in seconds. Next, I triggered my CI/CD workflow to rebuild everything from scratch. The entire recovery process took just 7 minutes—most of which was spent waiting for CloudFront to complete its deployment. This experiment vividly demonstrated the power of Infrastructure as Code: what might have been a catastrophic disaster in a traditional environment became a simple, rapid recovery process.
 
@@ -108,7 +108,7 @@ Automated testing became another essential addition to my workflow. During devel
 
 After looking into a few testing options, I decided on Cypress.io for my E2E testing. It's open source and completely free. I built tests that automatically check all the things I was manually testing before - especially the blog post list that had given me so much trouble. I then integrated it with my CI/CD pipeline. Now, whenever I push changes, the tests run automatically before deployment. If anything fails, the pipeline stops immediately. No more manual checking after each change.
 
-![AI Response](/assets/blog/cypress-test-results.png)
+![Cypress Test Results](/assets/blog/cypress-test-results.png)
 
 ## Wrapping Up
 
