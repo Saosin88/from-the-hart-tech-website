@@ -1,10 +1,6 @@
 <template>
-  <div>
-    <div v-if="pending" class="flex justify-center items-center py-12">
-      <div class="animate-pulse text-lg font-medium">Loading projects...</div>
-    </div>
-
-    <div v-else-if="error" class="bg-error-50 dark:bg-error-900/20 border border-error-200 dark:border-error-800 rounded-lg p-6 text-center">
+  <ClientOnly>
+    <div v-if="error" class="bg-error-50 dark:bg-error-900/20 border border-error-200 dark:border-error-800 rounded-lg p-6 text-center">
       <p class="text-error-600 dark:text-error-400 font-medium">Something went wrong while fetching projects.</p>
       <button
         @click="() => refresh()"
@@ -12,6 +8,33 @@
       >
         Try again
       </button>
+    </div>
+
+    <!-- Loading state -->
+    <div v-else-if="pending" class="flex flex-col space-y-4">
+      <UCard v-for="i in 3" :key="i" class="transition-all duration-200 h-full">
+        <div class="flex justify-between p-4">
+          <div class="flex flex-col">
+            <USkeleton class="h-7 w-40 mb-2" />
+
+            <USkeleton class="h-4 w-56 mb-1" />
+            <USkeleton class="h-4 w-48" />
+          </div>
+
+          <div class="flex flex-col items-end justify-between">
+            <div class="flex items-center space-x-1">
+              <USkeleton class="h-5 w-8" />
+              <USkeleton class="h-5 w-5 rounded" />
+            </div>
+
+            <div class="flex items-center mt-auto">
+              <USkeleton class="h-4 w-20" />
+              <USkeleton class="h-4 w-4 mx-2 rounded-full" />
+              <USkeleton class="h-4 w-24" />
+            </div>
+          </div>
+        </div>
+      </UCard>
     </div>
 
     <div v-else class="flex flex-col space-y-4">
@@ -47,10 +70,39 @@
         </a>
       </UCard>
     </div>
-  </div>
+
+    <template #fallback>
+      <div class="flex flex-col space-y-4">
+        <UCard v-for="i in 3" :key="i" class="transition-all duration-200 h-full">
+          <div class="flex justify-between p-4">
+            <div class="flex flex-col">
+              <USkeleton class="h-7 w-40 mb-2" />
+
+              <USkeleton class="h-4 w-56 mb-1" />
+              <USkeleton class="h-4 w-48" />
+            </div>
+
+            <div class="flex flex-col items-end justify-between">
+              <div class="flex items-center space-x-1">
+                <USkeleton class="h-5 w-8" />
+                <USkeleton class="h-5 w-5 rounded" />
+              </div>
+
+              <div class="flex items-center mt-auto">
+                <USkeleton class="h-4 w-20" />
+                <USkeleton class="h-4 w-4 mx-2 rounded-full" />
+                <USkeleton class="h-4 w-24" />
+              </div>
+            </div>
+          </div>
+        </UCard>
+      </div>
+    </template>
+  </ClientOnly>
 </template>
 
 <script setup lang="ts">
   const { repos, error, pending, refresh } = useAPI().getGitHubRepos()
   const { formatDateInAgoTerms, getLanguageColour } = useFormatters()
+  onBeforeMount
 </script>
