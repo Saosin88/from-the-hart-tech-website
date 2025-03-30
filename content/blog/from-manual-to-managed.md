@@ -25,8 +25,6 @@ Managing infrastructure and configuration for a small project can be straightfor
 
 While this example is quite traditional, it highlights how infrastructure can grow rapidly over time. The industry offers many solutions to these challenges, such as containerization, managed services, and serverless architectures. However, these still need to be provisioned and configured consistently. It's crucial for a team to be able to provision new infrastructure quickly and consistently.
 
-In my experience, an operations team would provision VMs and use tools like Ansible, Chef, or Puppet for configuration management. However, this approach was often hit or miss. Many VMs weren't managed by these tools, and migrating them took time. Additionally, enforcement was inconsistent, leading to changes being made outside the tools and not being tracked properly. For example, a developer might ask the operations team to make a change on an HAProxy in the dev environment, which was done manually. When it came time to go to production, the infrastructure configuration and code were successfully promoted, but the manual change wasn't tracked and applied, causing downtime in the production system.
-
 This is where Infrastructure as Code (IaC) tools like Terraform become essential. Using its own declarative HashiCorp Configuration Language (HCL), Terraform allows you to define, provision, and manage infrastructure across multiple environments. The human-readable nature of HCL makes complex infrastructure setups both accessible and maintainable. While AWS-specific solutions like CloudFormation or CDK were options, I ultimately chose Terraform for its multi-cloud capabilities. With support for numerous providers including AWS, GCP, and Azure, Terraform aligns perfectly with my future plans to expand across different cloud platforms.
 
 At its core, Terraform has three main components: resources, variables, and outputs. Resources are the basic building blocks of your infrastructure (e.g., S3 Bucket, CloudFront Distribution, IAM Role). Variables in Terraform are like function input parameters, allowing you to pass dynamic values into your configurations. Outputs are like return values, providing useful information about your infrastructure after it's been created.
@@ -45,48 +43,70 @@ Finally, there is the state. The state keeps track of the current state of your 
 <div class="border border-secondary-500 dark:border-secondary-700 rounded-lg p-4 shadow-sm">
 
 #### Terraform
-- **Primary Focus:** Infrastructure provisioning
+- **Primary Focus:** Infrastructure provisioning across multiple cloud providers
 - **Multi-cloud Support:** Strong (80+ providers)
-- **Agent Required:** No
+- **Language:** HashiCorp Configuration Language (HCL)
 - **State Management:** Explicit state tracking
-- **Approach:** Declarative
-- **Open Source:** Yes
+- **AWS Integration:** Good, via AWS provider
+- **Community:** Large, active open-source community
+- **Vendor Lock-in:** Low (provider-agnostic)
+- **Pricing/Licensing:** Open-source (free), paid enterprise features
 
 </div>
 
 <div class="border border-secondary-500 dark:border-secondary-700 rounded-lg p-4 shadow-sm">
 
-#### Puppet
-- **Primary Focus:** Configuration management
-- **Multi-cloud Support:** Limited
-- **Agent Required:** Yes
-- **State Management:** Desired state model
-- **Approach:** Declarative
-- **Open Source:** Yes
+#### CloudFormation
+- **Primary Focus:** AWS infrastructure provisioning
+- **Multi-cloud Support:** None (AWS only)
+- **Language:** YAML or JSON
+- **State Management:** Implicit (managed by AWS)
+- **AWS Integration:** Native, comprehensive
+- **Community:** Medium, primarily AWS users
+- **Vendor Lock-in:** High (AWS-only)
+- **Pricing/Licensing:** Free with AWS usage
 
 </div>
 
 <div class="border border-secondary-500 dark:border-secondary-700 rounded-lg p-4 shadow-sm">
 
-#### Chef
-- **Primary Focus:** Configuration management
-- **Multi-cloud Support:** Limited
-- **Agent Required:** Yes
-- **State Management:** Desired state model
-- **Approach:** Procedural
-- **Open Source:** Yes
+#### AWS CDK
+- **Primary Focus:** AWS infrastructure with familiar programming languages
+- **Multi-cloud Support:** None (AWS only)
+- **Language:** TypeScript, JavaScript, Python, Java, C#
+- **State Management:** Implicit (generates CloudFormation)
+- **AWS Integration:** Native, comprehensive
+- **Community:** Growing rapidly
+- **Vendor Lock-in:** High (AWS-only)
+- **Pricing/Licensing:** Free with AWS usage
 
 </div>
 
 <div class="border border-secondary-500 dark:border-secondary-700 rounded-lg p-4 shadow-sm">
 
-#### Ansible
-- **Primary Focus:** Configuration management
-- **Multi-cloud Support:** Good
-- **Agent Required:** No
-- **State Management:** Stateless (with limited state options)
-- **Approach:** Hybrid (mostly procedural)
-- **Open Source:** Yes
+#### Pulumi
+- **Primary Focus:** Infrastructure provisioning using standard programming languages
+- **Multi-cloud Support:** Strong (20+ cloud providers)
+- **Language:** TypeScript, JavaScript, Python, Go, C#, Java
+- **State Management:** Explicit state tracking (similar to Terraform)
+- **AWS Integration:** Good, via AWS provider
+- **Community:** Growing, active open-source community
+- **Vendor Lock-in:** Low (provider-agnostic)
+- **Pricing/Licensing:** Open-source (free), paid team/enterprise features
+
+</div>
+
+<div class="border border-secondary-500 dark:border-secondary-700 rounded-lg p-4 shadow-sm">
+
+#### OpenTofu
+- **Primary Focus:** Infrastructure provisioning across multiple cloud providers
+- **Multi-cloud Support:** Strong (compatible with Terraform providers)
+- **Language:** HashiCorp Configuration Language (HCL)
+- **State Management:** Explicit state tracking
+- **AWS Integration:** Good, via AWS provider
+- **Community:** Emerging open-source community (fork of Terraform)
+- **Vendor Lock-in:** Low (provider-agnostic)
+- **Pricing/Licensing:** Open-source (free), community-driven
 
 </div>
 
