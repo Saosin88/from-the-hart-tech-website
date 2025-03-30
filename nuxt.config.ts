@@ -34,6 +34,7 @@ export default defineNuxtConfig({
     build: {
       markdown: {
         highlight: {
+          langs: ['json', 'js', 'ts', 'html', 'css', 'vue', 'shell', 'mdc', 'md', 'yaml', 'hcl'],
           theme: {
             default: 'vitesse-light',
             dark: 'dracula',

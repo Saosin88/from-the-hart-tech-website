@@ -10,7 +10,7 @@ terraform {
 
   backend "s3" {
     bucket       = "from-the-hart-terraform"
-    key          = "state/dev.tfstate"
+    key          = "state/from-the-hart-tech-website-dev.tfstate"
     region       = "af-south-1"
     use_lockfile = true
   }

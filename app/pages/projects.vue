@@ -9,14 +9,7 @@
         </p>
       </div>
 
-      <ClientOnly>
-        <ProjectsGithubList />
-        <template #fallback>
-          <div class="flex justify-center p-8">
-            <UIcon name="lucide:loader-2" class="animate-spin text-primary-600" size="xl" />
-          </div>
-        </template>
-      </ClientOnly>
+      <ProjectsGithubList />
     </div>
   </section>
 </template>
