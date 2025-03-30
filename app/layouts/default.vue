@@ -48,6 +48,20 @@
     <main class="flex-grow">
       <slot />
     </main>
+    <footer class="w-full py-6 border-t border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900">
+      <div class="max-w-(--ui-container) mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+          <!-- Copyright with dynamic year -->
+          <div class="text-sm text-neutral-600 dark:text-neutral-400">&copy; {{ new Date().getFullYear() }} From The Hart. All rights reserved.</div>
+
+          <!-- Contact options -->
+          <div class="flex flex-wrap gap-3">
+            <UButton to="https://www.linkedin.com/in/sheldon-hart/" target="_blank" icon="lucide:linkedin" color="primary" variant="soft" size="sm"> LinkedIn </UButton>
+            <UButton to="mailto:sheldon.hart88@gmail.com" target="_blank" icon="lucide:mail" color="primary" variant="soft" size="sm"> Email Me </UButton>
+          </div>
+        </div>
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -64,6 +78,12 @@
 
   const items = ref([
     [
+      {
+        label: 'Home',
+        icon: 'lucide:home',
+        to: '/',
+        onSelect: closeMenu,
+      },
       {
         label: 'About',
         icon: 'lucide:person-standing',

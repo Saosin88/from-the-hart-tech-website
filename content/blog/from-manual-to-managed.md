@@ -25,6 +25,8 @@ Managing infrastructure and configuration for a small project can be straightfor
 
 While this example is quite traditional, it highlights how infrastructure can grow rapidly over time. The industry offers many solutions to these challenges, such as containerization, managed services, and serverless architectures. However, these still need to be provisioned and configured consistently. It's crucial for a team to be able to provision new infrastructure quickly and consistently.
 
+In my experience, an operations team would provision VMs and use tools like Ansible, Chef, or Puppet for configuration management. However, this approach was often hit or miss. Many VMs weren't managed by these tools, and migrating them took time. Additionally, enforcement was inconsistent, leading to changes being made outside the tools and not being tracked properly. For example, a developer might ask the operations team to make a change on an HAProxy in the dev environment, which was done manually. When it came time to go to production, the infrastructure configuration and code were successfully promoted, but the manual change wasn't tracked and applied, causing downtime in the production system.
+
 This is where Infrastructure as Code (IaC) tools like Terraform become essential. Using its own declarative HashiCorp Configuration Language (HCL), Terraform allows you to define, provision, and manage infrastructure across multiple environments. The human-readable nature of HCL makes complex infrastructure setups both accessible and maintainable. While AWS-specific solutions like CloudFormation or CDK were options, I ultimately chose Terraform for its multi-cloud capabilities. With support for numerous providers including AWS, GCP, and Azure, Terraform aligns perfectly with my future plans to expand across different cloud platforms.
 
 At its core, Terraform has three main components: resources, variables, and outputs. Resources are the basic building blocks of your infrastructure (e.g., S3 Bucket, CloudFront Distribution, IAM Role). Variables in Terraform are like function input parameters, allowing you to pass dynamic values into your configurations. Outputs are like return values, providing useful information about your infrastructure after it's been created.
@@ -33,10 +35,62 @@ These components can be orchestrated together to create custom modules, enabling
 
 Finally, there is the state. The state keeps track of the current state of your infrastructure and is stored as a file or can be remotely stored in block storage like S3. Remote state storage allows for locking, ensuring that only one run can be done concurrently to avoid conflicts.
 
-In my experience, an operations team would provision VMs and use tools like Ansible, Chef, or Puppet for configuration management. However, this approach was often hit or miss. Many VMs weren't managed by these tools, and migrating them took time. Additionally, enforcement was inconsistent, leading to changes being made outside the tools and not being tracked properly. For example, a developer might ask the operations team to make a change on an HAProxy in the dev environment, which was done manually. When it came time to go to production, the infrastructure configuration and code were successfully promoted, but the manual change wasn't tracked and applied, causing downtime in the production system.
-
 ::blog-image{src="terraform.png" alt="Terraform" caption=""}
 ::
+
+### Infrastructure Tools at a Glance
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+
+<div class="border border-secondary-500 dark:border-secondary-700 rounded-lg p-4 shadow-sm">
+
+#### Terraform
+- **Primary Focus:** Infrastructure provisioning
+- **Multi-cloud Support:** Strong (80+ providers)
+- **Agent Required:** No
+- **State Management:** Explicit state tracking
+- **Approach:** Declarative
+- **Open Source:** Yes
+
+</div>
+
+<div class="border border-secondary-500 dark:border-secondary-700 rounded-lg p-4 shadow-sm">
+
+#### Puppet
+- **Primary Focus:** Configuration management
+- **Multi-cloud Support:** Limited
+- **Agent Required:** Yes
+- **State Management:** Desired state model
+- **Approach:** Declarative
+- **Open Source:** Yes
+
+</div>
+
+<div class="border border-secondary-500 dark:border-secondary-700 rounded-lg p-4 shadow-sm">
+
+#### Chef
+- **Primary Focus:** Configuration management
+- **Multi-cloud Support:** Limited
+- **Agent Required:** Yes
+- **State Management:** Desired state model
+- **Approach:** Procedural
+- **Open Source:** Yes
+
+</div>
+
+<div class="border border-secondary-500 dark:border-secondary-700 rounded-lg p-4 shadow-sm">
+
+#### Ansible
+- **Primary Focus:** Configuration management
+- **Multi-cloud Support:** Good
+- **Agent Required:** No
+- **State Management:** Stateless (with limited state options)
+- **Approach:** Hybrid (mostly procedural)
+- **Open Source:** Yes
+
+</div>
+
+</div>
 
 ### From Theory to Practice
 >To create, it is necessary first to destroy.— Kwaan, Mistborn: The Final Empire
