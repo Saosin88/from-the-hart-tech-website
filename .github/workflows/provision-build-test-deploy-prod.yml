@@ -45,6 +45,10 @@ jobs:
       contents: read
 
     steps:
+      - name: Set environment variables
+        run: |
+          echo "FROM_THE_HART_API_BASE_URL=https://api.fromthehart.tech" >> $GITHUB_ENV
+
       - name: Checkout repository
         uses: actions/checkout@v4
 
