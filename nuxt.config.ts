@@ -13,6 +13,12 @@ export default defineNuxtConfig({
 
   modules: ['@nuxtjs/sitemap', '@nuxt/content', '@nuxt/ui', '@nuxt/image'],
 
+  runtimeConfig: {
+    public: {
+      fromTheHartAPIBaseUrl: process.env.FROM_THE_HART_API_BASE_URL || 'https://api.fromthehart.tech',
+    },
+  },
+
   routeRules: {
     '/': {
       prerender: true,

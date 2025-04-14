@@ -53,7 +53,7 @@ resource "aws_cloudfront_distribution" "distribution" {
   is_ipv6_enabled     = true
   enabled             = true
   default_root_object = "index.html"
-  aliases             = [var.domain_name]
+  aliases = [var.domain_name]
 
   default_cache_behavior {
     target_origin_id       = aws_s3_bucket.bucket.bucket_regional_domain_name
@@ -75,7 +75,7 @@ resource "aws_cloudfront_distribution" "distribution" {
     }
   }
 
-  viewer_certificate {
+viewer_certificate {
     cloudfront_default_certificate = false
     acm_certificate_arn            = var.acm_certificate_arn
     minimum_protocol_version       = "TLSv1.2_2021"
@@ -90,16 +90,4 @@ resource "aws_cloudfront_distribution" "distribution" {
   }
 
   tags = var.tags
-}
-
-resource "aws_route53_record" "a_record" {
-  zone_id = var.route53_zone_id
-  name    = var.domain_name
-  type    = "A"
-
-  alias {
-    name                   = aws_cloudfront_distribution.distribution.domain_name
-    zone_id                = aws_cloudfront_distribution.distribution.hosted_zone_id
-    evaluate_target_health = false
-  }
 }

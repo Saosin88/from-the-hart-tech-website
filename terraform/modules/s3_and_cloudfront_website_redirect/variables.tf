@@ -1,10 +1,5 @@
 variable "acm_certificate_arn" {
-  description = "The ARN of the ACM certificate for the redirect domain"
-  type        = string
-}
-
-variable "route53_zone_id" {
-  description = "The ID of the hosted zone for the redirect domain"
+  description = "ARN of the ACM certificate for CloudFront"
   type        = string
 }
 

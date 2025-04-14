@@ -51,24 +51,9 @@ resource "aws_cloudfront_distribution" "redirect" {
     }
   }
 
-  viewer_certificate {
-    cloudfront_default_certificate = false
-    acm_certificate_arn            = var.acm_certificate_arn
-    minimum_protocol_version       = "TLSv1.2_2021"
-    ssl_support_method             = "sni-only"
+viewer_certificate {
+    cloudfront_default_certificate = true
   }
 
   tags = var.tags
-}
-
-resource "aws_route53_record" "a_record" {
-  zone_id = var.route53_zone_id
-  name    = var.source_domain
-  type    = "A"
-
-  alias {
-    name                   = aws_cloudfront_distribution.redirect.domain_name
-    zone_id                = aws_cloudfront_distribution.redirect.hosted_zone_id
-    evaluate_target_health = false
-  }
 }
