@@ -53,6 +53,7 @@ resource "aws_cloudfront_distribution" "distribution" {
   is_ipv6_enabled     = true
   enabled             = true
   default_root_object = "index.html"
+  aliases = [var.domain_name]
 
   default_cache_behavior {
     target_origin_id       = aws_s3_bucket.bucket.bucket_regional_domain_name

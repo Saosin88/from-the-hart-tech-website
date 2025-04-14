@@ -34,6 +34,7 @@ resource "aws_cloudfront_distribution" "redirect" {
 
   is_ipv6_enabled = true
   enabled         = true
+  aliases         = [var.source_domain]
 
   default_cache_behavior {
     target_origin_id       = aws_s3_bucket_website_configuration.redirect.website_endpoint
