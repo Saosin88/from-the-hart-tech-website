@@ -57,7 +57,7 @@
           <!-- Contact options -->
           <div class="flex flex-wrap gap-3">
             <UButton to="https://www.linkedin.com/in/sheldon-hart/" target="_blank" icon="lucide:linkedin" color="primary" variant="soft" size="sm"> LinkedIn </UButton>
-            <UButton to="mailto:sheldon.hart88@gmail.com" target="_blank" icon="lucide:mail" color="primary" variant="soft" size="sm"> Email Me </UButton>
+            <UButton to="mailto:sheldon@fromthehart.tech" target="_blank" icon="lucide:mail" color="primary" variant="soft" size="sm"> Email Me </UButton>
           </div>
         </div>
       </div>
