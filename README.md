@@ -2,7 +2,23 @@
 
 A personal technology website and blog built with Nuxt 3, showcasing projects, professional experience, and technical blog posts. This site is designed to be hosted on AWS using a serverless architecture with S3 and CloudFront.
 
+![Status](https://img.shields.io/badge/Status-Live-success)
+![Platform](https://img.shields.io/badge/Platform-AWS-orange)
+![Framework](https://img.shields.io/badge/Framework-Nuxt_3-green)
+![Deployment](https://img.shields.io/badge/Deployment-Serverless-blue)
+
 ![Website Screenshot](/public/logo/from-the-hart-social.png)
+
+## 🔍 Overview
+
+The From The Hart Tech Website serves as the primary web presence for From The Hart, featuring:
+
+- Professional portfolio and resume information
+- Technical blog with architecture diagrams and code examples
+- Project showcases and case studies
+- Contact information and professional links
+
+This website is part of the broader From The Hart multi-cloud architecture, integrating with other services across AWS, GCP, and Cloudflare.
 
 ## 📋 Features
 
@@ -17,19 +33,21 @@ A personal technology website and blog built with Nuxt 3, showcasing projects, p
 - **Styling**: Tailwind CSS, Nuxt UI components
 - **Content**: Nuxt Content for markdown processing
 - **Images**: Nuxt Image for optimization
-- **Infrastructure**: AWS (S3, CloudFront, Route 53, ACM)
-- **IaC**: Terraform for AWS resource provisioning
+- **Infrastructure**: AWS (S3, CloudFront, Cloudflare, ACM)
+- **IaC**: Terraform for AWS and Cloudflare resource provisioning
 - **CI/CD**: GitHub Actions for automated deployment
 - **Testing**: Cypress for E2E tests
 
 ## 🧰 Prerequisites
 
-- Node.js (v16 or later)
-- npm (v7 or later)
+- Node.js (v18 or later)
+- npm (v9 or later)
 - AWS CLI (for deployment)
-- Terraform (v1.11.x) (for infrastructure)
+- Terraform (v1.7.x) (for infrastructure)
 
-## 📥 Installation
+## 🚀 Getting Started
+
+### Installation
 
 1. Clone the repository:
 
@@ -44,7 +62,7 @@ cd from-the-hart-tech-website
 npm install
 ```
 
-## 💻 Development
+### Development
 
 Start the development server on `http://localhost:3000`:
 
@@ -85,7 +103,7 @@ npm run build
 npm run preview
 ```
 
-## 🚀 Deployment
+## 📦 Deployment
 
 The project uses GitHub Actions for CI/CD. When code is pushed to the main branch, it:
 
@@ -110,7 +128,7 @@ To manually deploy:
 
 3. Invalidate CloudFront cache:
    ```bash
-   aws cloudfront create-invalidation --distribution-id YOUR_DISTRIBUTION_ID --paths "/*"
+   aws cloudfront create-invalidation --distribution-id <YOUR_DISTRIBUTION_ID> --paths "/*"
    ```
 
 ## 🧪 Testing
@@ -123,15 +141,19 @@ npm run cypress
 
 ## 🌐 Infrastructure
 
-The project uses Terraform to manage AWS infrastructure across dev and prod environments:
+This website is deployed on AWS using a serverless architecture and is configured through the `from-the-hart-infrastructure` repository using Terraform.
 
-- S3 buckets for static hosting
-- CloudFront for CDN and edge caching
-- Route 53 for DNS
-- ACM for SSL certificates
-- IAM roles and policies
+### Cloud Provider Details
 
-To deploy infrastructure:
+- **Primary Platform**: AWS
+- **Storage**: S3 buckets for static hosting
+- **CDN**: CloudFront for edge caching and global delivery
+- **DNS**: Cloudflare for domain management
+- **SSL/TLS**: ACM for SSL certificates
+- **Access Control**: IAM roles and policies
+- **Infrastructure as Code**: Terraform (remote state in AWS S3)
+
+For infrastructure deployments, refer to the `terraform/` directory which contains separate configurations for `dev` and `prod` environments:
 
 ```bash
 cd terraform/dev  # or terraform/prod
@@ -139,12 +161,40 @@ terraform init
 terraform apply
 ```
 
-## 📄 License
+## 📁 Project Structure
 
-[MIT License](LICENSE)
+The project follows the standard Nuxt 3 directory structure with some customizations:
 
-## 📬 Contact
+```
+from-the-hart-tech-website/
+├── app/                    # Nuxt app directory
+│   ├── components/         # Vue components
+│   ├── composables/        # Reusable Vue composition functions
+│   ├── layouts/            # Page layouts
+│   └── pages/              # Application pages
+├── content/                # Markdown blog content
+│   └── blog/               # Blog post files
+├── cypress/                # End-to-end tests
+│   └── e2e/                # Test specifications
+├── public/                 # Static assets
+│   ├── assets/             # Images and other assets
+│   └── logo/               # Logo files
+├── resources/              # Source files for assets
+│   └── drawio/             # Architecture diagram source files
+├── terraform/              # Infrastructure as Code configurations
+│   ├── dev/                # Development environment resources
+│   └── prod/               # Production environment resources
+├── content.config.ts       # Nuxt Content configuration
+├── nuxt.config.ts          # Nuxt configuration
+├── package.json            # Project dependencies and scripts
+└── README.md               # Project documentation
+```
 
-Sheldon Hart - [LinkedIn](https://www.linkedin.com/in/sheldon-hart/)
+## 📚 Scripts
 
-Project Link: [https://github.com/Saosin88/from-the-hart-tech-website.git](https://github.com/Saosin88/from-the-hart-tech-website.git)
+- `npm run dev` - Start the development server
+- `npm run build` - Build for production
+- `npm run generate` - Generate static site
+- `npm run preview` - Preview production build
+- `npm run serve` - Serve the generated static site
+- `npm run cypress` - Run end-to-end tests
