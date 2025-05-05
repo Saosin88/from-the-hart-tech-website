@@ -7,7 +7,6 @@
           <p class="mt-2 text-neutral-600 dark:text-neutral-400">Enter your email to receive a new verification link</p>
         </div>
 
-        <!-- Success notification -->
         <UAlert
           v-if="showSuccess"
           title="Email sent!"
@@ -18,14 +17,14 @@
           class="mb-4"
         />
 
-        <!-- Error notification -->
         <UAlert v-if="error" :title="error.title" :description="error.message" color="error" variant="soft" icon="lucide:alert-circle" class="mb-4" />
 
         <form @submit.prevent="handleSubmit">
           <div class="space-y-4">
-            <UFormGroup label="Email" name="email">
-              <UInput v-model="email" name="email" type="email" placeholder="your.email@example.com" autocomplete="email" required :disabled="isLoading" />
-            </UFormGroup>
+            <div class="space-y-2">
+              <label for="email" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300">Email</label>
+              <UInput v-model="email" id="email" name="email" type="email" placeholder="your.email@example.com" autocomplete="email" required :disabled="isLoading" />
+            </div>
 
             <div>
               <UButton type="submit" color="primary" block :loading="isLoading" :disabled="isLoading">
@@ -44,20 +43,10 @@
 </template>
 
 <script setup lang="ts">
-  const config = useRuntimeConfig()
-
-  // Form state
   const email = ref('')
   const isLoading = ref(false)
   const showSuccess = ref(false)
   const error = ref<{ title: string; message: string } | null>(null)
-
-  useSeoMeta({
-    title: 'Resend Verification Email - From The Hart Tech',
-    description: 'Request a new email verification link.',
-    robots: 'noindex, nofollow',
-    author: 'Sheldon Hart',
-  })
 
   async function handleSubmit() {
     if (!email.value) return
@@ -67,32 +56,26 @@
     isLoading.value = true
 
     try {
-      const response = await fetch(`${config.public.fromTheHartAPIBaseUrl}/auth/resend-verification`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email: email.value }),
-      })
+      const result = await useAuthAPI().resendVerificationEmail(email.value)
 
-      const data = await response.json()
-
-      if (response.ok) {
+      if (result.success) {
         showSuccess.value = true
         email.value = '' // Clear the form
       } else {
         error.value = {
           title: 'Failed to send verification email',
-          message: data.error || 'An error occurred while sending the verification email. Please try again.',
+          message: result.error,
         }
-      }
-    } catch (e) {
-      error.value = {
-        title: 'Network error',
-        message: 'Unable to connect to the server. Please check your internet connection and try again.',
       }
     } finally {
       isLoading.value = false
     }
   }
+
+  useSeoMeta({
+    title: 'Resend Verification Email - From The Hart Tech',
+    description: 'Request a new email verification link.',
+    robots: 'noindex, nofollow',
+    author: 'Sheldon Hart',
+  })
 </script>

@@ -102,7 +102,7 @@
 </template>
 
 <script setup lang="ts">
-  const { repos, error, pending, refresh } = useAPI().getGitHubRepos()
+  const { repos, error, pending, refresh } = useProjectsAPI().getGitHubRepos()
   const { formatDateInAgoTerms, getLanguageColour } = useFormatters()
   onBeforeMount
 </script>
