@@ -16,7 +16,7 @@ export function useAuthAPI() {
       return {
         success: response.ok,
         data: data.data,
-        error: data.error.message || 'Failed to verify your email. Please request a new verification link.',
+        error: data.error?.message || 'Failed to verify your email. Please request a new verification link.',
       }
     } catch (error) {
       console.error('Error verifying email:', error)
@@ -42,7 +42,7 @@ export function useAuthAPI() {
       return {
         success: response.ok,
         data: data.data,
-        error: data.error.message || 'An error occurred while sending the verification email. Please try again.',
+        error: data.error?.message || 'An error occurred while sending the verification email. Please try again.',
       }
     } catch (error) {
       console.error('Error resending verification:', error)
@@ -97,7 +97,7 @@ export function useAuthAPI() {
       return {
         success: response.ok,
         data: data.data,
-        error: data.error.message || 'Failed to reset your password. Please try again or request a new reset link.',
+        error: data.error?.message || 'Failed to reset your password. Please try again or request a new reset link.',
       }
     } catch (error) {
       console.error('Error resetting password:', error)
@@ -109,10 +109,64 @@ export function useAuthAPI() {
     }
   }
 
+  async function login(email: string, password: string) {
+    try {
+      const response = await fetch(`${baseUrl}/auth/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      })
+
+      const data = await response.json()
+      return {
+        success: response.ok,
+        data: data.data,
+        error: data.error?.message || 'Invalid email or password',
+      }
+    } catch (error) {
+      console.error('Error logging in:', error)
+      return {
+        success: false,
+        data: null,
+        error: 'Unable to connect to the server. Please check your internet connection and try again.',
+      }
+    }
+  }
+
+  async function register(email: string, password: string) {
+    try {
+      const response = await fetch(`${baseUrl}/auth/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      })
+
+      const data = await response.json()
+      return {
+        success: response.ok,
+        data: data.data,
+        error: data.error?.message || 'Registration failed. Please try again.',
+      }
+    } catch (error) {
+      console.error('Error during registration:', error)
+      return {
+        success: false,
+        data: null,
+        error: 'Unable to connect to the server. Please check your internet connection and try again.',
+      }
+    }
+  }
+
   return {
     verifyEmail,
     resendVerificationEmail,
     forgotPassword,
     resetPassword,
+    login,
+    register,
   }
 }

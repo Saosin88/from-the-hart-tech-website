@@ -18,8 +18,8 @@
 
           <div class="hidden md:block">
             <div class="flex gap-3">
-              <UButton href="#" size="sm">Login</UButton>
-              <UButton href="#" color="neutral" size="sm">Sign Up</UButton>
+              <UButton href="/auth/login" size="sm">Login</UButton>
+              <UButton href="/auth/register" color="neutral" size="sm">Sign Up</UButton>
             </div>
           </div>
 
@@ -35,8 +35,8 @@
                 <div class="border-t border-neutral-200 dark:border-neutral-700 my-1"></div>
 
                 <div class="p-3 space-y-2">
-                  <UButton href="#" @click="closeMenu" class="w-full justify-center" size="sm"> Login </UButton>
-                  <UButton href="#" @click="closeMenu" color="neutral" class="w-full justify-center" size="sm"> Sign Up </UButton>
+                  <UButton href="/auth/login" @click="closeMenu" class="w-full justify-center" size="sm"> Login </UButton>
+                  <UButton href="/auth/register" @click="closeMenu" color="neutral" class="w-full justify-center" size="sm"> Sign Up </UButton>
                 </div>
               </div>
             </transition>
@@ -109,7 +109,9 @@
 <style scoped>
   .slide-down-enter-active,
   .slide-down-leave-active {
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
   }
 
   .slide-down-enter-from,
