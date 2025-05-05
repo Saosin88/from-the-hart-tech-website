@@ -40,7 +40,15 @@
                   </button>
                 </template>
               </UInput>
-              <p class="text-xs text-neutral-500 dark:text-neutral-400">Minimum 6 characters</p>
+              <div v-if="password" class="flex items-center mt-1 space-x-1.5">
+                <div
+                  v-for="(bar, index) in passwordStrength"
+                  :key="index"
+                  class="h-1 flex-1 rounded-full transition-colors duration-300"
+                  :class="bar.valid ? 'bg-green-500' : 'bg-neutral-300 dark:bg-neutral-600'"
+                ></div>
+              </div>
+              <p v-if="password && passwordError" class="text-xs text-error-600 dark:text-error-400 mt-1">{{ passwordError }}</p>
             </div>
 
             <div class="space-y-2">
@@ -67,14 +75,13 @@
                   </button>
                 </template>
               </UInput>
+              <p v-if="password !== confirmPassword && confirmPassword" class="text-xs text-error-600 dark:text-error-400 mt-1">Passwords do not match</p>
             </div>
 
             <div>
-              <UButton type="submit" color="primary" block :loading="isLoading" :disabled="isLoading || password !== confirmPassword || password.length < 6">
+              <UButton type="submit" color="primary" block :loading="isLoading" :disabled="isLoading || password !== confirmPassword || !isPasswordValid">
                 {{ isLoading ? 'Updating password...' : 'Reset Password' }}
               </UButton>
-              <p v-if="password !== confirmPassword && confirmPassword" class="text-xs text-error-600 dark:text-error-400 mt-1">Passwords do not match</p>
-              <p v-else-if="password && password.length < 6" class="text-xs text-error-600 dark:text-error-400 mt-1">Password must be at least 6 characters</p>
             </div>
           </div>
         </form>
@@ -111,20 +118,30 @@
   const showPassword = ref(false)
   const showConfirmPassword = ref(false)
 
+  const passwordValidation = computed(() => useFormatters().validatePassword(password.value))
+  const isPasswordValid = computed(() => passwordValidation.value.isValid)
+  const passwordError = computed(() => useFormatters().getPasswordError(passwordValidation.value))
+
+  const passwordStrength = computed(() => {
+    const validation = passwordValidation.value
+    const errors = validation.errors
+
+    const totalRules = 5
+    const validRulesCount = totalRules - Object.keys(errors).length
+
+    return Array(totalRules)
+      .fill(0)
+      .map((_, index) => ({
+        valid: index < validRulesCount,
+      }))
+  })
+
   async function handleSubmit() {
     if (password.value !== confirmPassword.value) {
-      error.value = {
-        title: 'Passwords do not match',
-        message: 'Please make sure your passwords match.',
-      }
       return
     }
 
-    if (password.value.length < 6) {
-      error.value = {
-        title: 'Password too short',
-        message: 'Your password must be at least 6 characters long.',
-      }
+    if (!isPasswordValid.value) {
       return
     }
 

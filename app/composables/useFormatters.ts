@@ -72,6 +72,83 @@ export function useFormatters() {
     return emailRegex.test(email)
   }
 
+  function validatePassword(password: string): {
+    isValid: boolean
+    errors: {
+      minLength?: boolean
+      hasUppercase?: boolean
+      hasLowercase?: boolean
+      hasNumber?: boolean
+      hasSpecialChar?: boolean
+    }
+  } {
+    const result = {
+      isValid: true,
+      errors: {} as {
+        minLength?: boolean
+        hasUppercase?: boolean
+        hasLowercase?: boolean
+        hasNumber?: boolean
+        hasSpecialChar?: boolean
+      },
+    }
+    if (!password || password.length < 8) {
+      result.isValid = false
+      result.errors.minLength = true
+    }
+
+    if (!/[A-Z]/.test(password)) {
+      result.isValid = false
+      result.errors.hasUppercase = true
+    }
+
+    if (!/[a-z]/.test(password)) {
+      result.isValid = false
+      result.errors.hasLowercase = true
+    }
+
+    if (!/[0-9]/.test(password)) {
+      result.isValid = false
+      result.errors.hasNumber = true
+    }
+
+    if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) {
+      result.isValid = false
+      result.errors.hasSpecialChar = true
+    }
+
+    return result
+  }
+
+  function getPasswordError(validationResult: ReturnType<typeof validatePassword>): string | null {
+    if (validationResult.isValid) return null
+
+    const requirements: string[] = []
+    const { errors } = validationResult
+
+    if (errors.minLength) {
+      requirements.push('at least 8 characters')
+    }
+
+    if (errors.hasUppercase) {
+      requirements.push('an uppercase letter')
+    }
+
+    if (errors.hasLowercase) {
+      requirements.push('a lowercase letter')
+    }
+
+    if (errors.hasNumber) {
+      requirements.push('a number')
+    }
+
+    if (errors.hasSpecialChar) {
+      requirements.push('a special character')
+    }
+
+    return `Password must contain ${requirements.join(', ')}`
+  }
+
   return {
     formatDate,
     formatDateInAgoTerms,
@@ -79,5 +156,7 @@ export function useFormatters() {
     getUniqueKeywords,
     getLanguageColour,
     isValidEmail,
+    validatePassword,
+    getPasswordError,
   }
 }
