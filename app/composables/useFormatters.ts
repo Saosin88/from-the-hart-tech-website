@@ -66,11 +66,18 @@ export function useFormatters() {
     return languageColours[language] || fallback
   }
 
+  function isValidEmail(email: string): boolean {
+    if (!email) return false
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return emailRegex.test(email)
+  }
+
   return {
     formatDate,
     formatDateInAgoTerms,
     truncateDescription,
     getUniqueKeywords,
     getLanguageColour,
+    isValidEmail,
   }
 }

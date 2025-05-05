@@ -22,12 +22,13 @@
         <form @submit.prevent="handleSubmit">
           <div class="space-y-4">
             <div class="space-y-2">
-              <label for="email" class="block text-sm font-medium text -neutral-700 dark:text-neutral-300">Email</label>
+              <label for="email" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300">Email</label>
               <UInput v-model="email" id="email" name="email" type="email" placeholder="your.email@example.com" autocomplete="email" required :disabled="isLoading" />
+              <p v-if="email && !isValidEmail(email)" class="text-xs text-error-600 dark:text-error-400 mt-1">Please enter a valid email address</p>
             </div>
 
             <div>
-              <UButton type="submit" color="primary" block :loading="isLoading" :disabled="isLoading">
+              <UButton type="submit" color="primary" block :loading="isLoading" :disabled="isLoading || (!!email && !isValidEmail(email))">
                 {{ isLoading ? 'Sending...' : 'Send Reset Link' }}
               </UButton>
             </div>
@@ -48,9 +49,18 @@
   const showSuccess = ref(false)
   const error = ref<{ title: string; message: string } | null>(null)
   const { forgotPassword } = useAuthAPI()
+  const { isValidEmail } = useFormatters()
 
   async function handleSubmit() {
     if (!email.value) return
+
+    if (!isValidEmail(email.value)) {
+      error.value = {
+        title: 'Invalid email',
+        message: 'Please enter a valid email address.',
+      }
+      return
+    }
 
     error.value = null
     showSuccess.value = false

@@ -20,29 +20,59 @@
         />
 
         <form @submit.prevent="handleSubmit">
-          <div class="space-y-3">
+          <div class="space-y-4">
             <div class="space-y-2">
               <label for="email" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300">Email</label>
               <UInput v-model="email" id="email" name="email" type="email" placeholder="your.email@example.com" autocomplete="email" required :disabled="isLoading" />
-              <p class="text-xs text-neutral-500 dark:text-neutral-400">We'll send a verification email to this address</p>
+              <p v-if="email && !isValidEmail(email)" class="text-xs text-error-600 dark:text-error-400 mt-1">Please enter a valid email address</p>
+              <p v-else class="text-xs text-neutral-500 dark:text-neutral-400">We'll send a verification email to this address</p>
             </div>
 
             <div class="space-y-2">
               <label for="password" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300">Password</label>
-              <UInput v-model="password" id="password" name="password" type="password" placeholder="********" autocomplete="new-password" required :disabled="isLoading" />
+              <UInput v-model="password" id="password" name="password" :type="showPassword ? 'text' : 'password'" placeholder="********" autocomplete="new-password" required :disabled="isLoading">
+                <template #trailing>
+                  <button type="button" @click="showPassword = !showPassword" class="text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300 focus:outline-none" tabindex="-1">
+                    <UIcon v-if="showPassword" name="lucide:eye-off" class="h-4 w-4" />
+                    <UIcon v-else name="lucide:eye" class="h-4 w-4" />
+                  </button>
+                </template>
+              </UInput>
               <p class="text-xs text-neutral-500 dark:text-neutral-400">Minimum 6 characters</p>
             </div>
 
             <div class="space-y-2">
               <label for="confirmPassword" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300">Confirm Password</label>
-              <UInput v-model="confirmPassword" id="confirmPassword" name="confirmPassword" type="password" placeholder="********" autocomplete="new-password" required :disabled="isLoading" />
+              <UInput
+                v-model="confirmPassword"
+                id="confirmPassword"
+                name="confirmPassword"
+                :type="showConfirmPassword ? 'text' : 'password'"
+                placeholder="********"
+                autocomplete="new-password"
+                required
+                :disabled="isLoading"
+              >
+                <template #trailing>
+                  <button
+                    type="button"
+                    @click="showConfirmPassword = !showConfirmPassword"
+                    class="text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300 focus:outline-none"
+                    tabindex="-1"
+                  >
+                    <UIcon v-if="showConfirmPassword" name="lucide:eye-off" class="h-4 w-4" />
+                    <UIcon v-else name="lucide:eye" class="h-4 w-4" />
+                  </button>
+                </template>
+              </UInput>
             </div>
 
             <div>
-              <UButton type="submit" color="primary" block :loading="isLoading" :disabled="isLoading || password !== confirmPassword || password.length < 6">
+              <UButton type="submit" color="primary" block :loading="isLoading" :disabled="isLoading || password !== confirmPassword || password.length < 6 || (!!email && !isValidEmail(email))">
                 {{ isLoading ? 'Creating account...' : 'Create account' }}
               </UButton>
-              <p v-if="password !== confirmPassword && confirmPassword" class="text-xs text-error-600 dark:text-error-400 mt-1">Passwords do not match</p>
+              <p v-if="email && !isValidEmail(email)" class="text-xs text-error-600 dark:text-error-400 mt-1">Please enter a valid email address</p>
+              <p v-else-if="password !== confirmPassword && confirmPassword" class="text-xs text-error-600 dark:text-error-400 mt-1">Passwords do not match</p>
               <p v-else-if="password && password.length < 6" class="text-xs text-error-600 dark:text-error-400 mt-1">Password must be at least 6 characters</p>
             </div>
 
@@ -66,11 +96,22 @@
   const isLoading = ref(false)
   const error = ref<{ title: string; message: string } | null>(null)
   const registrationSuccess = ref(false)
+  const showPassword = ref(false)
+  const showConfirmPassword = ref(false)
 
   const { register } = useAuthAPI()
+  const { isValidEmail } = useFormatters()
 
   async function handleSubmit() {
     if (!email.value || !password.value) return
+
+    if (!isValidEmail(email.value)) {
+      error.value = {
+        title: 'Invalid email',
+        message: 'Please enter a valid email address.',
+      }
+      return
+    }
 
     if (password.value !== confirmPassword.value) {
       error.value = {

@@ -32,13 +32,41 @@
           <div class="space-y-4">
             <div class="space-y-2">
               <label for="password" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300">New Password</label>
-              <UInput v-model="password" id="password" name="password" type="password" placeholder="********" autocomplete="new-password" required :disabled="isLoading" />
+              <UInput v-model="password" id="password" name="password" :type="showPassword ? 'text' : 'password'" placeholder="********" autocomplete="new-password" required :disabled="isLoading">
+                <template #trailing>
+                  <button type="button" @click="showPassword = !showPassword" class="text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300 focus:outline-none" tabindex="-1">
+                    <UIcon v-if="showPassword" name="lucide:eye-off" class="h-4 w-4" />
+                    <UIcon v-else name="lucide:eye" class="h-4 w-4" />
+                  </button>
+                </template>
+              </UInput>
               <p class="text-xs text-neutral-500 dark:text-neutral-400">Minimum 6 characters</p>
             </div>
 
             <div class="space-y-2">
               <label for="confirmPassword" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300">Confirm Password</label>
-              <UInput v-model="confirmPassword" id="confirmPassword" name="confirmPassword" type="password" placeholder="********" autocomplete="new-password" required :disabled="isLoading" />
+              <UInput
+                v-model="confirmPassword"
+                id="confirmPassword"
+                name="confirmPassword"
+                :type="showConfirmPassword ? 'text' : 'password'"
+                placeholder="********"
+                autocomplete="new-password"
+                required
+                :disabled="isLoading"
+              >
+                <template #trailing>
+                  <button
+                    type="button"
+                    @click="showConfirmPassword = !showConfirmPassword"
+                    class="text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300 focus:outline-none"
+                    tabindex="-1"
+                  >
+                    <UIcon v-if="showConfirmPassword" name="lucide:eye-off" class="h-4 w-4" />
+                    <UIcon v-else name="lucide:eye" class="h-4 w-4" />
+                  </button>
+                </template>
+              </UInput>
             </div>
 
             <div>
@@ -80,6 +108,8 @@
   const confirmPassword = ref('')
   const error = ref<{ title: string; message: string } | null>(null)
   const errorMessage = ref('The password reset link is invalid or has expired. Please request a new reset link.')
+  const showPassword = ref(false)
+  const showConfirmPassword = ref(false)
 
   async function handleSubmit() {
     if (password.value !== confirmPassword.value) {
