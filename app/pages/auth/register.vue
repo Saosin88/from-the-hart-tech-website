@@ -78,7 +78,7 @@
 
             <div class="mb-4 flex justify-center">
               <ClientOnly>
-                <NuxtTurnstile v-model="turnstileToken" ref="turnstile" />
+                <NuxtTurnstile v-model="turnstileToken" ref="turnstile" appearance="invisible" @error="handleTurnstileError" @expired="handleTurnstileExpired" />
               </ClientOnly>
             </div>
 
@@ -136,6 +136,15 @@
         valid: index < validRulesCount,
       }))
   })
+
+  function handleTurnstileError(error: unknown) {
+    turnstileToken.value = ''
+  }
+
+  function handleTurnstileExpired() {
+    turnstileToken.value = ''
+    turnstile.value?.reset()
+  }
 
   async function handleSubmit() {
     if (!email.value || !password.value) return
