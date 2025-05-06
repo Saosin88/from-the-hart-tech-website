@@ -52,9 +52,9 @@
     }
 
     try {
-      const { success, data, error } = await useAuthAPI().verifyEmail(token.value)
+      const { success, error } = await useAuthAPI().verifyEmail(token.value)
 
-      if (success && data?.verified) {
+      if (success) {
         isVerified.value = true
       } else {
         errorMessage.value = error
