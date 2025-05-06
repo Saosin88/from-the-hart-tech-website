@@ -54,14 +54,14 @@ export function useAuthAPI() {
     }
   }
 
-  async function forgotPassword(email: string) {
+  async function forgotPassword(email: string, turnstileToken: string) {
     try {
       const response = await fetch(`${baseUrl}/auth/forgot-password`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, turnstileToken }),
       })
 
       const data = await response.json()
@@ -109,14 +109,14 @@ export function useAuthAPI() {
     }
   }
 
-  async function login(email: string, password: string) {
+  async function login(email: string, password: string, turnstileToken: string) {
     try {
       const response = await fetch(`${baseUrl}/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, password, turnstileToken }),
       })
 
       const data = await response.json()
@@ -135,14 +135,14 @@ export function useAuthAPI() {
     }
   }
 
-  async function register(email: string, password: string) {
+  async function register(email: string, password: string, turnstileToken: string) {
     try {
       const response = await fetch(`${baseUrl}/auth/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, password, turnstileToken }),
       })
 
       const data = await response.json()

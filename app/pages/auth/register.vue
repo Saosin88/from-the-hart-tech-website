@@ -76,13 +76,19 @@
               <p v-if="password !== confirmPassword && confirmPassword" class="text-xs text-error-600 dark:text-error-400 mt-1">Passwords do not match</p>
             </div>
 
+            <div class="mb-4 flex justify-center">
+              <ClientOnly>
+                <NuxtTurnstile v-model="turnstileToken" ref="turnstile" />
+              </ClientOnly>
+            </div>
+
             <div>
               <UButton
                 type="submit"
                 color="primary"
                 block
                 :loading="isLoading"
-                :disabled="isLoading || password !== confirmPassword || !isPasswordValid || (!!email && !useFormatters().isValidEmail(email))"
+                :disabled="isLoading || password !== confirmPassword || !isPasswordValid || (!!email && !useFormatters().isValidEmail(email)) || !turnstileToken"
               >
                 {{ isLoading ? 'Creating account...' : 'Create account' }}
               </UButton>
@@ -110,6 +116,8 @@
   const registrationSuccess = ref(false)
   const showPassword = ref(false)
   const showConfirmPassword = ref(false)
+  const turnstileToken = ref('')
+  const turnstile = ref()
 
   const passwordValidation = computed(() => useFormatters().validatePassword(password.value))
   const isPasswordValid = computed(() => passwordValidation.value.isValid)
@@ -133,6 +141,11 @@
     if (!email.value || !password.value) return
 
     if (!useFormatters().isValidEmail(email.value)) {
+      error.value = {
+        title: 'Invalid email',
+        message: 'Please enter a valid email address.',
+      }
+      return
     }
 
     if (!isPasswordValid.value) {
@@ -143,22 +156,33 @@
       return
     }
 
+    if (!turnstileToken.value) {
+      error.value = {
+        title: 'Security verification required',
+        message: 'Please complete the security verification.',
+      }
+      return
+    }
+
     error.value = null
     isLoading.value = true
 
     try {
-      const result = await useAuthAPI().register(email.value, password.value)
+      const result = await useAuthAPI().register(email.value, password.value, turnstileToken.value)
 
       if (result.success) {
         registrationSuccess.value = true
         email.value = ''
         password.value = ''
         confirmPassword.value = ''
+        turnstileToken.value = ''
       } else {
         error.value = {
           title: 'Registration failed',
           message: result.error,
         }
+        turnstileToken.value = ''
+        turnstile.value?.reset()
       }
     } finally {
       isLoading.value = false

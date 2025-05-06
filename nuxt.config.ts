@@ -11,12 +11,15 @@ export default defineNuxtConfig({
 
   devtools: { enabled: true },
 
-  modules: ['@nuxtjs/sitemap', '@nuxt/content', '@nuxt/ui', '@nuxt/image'],
+  modules: ['@nuxtjs/sitemap', '@nuxt/content', '@nuxt/ui', '@nuxt/image', '@nuxtjs/turnstile'],
 
   runtimeConfig: {
     public: {
       fromTheHartAPIBaseUrl: process.env.FROM_THE_HART_API_BASE_URL || 'https://api.fromthehart.tech',
     },
+  },
+  turnstile: {
+    siteKey: process.env.TURNSTILE_SITE_KEY,
   },
 
   routeRules: {

@@ -32,8 +32,14 @@
               </UInput>
             </div>
 
+            <div class="mb-4 flex justify-center">
+              <ClientOnly>
+                <NuxtTurnstile v-model="turnstileToken" ref="turnstile" />
+              </ClientOnly>
+            </div>
+
             <div>
-              <UButton type="submit" color="primary" block :loading="isLoading" :disabled="isLoading || (!!email && !isValidEmail(email))">
+              <UButton type="submit" color="primary" block :loading="isLoading" :disabled="isLoading || (!!email && !isValidEmail(email)) || !turnstileToken">
                 {{ isLoading ? 'Signing in...' : 'Sign in' }}
               </UButton>
             </div>
@@ -57,6 +63,8 @@
   const isLoading = ref(false)
   const error = ref<{ title: string; message: string } | null>(null)
   const showPassword = ref(false)
+  const turnstileToken = ref('')
+  const turnstile = ref()
 
   const { login } = useAuthAPI()
   const { isValidEmail } = useFormatters()
@@ -71,21 +79,30 @@
       return
     }
 
+    if (!turnstileToken.value) {
+      error.value = {
+        title: 'Security verification required',
+        message: 'Please complete the security verification.',
+      }
+      return
+    }
+
     error.value = null
     isLoading.value = true
 
     try {
-      const result = await login(email.value, password.value)
+      const result = await login(email.value, password.value, turnstileToken.value)
 
       if (result.success) {
-        // Here you would typically store tokens in a secure storage
-        // and set up authentication state
         await navigateTo('/')
+        turnstileToken.value = ''
       } else {
         error.value = {
           title: 'Login failed',
           message: result.error,
         }
+        turnstileToken.value = ''
+        turnstile.value?.reset()
       }
     } finally {
       isLoading.value = false

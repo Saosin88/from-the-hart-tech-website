@@ -27,8 +27,14 @@
               <p v-if="email && !isValidEmail(email)" class="text-xs text-error-600 dark:text-error-400 mt-1">Please enter a valid email address</p>
             </div>
 
+            <div class="mb-4 flex justify-center">
+              <ClientOnly>
+                <NuxtTurnstile v-model="turnstileToken" ref="turnstile" />
+              </ClientOnly>
+            </div>
+
             <div>
-              <UButton type="submit" color="primary" block :loading="isLoading" :disabled="isLoading || (!!email && !isValidEmail(email))">
+              <UButton type="submit" color="primary" block :loading="isLoading" :disabled="isLoading || (!!email && !isValidEmail(email)) || !turnstileToken">
                 {{ isLoading ? 'Sending...' : 'Send Reset Link' }}
               </UButton>
             </div>
@@ -48,6 +54,9 @@
   const isLoading = ref(false)
   const showSuccess = ref(false)
   const error = ref<{ title: string; message: string } | null>(null)
+  const turnstileToken = ref('')
+  const turnstile = ref()
+
   const { forgotPassword } = useAuthAPI()
   const { isValidEmail } = useFormatters()
 
@@ -62,21 +71,32 @@
       return
     }
 
+    if (!turnstileToken.value) {
+      error.value = {
+        title: 'Security verification required',
+        message: 'Please complete the security verification.',
+      }
+      return
+    }
+
     error.value = null
     showSuccess.value = false
     isLoading.value = true
 
     try {
-      const result = await forgotPassword(email.value)
+      const result = await forgotPassword(email.value, turnstileToken.value)
 
       if (result.success) {
         showSuccess.value = true
-        email.value = '' // Clear the form
+        email.value = ''
+        turnstileToken.value = ''
       } else {
         error.value = {
           title: 'Failed to send reset email',
           message: result.error,
         }
+        turnstileToken.value = ''
+        turnstile.value?.reset()
       }
     } finally {
       isLoading.value = false
