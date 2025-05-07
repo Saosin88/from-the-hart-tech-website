@@ -34,7 +34,7 @@
 
             <div class="mb-4 flex justify-center">
               <ClientOnly>
-                <NuxtTurnstile v-model="turnstileToken" ref="turnstile" appearance="invisible" @error="handleTurnstileError" @expired="handleTurnstileExpired" />
+                <NuxtTurnstile v-model="turnstileToken" ref="turnstile" appearance="interaction-only" @error="handleTurnstileError" @expired="handleTurnstileExpired" />
               </ClientOnly>
             </div>
 
