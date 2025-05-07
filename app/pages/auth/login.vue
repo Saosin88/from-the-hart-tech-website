@@ -32,12 +32,6 @@
               </UInput>
             </div>
 
-            <div class="mb-4 flex justify-center">
-              <ClientOnly>
-                <NuxtTurnstile v-model="turnstileToken" ref="turnstile" :options="{ appearance: 'interaction-only' }" @error="handleTurnstileError" @expired="handleTurnstileExpired" />
-              </ClientOnly>
-            </div>
-
             <div>
               <UButton type="submit" color="primary" block :loading="isLoading" :disabled="isLoading || (!!email && !isValidEmail(email)) || !turnstileToken">
                 {{ isLoading ? 'Signing in...' : 'Sign in' }}
@@ -53,6 +47,11 @@
           </div>
         </form>
       </UCard>
+      <div class="mt-4 mb-4 w-full flex justify-center">
+        <ClientOnly>
+          <NuxtTurnstile v-model="turnstileToken" ref="turnstile" :options="{ appearance: 'interaction-only' }" @error="handleTurnstileError" @expired="handleTurnstileExpired" />
+        </ClientOnly>
+      </div>
     </div>
   </section>
 </template>

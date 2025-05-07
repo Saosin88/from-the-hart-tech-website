@@ -27,12 +27,6 @@
               <p v-if="email && !isValidEmail(email)" class="text-xs text-error-600 dark:text-error-400 mt-1">Please enter a valid email address</p>
             </div>
 
-            <div class="mb-4 flex justify-center">
-              <ClientOnly>
-                <NuxtTurnstile v-model="turnstileToken" ref="turnstile" :options="{ appearance: 'interaction-only' }" @error="handleTurnstileError" @expired="handleTurnstileExpired" />
-              </ClientOnly>
-            </div>
-
             <div>
               <UButton type="submit" color="primary" block :loading="isLoading" :disabled="isLoading || (!!email && !isValidEmail(email)) || !turnstileToken">
                 {{ isLoading ? 'Sending...' : 'Send Reset Link' }}
@@ -45,6 +39,11 @@
           </div>
         </form>
       </UCard>
+      <div class="mt-4 mb-4 w-full flex justify-center">
+        <ClientOnly>
+          <NuxtTurnstile v-model="turnstileToken" ref="turnstile" :options="{ appearance: 'interaction-only' }" @error="handleTurnstileError" @expired="handleTurnstileExpired" />
+        </ClientOnly>
+      </div>
     </div>
   </section>
 </template>

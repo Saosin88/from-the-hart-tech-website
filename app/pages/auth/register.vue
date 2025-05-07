@@ -76,12 +76,6 @@
               <p v-if="password !== confirmPassword && confirmPassword" class="text-xs text-error-600 dark:text-error-400 mt-1">Passwords do not match</p>
             </div>
 
-            <div class="mb-4 flex justify-center">
-              <ClientOnly>
-                <NuxtTurnstile v-model="turnstileToken" ref="turnstile" :options="{ appearance: 'interaction-only' }" @error="handleTurnstileError" @expired="handleTurnstileExpired" />
-              </ClientOnly>
-            </div>
-
             <div>
               <UButton
                 type="submit"
@@ -103,6 +97,11 @@
           </div>
         </form>
       </UCard>
+      <div class="mt-4 mb-4 w-full flex justify-center">
+        <ClientOnly>
+          <NuxtTurnstile v-model="turnstileToken" ref="turnstile" :options="{ appearance: 'interaction-only' }" @error="handleTurnstileError" @expired="handleTurnstileExpired" />
+        </ClientOnly>
+      </div>
     </div>
   </section>
 </template>
