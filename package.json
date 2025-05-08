@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev  --host",
+    "dev": "nuxt dev --dotenv .env --host",
     "generate": "nuxt generate",
     "serve": "npx serve .output/public",
     "preview": "nuxt preview",

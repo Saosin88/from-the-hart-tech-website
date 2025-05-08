@@ -60,8 +60,9 @@ export function useAuthAPI() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'X-CF-Turnstile-Token': turnstileToken,
         },
-        body: JSON.stringify({ email, turnstileToken }),
+        body: JSON.stringify({ email }),
       })
 
       const data = await response.json()
@@ -115,8 +116,9 @@ export function useAuthAPI() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'X-CF-Turnstile-Token': turnstileToken,
         },
-        body: JSON.stringify({ email, password, turnstileToken }),
+        body: JSON.stringify({ email, password }),
       })
 
       const data = await response.json()
@@ -141,8 +143,9 @@ export function useAuthAPI() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'X-CF-Turnstile-Token': turnstileToken,
         },
-        body: JSON.stringify({ email, password, turnstileToken }),
+        body: JSON.stringify({ email, password }),
       })
 
       const data = await response.json()
