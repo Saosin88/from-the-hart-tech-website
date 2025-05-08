@@ -56,6 +56,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Set environment variables
+        run: |
+          echo "TURNSTILE_SITE_KEY=0x4AAAAAABawDQ0WQaQ4SO-G" >> $GITHUB_ENV
+
       - name: Generate static files
         run: npm run generate
 
