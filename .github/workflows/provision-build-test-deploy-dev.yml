@@ -58,8 +58,8 @@ jobs:
 
       - name: Set environment variables
         run: |
-          echo "FROM_THE_HART_API_BASE_URL=https://dev-api.fromthehart.tech" >> $GITHUB_ENV
-          echo "TURNSTILE_SITE_KEY=0x4AAAAAABawDQ0WQaQ4SO-G" >> $GITHUB_ENV
+          echo "NUXT_PUBLIC_FROM_THE_HART_API_BASE_URL=https://dev-api.fromthehart.tech" >> $GITHUB_ENV
+          echo "NUXT_PUBLIC_TURNSTILE_SITE_KEY=0x4AAAAAABawDQ0WQaQ4SO-G" >> $GITHUB_ENV
 
       - name: Generate static files
         run: npm run generate
