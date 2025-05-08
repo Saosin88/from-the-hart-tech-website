@@ -19,7 +19,7 @@ export default defineNuxtConfig({
     },
   },
   turnstile: {
-    siteKey: process.env.TURNSTILE_SITE_KEY,
+    siteKey: '0x4AAAAAABawDQ0WQaQ4SO-G',
   },
 
   routeRules: {
