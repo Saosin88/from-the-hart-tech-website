@@ -123,8 +123,11 @@
 
       if (result.success) {
         await navigateTo('/')
+        email.value = ''
+        password.value = ''
         turnstileToken.value = ''
         turnstileError.value = ''
+        turnstile.value?.reset()
       } else {
         error.value = {
           title: 'Login failed',

@@ -119,6 +119,7 @@
         email.value = ''
         turnstileToken.value = ''
         turnstileError.value = ''
+        turnstile.value?.reset()
       } else {
         error.value = {
           title: 'Failed to send reset email',
