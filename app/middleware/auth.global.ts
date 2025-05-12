@@ -2,29 +2,39 @@ export default defineNuxtRouteMiddleware(async to => {
   if (import.meta.server) return
 
   const authRequiredPaths = ['/user']
-
   const requiresAuth = authRequiredPaths.some(path => to.path.startsWith(path))
 
-  const authUtils = useAuthUtils()
+  if (!requiresAuth) return
 
-  if (requiresAuth && !useAuthUtils().isAccessTokenValid()) {
+  const authUtils = useAuthUtils()
+  const hasToken = !!authUtils.getAccessToken()
+  const isTokenValid = authUtils.isAccessTokenValid()
+
+  if (!hasToken) {
+    return navigateTo({
+      path: '/auth/login',
+      query: { redirect: to.fullPath },
+    })
+  }
+
+  if (!isTokenValid) {
     try {
       authUtils.setTokenRefreshLoading(true)
 
-      const result = await useAuthUtils().refreshToken()
+      const result = await authUtils.refreshToken()
 
-      if (!result.success || !useAuthUtils().isAccessTokenValid()) {
-        authUtils.setTokenRefreshLoading(false)
+      authUtils.setTokenRefreshLoading(false)
+
+      if (!result.success) {
         return navigateTo({
           path: '/auth/login',
           query: { redirect: to.fullPath },
         })
       }
-
-      authUtils.setTokenRefreshLoading(false)
     } catch (error) {
       console.error('Error refreshing token:', error)
       authUtils.setTokenRefreshLoading(false)
+
       return navigateTo({
         path: '/auth/login',
         query: { redirect: to.fullPath },
@@ -32,7 +42,7 @@ export default defineNuxtRouteMiddleware(async to => {
     }
   }
 
-  if (requiresAuth && useAuthUtils().isAccessTokenValid() && !useAuthUtils().isEmailVerified()) {
+  if (!authUtils.isEmailVerified()) {
     return navigateTo('/auth/email-verification-required')
   }
 })

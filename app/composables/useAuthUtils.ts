@@ -23,8 +23,8 @@ export function useAuthUtils() {
   }
 
   async function logout() {
-    useAuthAPI().logout()
     clearAccessToken()
+    await useAuthAPI().logout()
   }
 
   function setTokenRefreshLoading(value: boolean) {
