@@ -90,7 +90,6 @@
   const turnstile = ref()
   const turnstileError = ref('')
 
-  const { login } = useAuthAPI()
   const { isValidEmail } = useFormatters()
 
   function handleTurnstileError() {
@@ -126,8 +125,7 @@
     isLoading.value = true
 
     try {
-      // Pass the rememberMe value to the login function
-      const result = await login(email.value, password.value, turnstileToken.value, rememberMe.value)
+      const result = await useAuthUtils().login(email.value, password.value, turnstileToken.value, rememberMe.value)
 
       if (result.success) {
         email.value = ''

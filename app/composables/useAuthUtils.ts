@@ -1,20 +1,48 @@
 import { jwtDecode } from 'jwt-decode'
 
+let accessToken: string | null = null
+
+let tokenCache: {
+  raw: string | null
+  decoded: any | null
+} = { raw: null, decoded: null }
+
+const tokenRefreshLoading = ref(false)
+
 export function useAuthUtils() {
-  let tokenCache: {
-    raw: string | null
-    decoded: any | null
-  } = { raw: null, decoded: null }
+  async function login(email: string, password: string, turnstileToken: string, returnRefreshToken: boolean = false) {
+    const response = await useAuthAPI().login(email, password, turnstileToken, returnRefreshToken)
+    setAccessToken(response.data.idToken)
+    return response
+  }
+
+  async function refreshToken() {
+    const response = await useAuthAPI().refreshToken()
+    setAccessToken(response.data.idToken)
+    return response
+  }
+
+  async function logout() {
+    useAuthAPI().logout()
+    clearAccessToken()
+  }
+
+  function setTokenRefreshLoading(value: boolean) {
+    tokenRefreshLoading.value = value
+  }
 
   function getAccessToken(): string | null {
-    if (import.meta.client) {
-      return localStorage.getItem('access_token')
+    if (!accessToken) {
+      if (import.meta.client) {
+        accessToken = localStorage.getItem('access_token')
+      }
     }
-    return null
+    return accessToken
   }
 
   function setAccessToken(token: string): void {
     if (import.meta.client && token) {
+      accessToken = token
       localStorage.setItem('access_token', token)
     }
     tokenCache = { raw: null, decoded: null }
@@ -24,6 +52,7 @@ export function useAuthUtils() {
     if (import.meta.client) {
       localStorage.removeItem('access_token')
     }
+    accessToken = null
     tokenCache = { raw: null, decoded: null }
   }
 
@@ -41,7 +70,8 @@ export function useAuthUtils() {
     }
   }
 
-  function isTokenValid(token: string | null): boolean {
+  function isAccessTokenValid(): boolean {
+    const token = getAccessToken()
     if (!token) return false
 
     const decoded = decodeToken(token)
@@ -66,16 +96,16 @@ export function useAuthUtils() {
     return decoded.email_verified === true
   }
 
-  function isAuthenticated(): boolean {
-    const token = getAccessToken()
-    return isTokenValid(token)
-  }
-
   return {
+    login,
+    refreshToken,
+    logout,
+    tokenRefreshLoading,
+    setTokenRefreshLoading,
     getAccessToken,
     setAccessToken,
     clearAccessToken,
-    isAuthenticated,
+    isAccessTokenValid,
     isEmailVerified,
   }
 }

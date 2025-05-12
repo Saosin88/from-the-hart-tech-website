@@ -38,6 +38,9 @@ export default defineNuxtConfig({
     '/auth/**': {
       prerender: false,
     },
+    '/user/**': {
+      prerender: false,
+    },
   },
 
   css: ['~/assets/css/main.css'],

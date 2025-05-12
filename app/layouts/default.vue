@@ -75,6 +75,7 @@
         </div>
       </div>
     </footer>
+    <AuthReAuthenticatingModal />
   </div>
 </template>
 
@@ -91,18 +92,16 @@
   watch(() => route.path, updateAuthStatus)
 
   function updateAuthStatus() {
-    // Only run on client side
     if (import.meta.client) {
-      isAuthenticated.value = authUtils.isAuthenticated()
+      isAuthenticated.value = authUtils.isAccessTokenValid()
     }
   }
 
   function handleLogout() {
-    // authUtils.clearAccessToken()
-    // isAuthenticated.value = false
-    // closeMenu()
-    // navigateTo('/')
-    useAuthAPI().test()
+    authUtils.logout()
+    isAuthenticated.value = false
+    closeMenu()
+    navigateTo('/')
   }
 
   function toggleMenu() {
@@ -137,6 +136,12 @@
         label: 'Projects',
         icon: 'lucide:codepen',
         to: '/projects',
+        onSelect: closeMenu,
+      },
+      {
+        label: 'Profile',
+        icon: 'lucide:user',
+        to: '/user/profile',
         onSelect: closeMenu,
       },
     ],

@@ -123,11 +123,6 @@ export function useAuthAPI() {
       })
 
       const data = await response.json()
-
-      if (response.ok && data.data?.idToken) {
-        useAuthUtils().setAccessToken(data.data.idToken)
-      }
-
       return {
         success: response.ok,
         data: data.data,
@@ -170,10 +165,10 @@ export function useAuthAPI() {
     }
   }
 
-  async function test() {
+  async function refreshToken() {
     try {
       const response = await fetch(`${baseUrl}/auth/refresh-token`, {
-        method: 'POST',
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -181,18 +176,41 @@ export function useAuthAPI() {
       })
 
       const data = await response.json()
-
-      if (response.ok && data.data?.idToken) {
-        useAuthUtils().setAccessToken(data.data.idToken)
-      }
-
       return {
         success: response.ok,
         data: data.data,
-        error: data.error?.message || 'Invalid refresh Token',
+        error: response.ok ? null : data.error?.message || 'Failed to refresh token',
       }
     } catch (error) {
-      console.error('Error getting refresh token in:', error)
+      console.error('Error getting refresh token:', error)
+      return {
+        success: false,
+        data: null,
+        error: 'Unable to connect to the server. Please check your internet connection and try again.',
+      }
+    }
+  }
+
+  async function logout() {
+    try {
+      const token = useAuthUtils().getAccessToken()
+
+      const response = await fetch(`${baseUrl}/auth/logout`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      const data = await response.json()
+      return {
+        success: response.ok,
+        data: data.data,
+        error: response.ok ? null : data.error?.message || 'Failed to logout',
+      }
+    } catch (error) {
+      console.error('Error during logout:', error)
       return {
         success: false,
         data: null,
@@ -207,7 +225,8 @@ export function useAuthAPI() {
     forgotPassword,
     resetPassword,
     login,
+    logout,
     register,
-    test,
+    refreshToken,
   }
 }
