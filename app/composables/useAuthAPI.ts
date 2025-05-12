@@ -119,6 +119,7 @@ export function useAuthAPI() {
           'X-CF-Turnstile-Token': turnstileToken,
         },
         body: JSON.stringify({ email, password, returnRefreshToken }),
+        credentials: 'include',
       })
 
       const data = await response.json()
