@@ -32,6 +32,12 @@
               </UInput>
             </div>
 
+            <!-- Remember me checkbox -->
+            <div class="flex items-center">
+              <UCheckbox v-model="rememberMe" id="remember-me" name="remember-me" :disabled="isLoading" />
+              <label for="remember-me" class="ml-2 block text-sm text-neutral-700 dark:text-neutral-300"> Remember me </label>
+            </div>
+
             <div>
               <UButton type="submit" color="primary" block :loading="isLoading" :disabled="isLoading || (!!email && !isValidEmail(email)) || !turnstileToken">
                 {{ isLoading ? 'Signing in...' : 'Sign in' }}
@@ -76,6 +82,7 @@
 <script setup lang="ts">
   const email = ref('')
   const password = ref('')
+  const rememberMe = ref(false) // Add this for the remember me checkbox
   const isLoading = ref(false)
   const error = ref<{ title: string; message: string } | null>(null)
   const showPassword = ref(false)
@@ -119,15 +126,18 @@
     isLoading.value = true
 
     try {
-      const result = await login(email.value, password.value, turnstileToken.value)
+      // Pass the rememberMe value to the login function
+      const result = await login(email.value, password.value, turnstileToken.value, rememberMe.value)
 
       if (result.success) {
-        await navigateTo('/')
         email.value = ''
         password.value = ''
         turnstileToken.value = ''
         turnstileError.value = ''
         turnstile.value?.reset()
+        const route = useRoute()
+        const redirectPath = route.query.redirect?.toString() || '/'
+        await navigateTo(redirectPath)
       } else {
         error.value = {
           title: 'Login failed',

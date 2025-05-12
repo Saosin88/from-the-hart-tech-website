@@ -16,10 +16,16 @@
         <div class="flex items-center gap-4">
           <ColorModeSelector />
 
+          <!-- Desktop auth buttons -->
           <div class="hidden md:block">
             <div class="flex gap-3">
-              <UButton href="/auth/login" size="sm">Login</UButton>
-              <UButton href="/auth/register" color="neutral" size="sm">Sign Up</UButton>
+              <template v-if="isAuthenticated">
+                <UButton @click="handleLogout" size="sm" color="primary" variant="soft">Logout</UButton>
+              </template>
+              <template v-else>
+                <UButton href="/auth/login" size="sm">Login</UButton>
+                <UButton href="/auth/register" color="neutral" size="sm">Sign Up</UButton>
+              </template>
             </div>
           </div>
 
@@ -34,9 +40,15 @@
 
                 <div class="border-t border-neutral-200 dark:border-neutral-700 my-1"></div>
 
+                <!-- Mobile auth buttons -->
                 <div class="p-3 space-y-2">
-                  <UButton href="/auth/login" @click="closeMenu" class="w-full justify-center" size="sm"> Login </UButton>
-                  <UButton href="/auth/register" @click="closeMenu" color="neutral" class="w-full justify-center" size="sm"> Sign Up </UButton>
+                  <template v-if="isAuthenticated">
+                    <UButton @click="handleLogout" class="w-full justify-center" size="sm" color="primary" variant="soft">Logout</UButton>
+                  </template>
+                  <template v-else>
+                    <UButton href="/auth/login" @click="closeMenu" class="w-full justify-center" size="sm">Login</UButton>
+                    <UButton href="/auth/register" @click="closeMenu" color="neutral" class="w-full justify-center" size="sm">Sign Up</UButton>
+                  </template>
                 </div>
               </div>
             </transition>
@@ -49,6 +61,7 @@
       <slot />
     </main>
     <footer class="w-full py-6 border-t border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900">
+      <!-- Footer content unchanged -->
       <div class="max-w-(--ui-container) mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col md:flex-row justify-between items-center gap-6">
           <!-- Copyright with dynamic year -->
@@ -67,12 +80,35 @@
 
 <script setup lang="ts">
   const isMenuOpen = ref(false)
+  const authUtils = useAuthUtils()
+  const isAuthenticated = ref(false)
 
-  const toggleMenu = () => {
+  onMounted(() => {
+    updateAuthStatus()
+  })
+
+  const route = useRoute()
+  watch(() => route.path, updateAuthStatus)
+
+  function updateAuthStatus() {
+    // Only run on client side
+    if (import.meta.client) {
+      isAuthenticated.value = authUtils.isAuthenticated()
+    }
+  }
+
+  function handleLogout() {
+    authUtils.clearAccessToken()
+    isAuthenticated.value = false
+    closeMenu()
+    navigateTo('/')
+  }
+
+  function toggleMenu() {
     isMenuOpen.value = !isMenuOpen.value
   }
 
-  const closeMenu = () => {
+  function closeMenu() {
     isMenuOpen.value = false
   }
 

@@ -110,7 +110,7 @@ export function useAuthAPI() {
     }
   }
 
-  async function login(email: string, password: string, turnstileToken: string) {
+  async function login(email: string, password: string, turnstileToken: string, returnRefreshToken: boolean = false) {
     try {
       const response = await fetch(`${baseUrl}/auth/login`, {
         method: 'POST',
@@ -118,10 +118,15 @@ export function useAuthAPI() {
           'Content-Type': 'application/json',
           'X-CF-Turnstile-Token': turnstileToken,
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, password, returnRefreshToken }),
       })
 
       const data = await response.json()
+
+      if (response.ok && data.data?.idToken) {
+        useAuthUtils().setAccessToken(data.data.idToken)
+      }
+
       return {
         success: response.ok,
         data: data.data,
