@@ -170,6 +170,37 @@ export function useAuthAPI() {
     }
   }
 
+  async function test() {
+    try {
+      const response = await fetch(`${baseUrl}/auth/refresh-token`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+      })
+
+      const data = await response.json()
+
+      if (response.ok && data.data?.idToken) {
+        useAuthUtils().setAccessToken(data.data.idToken)
+      }
+
+      return {
+        success: response.ok,
+        data: data.data,
+        error: data.error?.message || 'Invalid refresh Token',
+      }
+    } catch (error) {
+      console.error('Error getting refresh token in:', error)
+      return {
+        success: false,
+        data: null,
+        error: 'Unable to connect to the server. Please check your internet connection and try again.',
+      }
+    }
+  }
+
   return {
     verifyEmail,
     resendVerificationEmail,
@@ -177,5 +208,6 @@ export function useAuthAPI() {
     resetPassword,
     login,
     register,
+    test,
   }
 }

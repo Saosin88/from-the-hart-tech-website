@@ -98,10 +98,11 @@
   }
 
   function handleLogout() {
-    authUtils.clearAccessToken()
-    isAuthenticated.value = false
-    closeMenu()
-    navigateTo('/')
+    // authUtils.clearAccessToken()
+    // isAuthenticated.value = false
+    // closeMenu()
+    // navigateTo('/')
+    useAuthAPI().test()
   }
 
   function toggleMenu() {
