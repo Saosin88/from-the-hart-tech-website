@@ -1,13 +1,6 @@
-import { get } from '@nuxt/ui/runtime/utils/index.js'
 import { jwtDecode } from 'jwt-decode'
 
 let accessToken: string | null = null
-
-let tokenCache: {
-  raw: string | null
-  decoded: any | null
-} = { raw: null, decoded: null }
-
 const tokenRefreshLoading = ref(false)
 
 export function useAuthUtils() {
@@ -50,7 +43,6 @@ export function useAuthUtils() {
       accessToken = token
       localStorage.setItem('access_token', token)
     }
-    tokenCache = { raw: null, decoded: null }
   }
 
   function clearAccessToken(): void {
@@ -58,17 +50,11 @@ export function useAuthUtils() {
       localStorage.removeItem('access_token')
     }
     accessToken = null
-    tokenCache = { raw: null, decoded: null }
   }
 
   function decodeToken(token: string): any | null {
-    if (tokenCache.raw === token && tokenCache.decoded) {
-      return tokenCache.decoded
-    }
-
     try {
       const decoded = jwtDecode(token)
-      tokenCache = { raw: token, decoded }
       return decoded
     } catch {
       return null

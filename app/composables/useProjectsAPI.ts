@@ -2,23 +2,24 @@ import type { GitHubRepo } from '~/app/types/projects'
 
 export function useProjectsAPI() {
   const config = useRuntimeConfig()
-  function getGitHubRepos() {
-    const { data, error, status, refresh } = useFetch<{ data: GitHubRepo[] }>(`${config.public.fromTheHartAPIBaseUrl}/projects/github/Saosin88`, {
-      server: false,
-    })
 
-    const pending = computed(() => status.value === 'pending')
+  async function getGitHubRepos() {
+    try {
+      const response = await fetch(`${config.public.fromTheHartAPIBaseUrl}/projects/github/Saosin88`)
+      const data = await response.json()
 
-    const repos = computed<GitHubRepo[]>(() => {
-      if (!data.value?.data) return []
-      return [...data.value.data].sort((a, b) => b.stargazers_count - a.stargazers_count)
-    })
-
-    return {
-      repos,
-      error,
-      pending,
-      refresh,
+      return {
+        success: response.ok,
+        data: data.data || [],
+        error: response.ok ? null : 'Failed to fetch GitHub repositories',
+      }
+    } catch (error) {
+      console.error('Error fetching GitHub repositories:', error)
+      return {
+        success: false,
+        data: [],
+        error: 'Unable to connect to the server. Please check your internet connection and try again.',
+      }
     }
   }
 

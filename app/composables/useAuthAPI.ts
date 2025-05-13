@@ -16,7 +16,7 @@ export function useAuthAPI() {
       return {
         success: response.ok,
         data: data.data,
-        error: data.error?.message || 'Failed to verify your email. Please request a new verification link.',
+        error: response.ok ? null : data.error?.message || 'Failed to verify your email. Please request a new verification link.',
       }
     } catch (error) {
       console.error('Error verifying email:', error)
@@ -42,14 +42,14 @@ export function useAuthAPI() {
       return {
         success: response.ok,
         data: data.data,
-        error: data.error?.message || 'An error occurred while sending the verification email. Please try again.',
+        error: response.ok ? null : data.error?.message || 'An error occurred while sending the verification email. Please try again.',
       }
     } catch (error) {
       console.error('Error resending verification:', error)
       return {
         success: false,
         data: null,
-        error: 'Unable to connect to the server. Please check your internet connection and try again.',
+        error: 'An unexpected error occurred. Please try again later.',
       }
     }
   }
@@ -69,14 +69,14 @@ export function useAuthAPI() {
       return {
         success: response.ok,
         data: data.data,
-        error: data.error?.message || 'An error occurred while sending the password reset email. Please try again.',
+        error: response.ok ? null : data.error?.message || 'An error occurred while sending the password reset email. Please try again.',
       }
     } catch (error) {
       console.error('Error sending password reset email:', error)
       return {
         success: false,
         data: null,
-        error: 'Unable to connect to the server. Please check your internet connection and try again.',
+        error: 'An unexpected error occurred. Please try again later.',
       }
     }
   }
@@ -98,7 +98,7 @@ export function useAuthAPI() {
       return {
         success: response.ok,
         data: data.data,
-        error: data.error?.message || 'Failed to reset your password. Please try again or request a new reset link.',
+        error: response.ok ? null : data.error?.message || 'Failed to reset your password. Please try again or request a new reset link.',
       }
     } catch (error) {
       console.error('Error resetting password:', error)
@@ -126,14 +126,14 @@ export function useAuthAPI() {
       return {
         success: response.ok,
         data: data.data,
-        error: data.error?.message || 'Invalid email or password',
+        error: response.ok ? null : data.error?.message || 'Invalid email or password',
       }
     } catch (error) {
       console.error('Error logging in:', error)
       return {
         success: false,
         data: null,
-        error: 'Unable to connect to the server. Please check your internet connection and try again.',
+        error: 'An unexpected error occurred. Please try again later.',
       }
     }
   }
@@ -153,14 +153,14 @@ export function useAuthAPI() {
       return {
         success: response.ok,
         data: data.data,
-        error: data.error?.message || 'Registration failed. Please try again.',
+        error: response.ok ? null : data.error?.message || 'Registration failed. Please try again.',
       }
     } catch (error) {
       console.error('Error during registration:', error)
       return {
         success: false,
         data: null,
-        error: 'Unable to connect to the server. Please check your internet connection and try again.',
+        error: 'An unexpected error occurred. Please try again later.',
       }
     }
   }
@@ -186,7 +186,7 @@ export function useAuthAPI() {
       return {
         success: false,
         data: null,
-        error: 'Unable to connect to the server. Please check your internet connection and try again.',
+        error: 'An unexpected error occurred. Please try again later.',
       }
     }
   }
@@ -214,7 +214,7 @@ export function useAuthAPI() {
       return {
         success: false,
         data: null,
-        error: 'Unable to connect to the server. Please check your internet connection and try again.',
+        error: 'An unexpected error occurred. Please try again later.',
       }
     }
   }
