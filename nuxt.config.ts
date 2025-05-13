@@ -83,14 +83,5 @@ export default defineNuxtConfig({
 
   app: {
     pageTransition: { name: 'page', mode: 'out-in' },
-    head: {
-      meta: [
-        {
-          'http-equiv': 'Content-Security-Policy',
-          content:
-            "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://*.fromthehart.tech https://*.cloudflare.com; frame-src https://*.cloudflare.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests;",
-        },
-      ],
-    },
   },
 })
