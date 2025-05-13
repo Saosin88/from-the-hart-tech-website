@@ -134,7 +134,7 @@
         turnstileError.value = ''
         turnstile.value?.reset()
         const route = useRoute()
-        const redirectPath = route.query.redirect?.toString() || '/'
+        const redirectPath = route.query.redirect?.toString() || '/user/profile'
         await navigateTo(redirectPath)
       } else {
         error.value = {

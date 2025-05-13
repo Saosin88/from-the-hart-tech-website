@@ -69,6 +69,16 @@ export function useAuthUtils() {
     return decoded.email_verified === true
   }
 
+  function getUserEmail(): string | null {
+    const token = getAccessToken()
+    if (!token) return null
+
+    const decoded = decodeToken(token)
+    if (!decoded) return null
+
+    return decoded.email || null
+  }
+
   async function login(email: string, password: string, turnstileToken: string, returnRefreshToken: boolean = false) {
     const response = await useAuthAPI().login(email, password, turnstileToken, returnRefreshToken)
     setAccessToken(response.data.idToken)
@@ -96,6 +106,7 @@ export function useAuthUtils() {
     decodeToken,
     isAccessTokenValid,
     isEmailVerified,
+    getUserEmail,
     login,
     refreshToken,
     logout,
