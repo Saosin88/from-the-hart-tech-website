@@ -81,7 +81,6 @@ export function useAuthUtils() {
     if (decoded.exp && decoded.exp > currentTime) {
       return true
     } else {
-      clearAccessToken()
       return false
     }
   }
