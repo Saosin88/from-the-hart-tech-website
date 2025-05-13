@@ -76,7 +76,7 @@ resource "aws_cloudfront_response_headers_policy" "security_headers_policy" {
     }
     
     content_security_policy {
-      content_security_policy = "default-src 'self'; script-src 'self' https://*.cloudflare.com; style-src 'self'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://*.fromthehart.tech https://*.cloudflare.com; frame-src https://*.cloudflare.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;"
+      content_security_policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://*.fromthehart.tech https://*.cloudflare.com; frame-src https://*.cloudflare.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;"
       override               = true
     }
   }
