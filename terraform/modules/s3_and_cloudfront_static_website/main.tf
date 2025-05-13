@@ -44,7 +44,7 @@ resource "aws_cloudfront_function" "spa_function" {
 }
 
 resource "aws_cloudfront_response_headers_policy" "security_headers_policy" {
-  name          = "${var.domain_name}-security-headers-policy"
+  name          = "${replace(var.domain_name, ".", "-")}-security-headers-policy"
   comment       = "Security headers policy for ${var.domain_name}"
   
   security_headers_config {
