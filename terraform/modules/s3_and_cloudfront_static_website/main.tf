@@ -84,7 +84,7 @@ resource "aws_cloudfront_response_headers_policy" "security_headers_policy" {
   custom_headers_config {
     items {
       header   = "Permissions-Policy"
-      value    = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+      value    = "camera=(), microphone=(), geolocation=()"
       override = true
     }
   }
