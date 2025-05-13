@@ -43,6 +43,53 @@ resource "aws_cloudfront_function" "spa_function" {
   code    = file("${path.module}/spa_index_transformation.js")
 }
 
+resource "aws_cloudfront_response_headers_policy" "security_headers_policy" {
+  name          = "${var.domain_name}-security-headers-policy"
+  comment       = "Security headers policy for ${var.domain_name}"
+  
+  security_headers_config {
+    strict_transport_security {
+      access_control_max_age_sec = 31536000
+      include_subdomains         = true
+      preload                    = true
+      override                   = true
+    }
+    
+    xss_protection {
+      mode_block = true
+      protection = true
+      override   = true
+    }
+    
+    frame_options {
+      frame_option = "SAMEORIGIN"
+      override     = true
+    }
+    
+    content_type_options {
+      override = true
+    }
+    
+    referrer_policy {
+      referrer_policy = "strict-origin-when-cross-origin"
+      override        = true
+    }
+    
+    content_security_policy {
+      content_security_policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://*.fromthehart.tech https://*.cloudflare.com; frame-src https://*.cloudflare.com https://*.turnstile.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;"
+      override               = true
+    }
+  }
+
+  custom_headers_config {
+    items {
+      header   = "Permissions-Policy"
+      value    = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+      override = true
+    }
+  }
+}
+
 resource "aws_cloudfront_distribution" "distribution" {
   origin {
     domain_name              = aws_s3_bucket.bucket.bucket_regional_domain_name
@@ -62,6 +109,7 @@ resource "aws_cloudfront_distribution" "distribution" {
     allowed_methods        = ["GET", "HEAD"]
     cached_methods         = ["GET", "HEAD"]
     cache_policy_id        = "658327ea-f89d-4fab-a63d-7e88639e58f6"
+    response_headers_policy_id = aws_cloudfront_response_headers_policy.security_headers_policy.id
 
     function_association {
       event_type   = "viewer-request"
