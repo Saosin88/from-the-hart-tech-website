@@ -7,7 +7,7 @@ export default defineNuxtRouteMiddleware(async to => {
   if (!requiresAuth) return
 
   const authUtils = useAuthUtils()
-  const hasToken = !!authUtils.getAccessToken()
+  const hasToken = authUtils.hasAccessToken()
   const isTokenValid = authUtils.isAccessTokenValid()
 
   if (!hasToken) {

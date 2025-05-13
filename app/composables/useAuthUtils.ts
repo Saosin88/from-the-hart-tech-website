@@ -1,3 +1,4 @@
+import { get } from '@nuxt/ui/runtime/utils/index.js'
 import { jwtDecode } from 'jwt-decode'
 
 let accessToken: string | null = null
@@ -38,6 +39,10 @@ export function useAuthUtils() {
       }
     }
     return accessToken
+  }
+
+  function hasAccessToken(): boolean {
+    return !!getAccessToken()
   }
 
   function setAccessToken(token: string): void {
@@ -102,6 +107,7 @@ export function useAuthUtils() {
     tokenRefreshLoading,
     setTokenRefreshLoading,
     getAccessToken,
+    hasAccessToken,
     setAccessToken,
     clearAccessToken,
     isAccessTokenValid,
