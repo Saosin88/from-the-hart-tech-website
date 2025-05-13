@@ -4,23 +4,6 @@ let accessToken: string | null = null
 const tokenRefreshLoading = ref(false)
 
 export function useAuthUtils() {
-  async function login(email: string, password: string, turnstileToken: string, returnRefreshToken: boolean = false) {
-    const response = await useAuthAPI().login(email, password, turnstileToken, returnRefreshToken)
-    setAccessToken(response.data.idToken)
-    return response
-  }
-
-  async function refreshToken() {
-    const response = await useAuthAPI().refreshToken()
-    setAccessToken(response.data.idToken)
-    return response
-  }
-
-  async function logout() {
-    clearAccessToken()
-    await useAuthAPI().logout()
-  }
-
   function setTokenRefreshLoading(value: boolean) {
     tokenRefreshLoading.value = value
   }
@@ -86,17 +69,35 @@ export function useAuthUtils() {
     return decoded.email_verified === true
   }
 
+  async function login(email: string, password: string, turnstileToken: string, returnRefreshToken: boolean = false) {
+    const response = await useAuthAPI().login(email, password, turnstileToken, returnRefreshToken)
+    setAccessToken(response.data.idToken)
+    return response
+  }
+
+  async function refreshToken() {
+    const response = await useAuthAPI().refreshToken()
+    setAccessToken(response.data.idToken)
+    return response
+  }
+
+  async function logout() {
+    clearAccessToken()
+    await useAuthAPI().logout()
+  }
+
   return {
-    login,
-    refreshToken,
-    logout,
     tokenRefreshLoading,
     setTokenRefreshLoading,
     getAccessToken,
     hasAccessToken,
     setAccessToken,
     clearAccessToken,
+    decodeToken,
     isAccessTokenValid,
     isEmailVerified,
+    login,
+    refreshToken,
+    logout,
   }
 }
