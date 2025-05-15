@@ -149,7 +149,7 @@
       } else {
         error.value = {
           title: 'Login failed',
-          message: result.error,
+          message: result.error?.message || 'An unknown error occurred.',
         }
         turnstileToken.value = ''
         turnstileError.value = ''
