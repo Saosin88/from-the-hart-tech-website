@@ -32,7 +32,17 @@
           <div class="space-y-4">
             <div class="space-y-2">
               <label for="password" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300">New Password</label>
-              <UInput v-model="password" id="password" name="password" :type="showPassword ? 'text' : 'password'" placeholder="********" autocomplete="new-password" required :disabled="isLoading">
+              <UInput
+                v-model="password"
+                id="password"
+                name="password"
+                :type="showPassword ? 'text' : 'password'"
+                placeholder="********"
+                autocomplete="new-password"
+                required
+                :disabled="isLoading"
+                class="w-full"
+              >
                 <template #trailing>
                   <button type="button" @click="showPassword = !showPassword" class="text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300 focus:outline-none" tabindex="-1">
                     <UIcon v-if="showPassword" name="lucide:eye-off" class="h-4 w-4" />
@@ -62,6 +72,7 @@
                 autocomplete="new-password"
                 required
                 :disabled="isLoading"
+                class="w-full"
               >
                 <template #trailing>
                   <button

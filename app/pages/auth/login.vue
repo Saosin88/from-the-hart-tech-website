@@ -13,7 +13,7 @@
           <div class="space-y-4">
             <div class="space-y-2">
               <label for="email" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300">Email</label>
-              <UInput v-model="email" id="email" name="email" type="email" placeholder="your.email@example.com" autocomplete="email" required :disabled="isLoading" />
+              <UInput v-model="email" id="email" name="email" type="email" placeholder="your.email@example.com" autocomplete="email" required :disabled="isLoading" class="w-full" />
               <p v-if="email && !isValidEmail(email)" class="text-xs text-error-600 dark:text-error-400 mt-1">Please enter a valid email address</p>
             </div>
 
@@ -22,7 +22,17 @@
                 <label for="password" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300">Password</label>
                 <ULink to="/auth/forgot-password" class="text-xs text-primary-600 dark:text-primary-400 hover:text-primary-500 dark:hover:text-primary-300">Forgot password?</ULink>
               </div>
-              <UInput v-model="password" id="password" name="password" :type="showPassword ? 'text' : 'password'" placeholder="********" autocomplete="current-password" required :disabled="isLoading">
+              <UInput
+                v-model="password"
+                id="password"
+                name="password"
+                :type="showPassword ? 'text' : 'password'"
+                placeholder="********"
+                autocomplete="current-password"
+                required
+                :disabled="isLoading"
+                class="w-full"
+              >
                 <template #trailing>
                   <button type="button" @click="showPassword = !showPassword" class="text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300 focus:outline-none" tabindex="-1">
                     <UIcon v-if="showPassword" name="lucide:eye-off" class="h-4 w-4" />

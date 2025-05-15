@@ -28,7 +28,9 @@
           <h2 class="mt-4 text-2xl font-bold text-neutral-900 dark:text-neutral-100">Verification Failed</h2>
           <p class="mt-2 text-neutral-600 dark:text-neutral-400">{{ errorMessage }}</p>
           <div class="mt-6 flex flex-col space-y-3">
-            <UButton to="/auth/resend-verification" color="primary" class="w-full justify-center"> Resend Verification Email </UButton>
+            <div class="w-full text-center text-sm text-neutral-600 dark:text-neutral-400 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded px-4 py-3">
+              To resend the verification email, please log in again. This helps us ensure your account security.
+            </div>
             <UButton to="/" variant="ghost" class="w-full justify-center"> Return to Home </UButton>
           </div>
         </div>

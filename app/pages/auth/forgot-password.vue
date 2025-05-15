@@ -23,7 +23,7 @@
           <div class="space-y-4">
             <div class="space-y-2">
               <label for="email" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300">Email</label>
-              <UInput v-model="email" id="email" name="email" type="email" placeholder="your.email@example.com" autocomplete="email" required :disabled="isLoading" />
+              <UInput v-model="email" id="email" name="email" type="email" placeholder="your.email@example.com" autocomplete="email" required :disabled="isLoading" class="w-full" />
               <p v-if="email && !isValidEmail(email)" class="text-xs text-error-600 dark:text-error-400 mt-1">Please enter a valid email address</p>
             </div>
 
