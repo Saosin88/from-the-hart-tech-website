@@ -16,7 +16,7 @@ export function useAuthAPI() {
       const data = await response.json()
       return {
         success: response.ok,
-        data: data.data,
+        data: response.ok ? data.data : null,
         error: response.ok ? null : data.error?.message || 'Registration failed. Please try again.',
       }
     } catch (error) {
@@ -44,7 +44,7 @@ export function useAuthAPI() {
       const data = await response.json()
       return {
         success: response.ok,
-        data: data.data,
+        data: response.ok ? data.data : null,
         error: response.ok ? null : data.error?.message || 'Invalid email or password',
       }
     } catch (error) {
@@ -71,7 +71,7 @@ export function useAuthAPI() {
       const data = await response.json()
       return {
         success: response.ok,
-        data: data.data,
+        data: response.ok ? data.data : null,
         error: response.ok ? null : data.error?.message || 'An error occurred while sending the password reset email. Please try again.',
       }
     } catch (error) {
@@ -99,7 +99,7 @@ export function useAuthAPI() {
       const data = await response.json()
       return {
         success: response.ok,
-        data: data.data,
+        data: response.ok ? data.data : null,
         error: response.ok ? null : data.error?.message || 'An error occurred while sending the verification email. Please try again.',
       }
     } catch (error) {
@@ -125,7 +125,7 @@ export function useAuthAPI() {
       const data = await response.json()
       return {
         success: response.ok,
-        data: data.data,
+        data: response.ok ? data.data : null,
         error: response.ok ? null : data.error?.message || 'Failed to verify your email. Please request a new verification link.',
       }
     } catch (error) {
@@ -154,7 +154,7 @@ export function useAuthAPI() {
       const data = await response.json()
       return {
         success: response.ok,
-        data: data.data,
+        data: response.ok ? data.data : null,
         error: response.ok ? null : data.error?.message || 'Failed to reset your password. Please try again or request a new reset link.',
       }
     } catch (error) {
@@ -180,7 +180,7 @@ export function useAuthAPI() {
       const data = await response.json()
       return {
         success: response.ok,
-        data: data.data,
+        data: response.ok ? data.data : null,
         error: response.ok ? null : data.error?.message || 'Failed to refresh token',
       }
     } catch (error) {
@@ -208,7 +208,7 @@ export function useAuthAPI() {
       const data = await response.json()
       return {
         success: response.ok,
-        data: data.data,
+        data: response.ok ? data.data : null,
         error: response.ok ? null : data.error?.message || 'Failed to logout',
       }
     } catch (error) {

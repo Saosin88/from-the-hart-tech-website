@@ -214,7 +214,7 @@
       } else {
         error.value = {
           title: 'Registration failed',
-          message: result.error?.message || 'An unknown error occurred.',
+          message: result.error || 'An unknown error occurred.',
         }
         turnstileToken.value = ''
         turnstileError.value = ''

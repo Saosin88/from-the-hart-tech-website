@@ -81,13 +81,17 @@ export function useAuthUtils() {
 
   async function login(email: string, password: string, turnstileToken: string, returnRefreshToken: boolean = false) {
     const response = await useAuthAPI().login(email, password, turnstileToken, returnRefreshToken)
-    setAccessToken(response.data.idToken)
+    if (response.success && response.data && response.data.idToken) {
+      setAccessToken(response.data.idToken)
+    }
     return response
   }
 
   async function refreshToken() {
     const response = await useAuthAPI().refreshToken()
-    setAccessToken(response.data.idToken)
+    if (response.success && response.data && response.data.idToken) {
+      setAccessToken(response.data.idToken)
+    }
     return response
   }
 

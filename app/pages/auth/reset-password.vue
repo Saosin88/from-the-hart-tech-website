@@ -168,7 +168,7 @@
       } else {
         error.value = {
           title: 'Failed to reset password',
-          message: result.error?.message || 'An unknown error occurred.',
+          message: result.error || 'An unknown error occurred.',
         }
       }
     } finally {
