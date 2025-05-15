@@ -9,7 +9,19 @@
           <h2 class="mt-4 text-2xl font-bold text-neutral-900 dark:text-neutral-100">Email Verification Required</h2>
           <p class="mt-2 text-neutral-600 dark:text-neutral-400">Please verify your email address to continue. We sent a verification link to your registered email when you registered.</p>
           <div class="mt-6 flex flex-col space-y-3">
-            <UButton to="/auth/resend-verification" color="primary" class="w-full justify-center"> Resend Verification Email </UButton>
+            <UAlert
+              v-if="showSuccess"
+              title="Verification Email Sent!"
+              description="If your email is registered, you'll receive a new verification link shortly."
+              color="primary"
+              variant="soft"
+              icon="lucide:check-circle"
+              class="mb-2"
+            />
+            <UAlert v-if="resendError" :title="resendError.title" :description="resendError.message" color="error" variant="soft" icon="lucide:alert-circle" class="mb-2" />
+            <UButton @click="handleResend" color="primary" class="w-full justify-center" :loading="isLoading" :disabled="isLoading">
+              {{ isLoading ? 'Sending...' : 'Resend Verification Email' }}
+            </UButton>
             <UButton to="/" variant="ghost" class="w-full justify-center"> Return to Home </UButton>
           </div>
         </div>
@@ -19,6 +31,33 @@
 </template>
 
 <script setup lang="ts">
+  import { ref } from 'vue'
+
+  const isLoading = ref(false)
+  const showSuccess = ref(false)
+  const resendError = ref<{ title: string; message: string } | null>(null)
+
+  const { resendVerificationEmail } = useAuthAPI()
+
+  async function handleResend() {
+    isLoading.value = true
+    showSuccess.value = false
+    resendError.value = null
+    try {
+      const result = await resendVerificationEmail()
+      if (result.success) {
+        showSuccess.value = true
+      } else {
+        resendError.value = {
+          title: 'Failed to resend verification email',
+          message: result.error || 'An unknown error occurred.',
+        }
+      }
+    } finally {
+      isLoading.value = false
+    }
+  }
+
   useSeoMeta({
     title: 'Email Verification Required - From The Hart Tech',
     description: 'Please verify your email address to continue using your account.',

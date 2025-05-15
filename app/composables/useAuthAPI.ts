@@ -84,16 +84,15 @@ export function useAuthAPI() {
     }
   }
 
-  async function resendVerificationEmail(email: string) {
+  async function resendVerificationEmail() {
     try {
       const token = useAuthUtils().getAccessToken()
       const response = await fetch(`${baseUrl}/auth/resend-verification`, {
-        method: 'POST',
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json',
           ...(token ? { Authorization: `Bearer ${token}` } : {}),
         },
-        body: JSON.stringify({ email }),
       })
 
       const data = await response.json()
