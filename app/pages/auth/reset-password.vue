@@ -26,7 +26,24 @@
           <p class="mt-2 text-neutral-600 dark:text-neutral-400">Enter your new password below</p>
         </div>
 
-        <UAlert v-if="error" :title="error.title" :description="error.message" color="error" variant="soft" icon="lucide:alert-circle" class="mb-4" />
+        <UAlert
+          v-if="error"
+          :title="error.title"
+          color="error"
+          variant="soft"
+          icon="lucide:alert-circle"
+          class="mb-4"
+        >
+          <template #description>
+            <span>{{ error.message }}</span>
+            <br>
+            <span>
+              <NuxtLink to="/auth/forgot-password" class="text-primary-600 underline ml-1">
+                Click here to request a new reset link.
+              </NuxtLink>
+            </span>
+          </template>
+        </UAlert>
 
         <form @submit.prevent="handleSubmit">
           <div class="space-y-4">
