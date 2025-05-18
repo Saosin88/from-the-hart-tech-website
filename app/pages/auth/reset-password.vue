@@ -26,21 +26,12 @@
           <p class="mt-2 text-neutral-600 dark:text-neutral-400">Enter your new password below</p>
         </div>
 
-        <UAlert
-          v-if="error"
-          :title="error.title"
-          color="error"
-          variant="soft"
-          icon="lucide:alert-circle"
-          class="mb-4"
-        >
+        <UAlert v-if="error" :title="error.title" color="error" variant="soft" icon="lucide:alert-circle" class="mb-4">
           <template #description>
             <span>{{ error.message }}</span>
-            <br>
+            <br />
             <span>
-              <NuxtLink to="/auth/forgot-password" class="text-primary-600 underline ml-1">
-                Click here to request a new reset link.
-              </NuxtLink>
+              <NuxtLink to="/auth/forgot-password" class="text-primary-600 underline ml-1"> Click here to request a new reset link. </NuxtLink>
             </span>
           </template>
         </UAlert>
@@ -49,17 +40,7 @@
           <div class="space-y-4">
             <div class="space-y-2">
               <label for="password" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300">New Password</label>
-              <UInput
-                v-model="password"
-                id="password"
-                name="password"
-                :type="showPassword ? 'text' : 'password'"
-                placeholder="********"
-                autocomplete="new-password"
-                required
-                :disabled="isLoading"
-                class="w-full"
-              >
+              <UInput v-model="password" id="password" name="password" :type="showPassword ? 'text' : 'password'" placeholder="********" required :disabled="isLoading" class="w-full">
                 <template #trailing>
                   <button type="button" @click="showPassword = !showPassword" class="text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300 focus:outline-none" tabindex="-1">
                     <UIcon v-if="showPassword" name="lucide:eye-off" class="h-4 w-4" />
