@@ -135,7 +135,7 @@
     isLoading.value = true
 
     try {
-      const result = await useAuthUtils().login(email.value, password.value, turnstileToken.value, rememberMe.value)
+      const result = await useAuthController().login(email.value, password.value, turnstileToken.value, rememberMe.value)
 
       if (result.success) {
         email.value = ''

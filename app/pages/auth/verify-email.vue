@@ -15,7 +15,7 @@
           <h2 class="mt-4 text-2xl font-bold text-neutral-900 dark:text-neutral-100">Email Verified!</h2>
           <p class="mt-2 text-neutral-600 dark:text-neutral-400">Thank you for verifying your email address.</p>
           <div class="mt-6">
-            <UButton to="/auth/login" color="primary" class="w-full justify-center"> Login </UButton>
+            <UButton to="/" color="primary" class="w-full justify-center"> Continue to Home </UButton>
           </div>
         </div>
       </UCard>
@@ -54,7 +54,7 @@
     }
 
     try {
-      const { success, error } = await useAuthAPI().verifyEmail(token.value)
+      const { success, error } = await useAuthController().verifyEmail(token.value)
 
       if (success) {
         isVerified.value = true

@@ -13,15 +13,7 @@
             icon="lucide:check-circle"
             class="mb-4"
           />
-          <UAlert
-            v-if="resendError"
-            :title="resendError.title"
-            :description="resendError.message"
-            color="error"
-            variant="soft"
-            icon="lucide:alert-circle"
-            class="mb-4"
-          />
+          <UAlert v-if="resendError" :title="resendError.title" :description="resendError.message" color="error" variant="soft" icon="lucide:alert-circle" class="mb-4" />
           <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary-100 dark:bg-primary-900/30">
             <UIcon name="lucide:mail" class="h-6 w-6 text-primary-600 dark:text-primary-400" />
           </div>
@@ -40,37 +32,38 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+  import { ref } from 'vue'
 
-const isLoading = ref(false)
-const showSuccess = ref(false)
-const resendError = ref<{ title: string; message: string } | null>(null)
+  const isLoading = ref(false)
+  const showSuccess = ref(false)
+  const resendError = ref<{ title: string; message: string } | null>(null)
 
-const { resendVerificationEmail } = useAuthAPI()
+  const { resendVerificationEmail } = useAuthAPI()
 
-async function handleResend() {
-  isLoading.value = true
-  showSuccess.value = false
-  resendError.value = null
-  try {
-    const result = await resendVerificationEmail()
-    if (result.success) {
-      showSuccess.value = true
-    } else {
-      resendError.value = {
-        title: 'Failed to resend verification email',
-        message: result.error || 'An unknown error occurred.',
+  async function handleResend() {
+    isLoading.value = true
+    showSuccess.value = false
+    resendError.value = null
+    try {
+      const accessToken = useAuthController().getAccessToken() || ''
+      const result = await resendVerificationEmail(accessToken)
+      if (result.success) {
+        showSuccess.value = true
+      } else {
+        resendError.value = {
+          title: 'Failed to resend verification email',
+          message: result.error || 'An unknown error occurred.',
+        }
       }
+    } finally {
+      isLoading.value = false
     }
-  } finally {
-    isLoading.value = false
   }
-}
 
-useSeoMeta({
-  title: 'Email Verification Required - From The Hart Tech',
-  description: 'Please verify your email address to continue using your account.',
-  robots: 'noindex, nofollow',
-  author: 'Sheldon Hart',
-})
+  useSeoMeta({
+    title: 'Email Verification Required - From The Hart Tech',
+    description: 'Please verify your email address to continue using your account.',
+    robots: 'noindex, nofollow',
+    author: 'Sheldon Hart',
+  })
 </script>

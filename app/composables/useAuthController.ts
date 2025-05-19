@@ -3,7 +3,7 @@ import { jwtDecode } from 'jwt-decode'
 let accessToken: string | null = null
 const tokenRefreshLoading = ref(false)
 
-export function useAuthUtils() {
+export function useAuthController() {
   function setTokenRefreshLoading(value: boolean) {
     tokenRefreshLoading.value = value
   }
@@ -87,6 +87,18 @@ export function useAuthUtils() {
     return response
   }
 
+  async function verifyEmail(token: string) {
+    const verifyEmailResponse = await useAuthAPI().verifyEmail(token)
+    if (verifyEmailResponse.success) {
+      try {
+        refreshToken()
+      } catch (error) {
+        console.error('Error refreshing token:', error)
+      }
+    }
+    return verifyEmailResponse
+  }
+
   async function refreshToken() {
     const response = await useAuthAPI().refreshToken()
     if (response.success && response.data && response.data.idToken) {
@@ -112,6 +124,7 @@ export function useAuthUtils() {
     isEmailVerified,
     getUserEmail,
     login,
+    verifyEmail,
     refreshToken,
     logout,
   }

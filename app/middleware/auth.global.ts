@@ -6,9 +6,9 @@ export default defineNuxtRouteMiddleware(async to => {
 
   if (!requiresAuth) return
 
-  const authUtils = useAuthUtils()
-  const hasToken = authUtils.hasAccessToken()
-  const isTokenValid = authUtils.isAccessTokenValid()
+  const authController = useAuthController()
+  const hasToken = authController.hasAccessToken()
+  const isTokenValid = authController.isAccessTokenValid()
 
   if (!hasToken) {
     return navigateTo({
@@ -19,11 +19,11 @@ export default defineNuxtRouteMiddleware(async to => {
 
   if (!isTokenValid) {
     try {
-      authUtils.setTokenRefreshLoading(true)
+      authController.setTokenRefreshLoading(true)
 
-      const result = await authUtils.refreshToken()
+      const result = await authController.refreshToken()
 
-      authUtils.setTokenRefreshLoading(false)
+      authController.setTokenRefreshLoading(false)
 
       if (!result.success) {
         return navigateTo({
@@ -33,7 +33,7 @@ export default defineNuxtRouteMiddleware(async to => {
       }
     } catch (error) {
       console.error('Error refreshing token:', error)
-      authUtils.setTokenRefreshLoading(false)
+      authController.setTokenRefreshLoading(false)
 
       return navigateTo({
         path: '/auth/login',
@@ -42,8 +42,7 @@ export default defineNuxtRouteMiddleware(async to => {
     }
   }
 
-  if (!authUtils.isEmailVerified()) {
-    authUtils.logout()
+  if (!authController.isEmailVerified()) {
     return navigateTo('/auth/email-verification-required')
   }
 })

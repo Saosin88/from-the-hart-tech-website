@@ -81,7 +81,7 @@
 
 <script setup lang="ts">
   const isMenuOpen = ref(false)
-  const authUtils = useAuthUtils()
+  const authController = useAuthController()
   const isAuthenticated = ref(false)
 
   onMounted(() => {
@@ -93,12 +93,12 @@
 
   function updateAuthStatus() {
     if (import.meta.client) {
-      isAuthenticated.value = authUtils.hasAccessToken()
+      isAuthenticated.value = authController.hasAccessToken()
     }
   }
 
   function handleLogout() {
-    authUtils.logout()
+    authController.logout()
     isAuthenticated.value = false
     closeMenu()
     navigateTo('/')

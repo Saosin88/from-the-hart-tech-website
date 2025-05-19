@@ -84,14 +84,13 @@ export function useAuthAPI() {
     }
   }
 
-  async function resendVerificationEmail() {
+  async function resendVerificationEmail(accessToken: string) {
     try {
-      const token = useAuthUtils().getAccessToken()
       const response = await fetch(`${baseUrl}/auth/resend-verification`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+          ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}),
         },
       })
 
@@ -194,13 +193,10 @@ export function useAuthAPI() {
 
   async function logout() {
     try {
-      const token = useAuthUtils().getAccessToken()
-
       const response = await fetch(`${baseUrl}/auth/logout`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
         },
       })
 

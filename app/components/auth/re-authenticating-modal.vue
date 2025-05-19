@@ -15,12 +15,12 @@
 </template>
 
 <script setup lang="ts">
-  const authUtils = useAuthUtils()
+  const authController = useAuthController()
 
   const isLoading = computed({
-    get: () => authUtils.tokenRefreshLoading.value,
+    get: () => authController.tokenRefreshLoading.value,
     set: value => {
-      authUtils.tokenRefreshLoading.value = value
+      authController.tokenRefreshLoading.value = value
     },
   })
 </script>

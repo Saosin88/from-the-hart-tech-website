@@ -38,7 +38,7 @@
   const userEmail = ref('')
 
   onMounted(() => {
-    const { getUserEmail } = useAuthUtils()
+    const { getUserEmail } = useAuthController()
     userEmail.value = getUserEmail() || ''
   })
 </script>
