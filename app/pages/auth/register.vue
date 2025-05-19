@@ -201,7 +201,7 @@
     isLoading.value = true
 
     try {
-      const result = await useAuthAPI().register(email.value, password.value, turnstileToken.value)
+      const result = await useAuthController().register(email.value, password.value, turnstileToken.value)
 
       if (result.success) {
         registrationSuccess.value = true

@@ -79,6 +79,14 @@ export function useAuthController() {
     return decoded.email || null
   }
 
+  async function register(email: string, password: string, turnstileToken: string) {
+    const response = await useAuthAPI().register(email, password, turnstileToken)
+    if (response.success && response.data && response.data.idToken) {
+      setAccessToken(response.data.idToken)
+    }
+    return response
+  }
+
   async function login(email: string, password: string, turnstileToken: string, returnRefreshToken: boolean = false) {
     const response = await useAuthAPI().login(email, password, turnstileToken, returnRefreshToken)
     if (response.success && response.data && response.data.idToken) {
@@ -92,9 +100,7 @@ export function useAuthController() {
     if (verifyEmailResponse.success) {
       try {
         refreshToken()
-      } catch (error) {
-        console.error('Error refreshing token:', error)
-      }
+      } catch (error) {}
     }
     return verifyEmailResponse
   }
@@ -123,6 +129,7 @@ export function useAuthController() {
     isAccessTokenValid,
     isEmailVerified,
     getUserEmail,
+    register,
     login,
     verifyEmail,
     refreshToken,
