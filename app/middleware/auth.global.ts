@@ -43,6 +43,7 @@ export default defineNuxtRouteMiddleware(async to => {
   }
 
   if (!authUtils.isEmailVerified()) {
+    authUtils.logout()
     return navigateTo('/auth/email-verification-required')
   }
 })
