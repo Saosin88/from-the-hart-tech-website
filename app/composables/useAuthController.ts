@@ -96,13 +96,11 @@ export function useAuthController() {
   }
 
   async function verifyEmail(token: string) {
-    const verifyEmailResponse = await useAuthAPI().verifyEmail(token)
-    if (verifyEmailResponse.success) {
-      try {
-        refreshToken()
-      } catch (error) {}
+    const response = await useAuthAPI().verifyEmail(token)
+    if (response.success && response.data && response.data.idToken) {
+      setAccessToken(response.data.idToken)
     }
-    return verifyEmailResponse
+    return response
   }
 
   async function refreshToken() {
