@@ -1,0 +1,127 @@
+/* Swagger UI Dark Mode Customization */
+body,
+.swagger-ui {
+  background: #181a1b !important;
+  color: #e0e0e0 !important;
+}
+
+.swagger-ui .topbar {
+  background: #23272a !important;
+}
+
+.swagger-ui .topbar .download-url-wrapper input {
+  background: #23272a !important;
+  color: #e0e0e0 !important;
+}
+
+.swagger-ui .scheme-container {
+  background: #23272a !important;
+  color: #e0e0e0 !important;
+}
+
+.swagger-ui .opblock {
+  background: #23272a !important;
+  border-color: #444 !important;
+}
+
+.swagger-ui .opblock .opblock-summary {
+  background: #23272a !important;
+  color: #e0e0e0 !important;
+}
+
+.swagger-ui .opblock .opblock-summary-method {
+  background: #444 !important;
+  color: #fff !important;
+}
+
+.swagger-ui .opblock .opblock-summary-path {
+  color: #90caf9 !important;
+}
+
+.swagger-ui .opblock .opblock-summary-description {
+  color: #b0b0b0 !important;
+}
+
+.swagger-ui .opblock .opblock-section-header {
+  background: #23272a !important;
+  color: #e0e0e0 !important;
+}
+
+.swagger-ui .opblock .opblock-body {
+  background: #181a1b !important;
+  color: #e0e0e0 !important;
+}
+
+.swagger-ui .responses-table {
+  background: #23272a !important;
+  color: #e0e0e0 !important;
+}
+
+.swagger-ui .response-col_status {
+  color: #90caf9 !important;
+}
+
+.swagger-ui .response-col_description {
+  color: #e0e0e0 !important;
+}
+
+.swagger-ui .tab li,
+.swagger-ui .tab li.active {
+  background: #23272a !important;
+  color: #e0e0e0 !important;
+}
+
+.swagger-ui .info .title,
+.swagger-ui .info .base-url {
+  color: #90caf9 !important;
+}
+
+.swagger-ui .markdown code,
+.swagger-ui pre {
+  background: #23272a !important;
+  color: #90caf9 !important;
+}
+
+.swagger-ui .btn {
+  background: #444 !important;
+  color: #fff !important;
+  border: 1px solid #666 !important;
+}
+
+.swagger-ui .btn.cancel {
+  background: #b71c1c !important;
+  color: #fff !important;
+}
+
+.swagger-ui .btn.execute {
+  background: #1976d2 !important;
+  color: #fff !important;
+}
+
+.swagger-ui .parameter__name,
+.swagger-ui .parameter__type {
+  color: #90caf9 !important;
+}
+
+.swagger-ui .parameter__in {
+  color: #b0b0b0 !important;
+}
+
+.swagger-ui .parameter__deprecated {
+  color: #ffb300 !important;
+}
+
+.swagger-ui .errors-wrapper {
+  background: #b71c1c !important;
+  color: #fff !important;
+}
+
+/* Scrollbar styling */
+.swagger-ui ::-webkit-scrollbar {
+  width: 8px;
+  background: #23272a;
+}
+.swagger-ui ::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 4px;
+}
