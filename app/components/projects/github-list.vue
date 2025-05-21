@@ -102,7 +102,36 @@
 </template>
 
 <script setup lang="ts">
-  const { repos, error, pending, refresh } = useAPI().getGitHubRepos()
+  import type { GitHubRepo } from '~/app/types/projects'
+
+  const repos = ref<GitHubRepo[]>([])
+  const error = ref<string | null>(null)
+  const pending = ref(true)
   const { formatDateInAgoTerms, getLanguageColour } = useFormatters()
-  onBeforeMount
+
+  async function fetchRepos() {
+    pending.value = true
+    error.value = null
+
+    try {
+      const result = await useProjectsAPI().getGitHubRepos()
+
+      if (result.success) {
+        repos.value = [...result.data].sort((a, b) => b.stargazers_count - a.stargazers_count)
+      } else {
+        error.value = result.error
+      }
+    } catch (e) {
+      error.value = 'An unexpected error occurred'
+      console.error(e)
+    } finally {
+      pending.value = false
+    }
+  }
+
+  function refresh() {
+    fetchRepos()
+  }
+
+  onMounted(fetchRepos)
 </script>
