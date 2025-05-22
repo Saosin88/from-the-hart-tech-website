@@ -7,6 +7,12 @@
 </template>
 
 <script setup lang="ts">
+  //wakeup possible cold services
+  try {
+    useAuthAPI().healthCheck()
+    useProjectsAPI().healthCheck()
+  } catch (e) {}
+
   useHead({
     htmlAttrs: {
       lang: 'en',
