@@ -4,7 +4,7 @@ description:
 date: 2025-06-02 06:38:23
 toc: true
 keywords: 
-image: /assets/blog/fullstack-architecture.png
+image: /assets/blog/fullstack-architecture.svg
 robots: index, follow
 author: Sheldon Hart
 ogTitle: The Fullstack
@@ -18,22 +18,16 @@ twitterCard: summary_large_image
 twitterSite: "@SheldonHart7"
 twitterCreator: "@SheldonHart7"
 ---
-## The Growth Problem: How Infrastructure Multiplies
+## First API
 >Growth comes from challenge, from pushing yourself beyond what is comfortable.— Dalinar Kholin, The Way of Kings
 
-Managing infrastructure and configuration for a small project can be straightforward, especially if you start with just three servers for the full stack. This setup works well before your project launches. However, once you go live, it's best practice not to test new code and features directly on the production environment. You'll need a dev/test environment, which will at least double your infrastructure. To ensure high availability, you might need to double or even triple your infrastructure. As you build more features, especially if you adopt a microservices architecture, the need for additional servers will grow. Depending on the technology you use, you might require more than one server just to initialize (e.g., Quorum-type technologies). Finally, if your project is successful, you'll need to scale, and possibly scale quickly.
+1. lambdalith vs single function
+2. API gateway external vs internal, cloudfront
 
-While this example is quite traditional, it highlights how infrastructure can grow rapidly over time. The industry offers many solutions to these challenges, such as containerization, managed services, and serverless architectures. However, these still need to be provisioned and configured consistently. It's crucial for a team to be able to provision new infrastructure quickly and consistently.
+::blog-image{src="fullstack-architecture.svg" alt="Terraform" caption=""}
+::
 
-This is where Infrastructure as Code (IaC) tools like Terraform become essential. Using its own declarative HashiCorp Configuration Language (HCL), Terraform allows you to define, provision, and manage infrastructure across multiple environments. The human-readable nature of HCL makes complex infrastructure setups both accessible and maintainable. While AWS-specific solutions like CloudFormation or CDK were options, I ultimately chose Terraform for its multi-cloud capabilities. With support for numerous providers including AWS, GCP, and Azure, Terraform aligns perfectly with my future plans to expand across different cloud platforms.
-
-At its core, Terraform has three main components: resources, variables, and outputs. Resources are the basic building blocks of your infrastructure (e.g., S3 Bucket, CloudFront Distribution, IAM Role). Variables in Terraform are like function input parameters, allowing you to pass dynamic values into your configurations. Outputs are like return values, providing useful information about your infrastructure after it's been created.
-
-These components can be orchestrated together to create custom modules, enabling you to specify many resources in a specific configuration. Modules can also have variables and outputs.
-
-Finally, there is the state. The state keeps track of the current state of your infrastructure and is stored as a file or can be remotely stored in block storage like S3. Remote state storage allows for locking, ensuring that only one run can be done concurrently to avoid conflicts.
-
-::blog-image{src="fullstack-architecture.png" alt="Terraform" caption=""}
+::blog-image{src="fullstack-architecture-first.svg" alt="Terraform" caption=""}
 ::
 
 ### Infrastructure Tools at a Glance
