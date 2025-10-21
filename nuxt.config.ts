@@ -4,10 +4,7 @@ export default defineNuxtConfig({
     name: 'My frontend sandbox to play with tech',
   },
 
-  compatibilityDate: '2024-11-01',
-  future: {
-    compatibilityVersion: 4,
-  },
+  compatibilityDate: '2025-10-21',
 
   devtools: { enabled: true },
 
