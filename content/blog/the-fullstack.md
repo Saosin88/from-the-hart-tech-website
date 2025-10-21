@@ -1,7 +1,7 @@
 ---
 title: The Fullstack
 description: 
-date: 2025-06-02 06:38:23
+date: 2025-10-27 06:38:23
 toc: true
 keywords: 
 image: /assets/blog/fullstack-architecture.svg
@@ -19,167 +19,136 @@ twitterSite: "@SheldonHart7"
 twitterCreator: "@SheldonHart7"
 ---
 ## First API
->Growth comes from challenge, from pushing yourself beyond what is comfortable.— Dalinar Kholin, The Way of Kings
+>The world is a stage, and we're just actors in it. Our fates can be changed... through connections, through data. – Rintarou Okabe, Steins;Gate
 
-1. lambdalith vs single function
-2. API gateway external vs internal, cloudfront
+In my previous two posts, I covered building a frontend (this website) and how Terraform enabled me to manage my infrastructure as code. However, this represents just one tier of a traditional 3-tier architecture. I still needed to tackle the remaining pieces: the ability to create APIs and services for the middle tier, and a persistence layer for data storage.
 
-::blog-image{src="fullstack-architecture.svg" alt="Terraform" caption=""}
-::
+I wanted to start with something simple. My [projects page](/projects) would connect directly to GitHub to retrieve all my public repositories. Since this data doesn't change very often, I decided to leverage CloudFront's built-in caching capabilities rather than implementing a separate layer like Redis. The logic was straightforward: call the GitHub public endpoint, map the necessary fields to my response object, and add a cache control header for 24-hour caching. This ensures only the first request of the day hits GitHub directly, while subsequent requests are served from CloudFront's cache.
+
+```js
+export const getGitHubProjectsByUsername = async (
+  request: FastifyRequest<{ Params: UsernameParam }>,
+  reply: FastifyReply
+) => {
+  const { username } = request.params;
+  const gitHubProjects = await projectService.getGitHubProjectsByUsername(
+    username
+  );
+
+  reply.header("Cache-Control", "public, max-age=86400");
+
+  if (!gitHubProjects || gitHubProjects.length === 0) {
+    return reply.code(404).send({ error: "GitHub Projects not found" });
+  }
+
+  return reply.code(200).send({ data: gitHubProjects });
+};
+```
+
+## Lambdaliths VS Lambda Functions
+>But putting all those small "ones" together allows the "all" to exist... - Edward Elric, Fullmetal Alchemist: Brotherhood
+
+My next challenge was deciding where to host this service. I wanted a serverless solution with pay-per-use billing, making AWS Lambda functions the obvious choice. While I've always appreciated the concept of Lambda functions, I've found service management becomes more complex in practice. I prefer organizing related services into logical domains. This API would be the foundation of my "projects" domain. However, Lambda's function-centric approach makes this significantly harder when every function operates as its own isolated service. Additionally, I wasn't comfortable with the vendor lock-in that would prevent me from hosting these services elsewhere if needed.
+
+After some research, I discovered that Lambda could host Docker containers. This opened up an elegant solution: I could build my services using familiar API frameworks like Fastify and standard Docker, then develop locally with just Docker and easily port these domain APIs to any Docker-enabled hosting service. The only requirement was a special adapter to transform Lambda requests into traditional RESTful requests. Fortunately, Fastify already provides this [adapter](https://fastify.dev/docs/latest/Guides/Serverless/) out of the box. The beauty of this approach is its simplicity—running a normal Docker instance would start my server.js file, while running in Lambda would start my Lambda handler instead. Everything else remained identical.
+
+
+<details>
+<summary>View the Standard Docker file</summary>
+
+```dockerfile
+FROM node:22-alpine AS builder
+WORKDIR /usr/app
+COPY package*.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+
+FROM node:22-alpine
+WORKDIR /app
+
+ARG NODE_ENV=production
+ARG LOG_LEVEL=info
+
+ENV NODE_ENV=$NODE_ENV
+ENV LOG_LEVEL=$LOG_LEVEL
+ENV PORT=8080
+ENV HOST=0.0.0.0
+
+COPY --from=builder /usr/app/dist/. ./
+COPY --from=builder /usr/app/node_modules ./node_modules
+COPY --from=builder /usr/app/src/public ./public
+EXPOSE 8080
+CMD ["node", "server.js"]
+```
+</details>
+<details>
+<summary>View the Lambda Docker file</summary>
+
+```dockerfile
+FROM public.ecr.aws/lambda/nodejs:22 AS builder
+WORKDIR /usr/app
+COPY package*.json ./
+RUN npm ci
+COPY . . 
+RUN npm run build
+    
+FROM public.ecr.aws/lambda/nodejs:22
+WORKDIR ${LAMBDA_TASK_ROOT}
+
+ARG NODE_ENV=production
+ARG LOG_LEVEL=info
+
+ENV NODE_ENV=$NODE_ENV
+ENV LOG_LEVEL=$LOG_LEVEL
+
+COPY --from=builder /usr/app/dist/. ./
+COPY --from=builder /usr/app/node_modules ./node_modules
+COPY --from=builder /usr/app/src/public ./public
+CMD ["lambda.handler"]
+```
+</details>
+
+## API Gateway
+>A gateway doesn’t just open a door—it decides what can come through and what cannot. – Kamina, Gurren Lagann
+
+Next, I needed an API gateway for this API and all future APIs I planned to build. AWS API Gateway offered two options: HTTP or REST. The HTTP version was cheaper with fewer features, while REST was more expensive but feature-rich. The key feature I wanted was caching, which was only available with the REST version. Rather than paying the premium for REST, I decided to use the HTTP version and front it with CloudFront. 
+
+This approach delivered several advantages:
+- **Cost savings**: Lower per-request pricing than REST API Gateway alone
+- **Global edge caching**: Responses could be cached
+- **Reduced latency**: Users served from the nearest edge location
+- **Enhanced security**: Built-in DDoS protection and Web Application Firewall options
+
+Although I was now managing two services instead of one, the total cost per request was still lower than using REST alone, and the extra features made it worthwhile. The initial setup required more complexity, but Terraform made ongoing maintenance straightforward.
 
 ::blog-image{src="fullstack-architecture-first.svg" alt="Terraform" caption=""}
 ::
 
-### Infrastructure Tools at a Glance
+## Authentication
+>A person’s true identity isn’t something they show to others; it’s something that is verified through their actions. - Shikamaru Nara, Naruto
 
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+Next, I wanted to build some sign-up and login pages for my website, that would enable user-specific content and flows. This would allow me to generate session tokens (JWTs) for passing user context to future APIs, while also enabling my API gateway to validate tokens before routing requests to downstream services. Rather than building an authentication system from scratch, I evaluated three different providers: GCP Identity Platform, Amazon Cognito, and Auth0.
 
-<div class="border border-secondary-500 dark:border-secondary-700 rounded-lg p-4 shadow-sm">
+| Feature | GCP Identity Platform | Amazon Cognito | Auth0 |
+|---------|----------------------|----------------|-------|
+| **Free Tier** | 50,000 monthly active users (MAUs) | 50,000 MAUs for User Pools | 7,500 MAUs |
+| **Pricing (beyond free)** | $0.0055 per MAU | $0.0055 per MAU | $23/month for up to 1,000 MAUs |
+| **Social Providers** | Google, Facebook, Twitter, GitHub, Microsoft | Google, Facebook, Amazon, Apple | 30+ providers including enterprise SSO |
+| **Multi-factor Authentication** | SMS, TOTP, phone calls | SMS, TOTP, hardware tokens | SMS, TOTP, push notifications, biometrics |
+| **Customization** | Limited UI customization | Hosted UI or custom implementation | Highly customizable Universal Login |
+| **Enterprise Features** | SAML, OpenID Connect | SAML, OpenID Connect | Advanced SAML, AD/LDAP, extensive enterprise SSO |
+| **Developer Experience** | Good documentation, Firebase integration | AWS ecosystem integration | Excellent docs, extensive SDKs |
+| **Standout Features** | • Firebase integration<br>• Google ecosystem synergy<br>• Identity-aware proxy | • User Pools + Identity Pools<br>• Fine-grained IAM integration<br>• Amplify framework support | • Rules engine for custom logic<br>• Advanced analytics<br>• Anomaly detection<br>• Extensive marketplace |
+| **Deployment Model** | Google-managed | AWS-managed | SaaS (Auth0-managed) |
+| **Geographic Coverage** | Global with Google infrastructure | Global with AWS regions | Global CDN with edge locations |
 
-#### Terraform
-- **Primary Focus:** Infrastructure provisioning across multiple cloud providers
-- **Multi-cloud Support:** Strong (80+ providers)
-- **Language:** HashiCorp Configuration Language (HCL)
-- **State Management:** Explicit state tracking
-- **AWS Integration:** Good, via AWS provider
-- **Community:** Large, active open-source community
-- **Vendor Lock-in:** Low (provider-agnostic)
-- **Pricing/Licensing:** Open-source (free), paid enterprise features
+I ultimately went with GCP Identity Platform, as it had a higher free tier than Auth0 and I wanted to try and build some stuff on a different cloud provider.
 
-</div>
+3. Cloudflare
+4. Cloud run
+5. Auth domain, identity platform, firestore
 
-<div class="border border-secondary-500 dark:border-secondary-700 rounded-lg p-4 shadow-sm">
+::blog-image{src="fullstack-architecture.svg" alt="Terraform" caption=""}
+::
 
-#### CloudFormation
-- **Primary Focus:** AWS infrastructure provisioning
-- **Multi-cloud Support:** None (AWS only)
-- **Language:** YAML or JSON
-- **State Management:** Implicit (managed by AWS)
-- **AWS Integration:** Native, comprehensive
-- **Community:** Medium, primarily AWS users
-- **Vendor Lock-in:** High (AWS-only)
-- **Pricing/Licensing:** Free with AWS usage
-
-</div>
-
-<div class="border border-secondary-500 dark:border-secondary-700 rounded-lg p-4 shadow-sm">
-
-#### AWS CDK
-- **Primary Focus:** AWS infrastructure with familiar programming languages
-- **Multi-cloud Support:** None (AWS only)
-- **Language:** TypeScript, JavaScript, Python, Java, C#
-- **State Management:** Implicit (generates CloudFormation)
-- **AWS Integration:** Native, comprehensive
-- **Community:** Growing rapidly
-- **Vendor Lock-in:** High (AWS-only)
-- **Pricing/Licensing:** Free with AWS usage
-
-</div>
-
-<div class="border border-secondary-500 dark:border-secondary-700 rounded-lg p-4 shadow-sm">
-
-#### Pulumi
-- **Primary Focus:** Infrastructure provisioning using standard programming languages
-- **Multi-cloud Support:** Strong (20+ cloud providers)
-- **Language:** TypeScript, JavaScript, Python, Go, C#, Java
-- **State Management:** Explicit state tracking (similar to Terraform)
-- **AWS Integration:** Good, via AWS provider
-- **Community:** Growing, active open-source community
-- **Vendor Lock-in:** Low (provider-agnostic)
-- **Pricing/Licensing:** Open-source (free), paid team/enterprise features
-
-</div>
-
-<div class="border border-secondary-500 dark:border-secondary-700 rounded-lg p-4 shadow-sm">
-
-#### OpenTofu
-- **Primary Focus:** Infrastructure provisioning across multiple cloud providers
-- **Multi-cloud Support:** Strong (compatible with Terraform providers)
-- **Language:** HashiCorp Configuration Language (HCL)
-- **State Management:** Explicit state tracking
-- **AWS Integration:** Good, via AWS provider
-- **Community:** Emerging open-source community (fork of Terraform)
-- **Vendor Lock-in:** Low (provider-agnostic)
-- **Pricing/Licensing:** Open-source (free), community-driven
-
-</div>
-
-</div>
-
-### From Theory to Practice
->To create, it is necessary first to destroy.— Kwaan, Mistborn: The Final Empire
-
-After completing the first phase of my website (which you can read about [here](/blog/this-website)), I realized the importance of implementing Infrastructure as Code (IaC) as early as possible. Delaying this implementation only makes migration more challenging as your infrastructure grows. Despite the relatively small scale of my website, the process took longer than anticipated. I began by focusing on shared resources—components my website needs that shouldn't be controlled by any specific project, such as ACM Certificates, IAM Roles and permissions, and Route53 DNS records. To manage these resources effectively, I store their state centrally in an S3 bucket, allowing for consistent tracking and version control. Changes to this shared infrastructure are applied through a CI/CD workflow that automatically executes whenever a pull request is merged to the main branch. Due to the sensitive information contained within this repository, I've opted to keep it private.
-
-Next, I focused on my website project by importing my existing S3 bucket and CloudFront distribution configurations. While working with these resources, I recognized that my website's infrastructure pattern could be abstracted into a reusable Terraform module. This approach would allow me to create any static website on AWS by simply providing a few key variables. After developing this module, my website's infrastructure configuration became elegantly simple:
-
-```hcl
-module "website" {
-  source              = "../modules/s3_and_cloudfront_static_website"
-  acm_certificate_arn = data.terraform_remote_state.shared.outputs.acm_certificate_arn
-  route53_zone_id     = data.terraform_remote_state.shared.outputs.zone_id
-  domain_name         = "www.fromthehart.tech"
-  tags = {
-    Domain      = "tech"
-    Project     = "from-the-hart-tech-website"
-    Environment = "prod"
-    Terraform   = "true"
-  }
-}
-``` 
-
-You can see that the module takes the ACM certificate and Route53 Zone ID from the shared resources and then creates the website with the domain name `www.fromthehart.tech`. State can be shared in this manner across any of my projects by simply creating a data object and then using the outputs from the shared resources:
-
-```hcl
-data "terraform_remote_state" "shared" {
-  backend = "s3"
-  config = {
-    bucket  = "from-the-hart-terraform"
-    key     = "state/shared.tfstate"
-    region  = "af-south-1"
-  }
-}
-```
-
-Following the principle that each project should own its infrastructure, I've integrated this Terraform configuration directly into my website's CI/CD workflow. This integration creates a seamless deployment process: the workflow first validates the infrastructure state and applies any necessary changes before proceeding to the build and deployment phases. By structuring the process this way, infrastructure updates become a natural prerequisite to code deployment, ensuring that my website always runs on correctly provisioned resources.
-
-![Terraform CICD](/assets/blog/terraform-ci-cd.png)
-
-After setting up the infrastructure pipeline, I needed to thoroughly test my configuration. While I conducted most testing in isolation from production (which I'll explain shortly), I ultimately decided to perform one real-world test on my live environment. Despite recognizing this as poor practice, I rationalized that the risk was minimal given my website's limited audience at this early stage. The process began with running terraform destroy :boom: and watching my entire infrastructure disappear from the AWS console in seconds. Next, I triggered my CI/CD workflow to rebuild everything from scratch. The entire recovery process took just 7 minutes—most of which was spent waiting for CloudFront to complete its deployment. This experiment vividly demonstrated the power of Infrastructure as Code: what might have been a catastrophic disaster in a traditional environment became a simple, rapid recovery process.
-
-Going forward, I need to maintain the discipline of applying changes exclusively through Terraform and my CI/CD pipeline.
-
-## Tying Up Some Loose Ends
-
-### Test/Dev Environement
-
-As my website gained visibility and traffic began to grow, implementing a proper test/dev environment became necessary to follow industry best practices. Such an environment would allow me to safely experiment with new features before deploying them to production. Thanks to the module I had created, setting up this parallel environment took just minutes—I simply duplicated my configuration with environment-specific variables. To complete the workflow, I implemented a separate dev CI/CD pipeline that automatically applies infrastructure changes and deploys code to this new environement. This allows me to test changes before merging them into the main branch. Terraform transformed what could have been a complex infrastructure duplication process into an elegantly simple process.
-
-```hcl
-module "website" {
-  source              = "../modules/s3_and_cloudfront_static_website"
-  acm_certificate_arn = data.terraform_remote_state.shared.outputs.acm_certificate_arn
-  route53_zone_id     = data.terraform_remote_state.shared.outputs.zone_id
-  domain_name         = "dev.fromthehart.tech"
-  tags = {
-    Domain      = "tech"
-    Project     = "from-the-hart-tech-website"
-    Environment = "dev"
-    Terraform   = "true"
-  }
-}
-``` 
-### End-to-End (E2E) Testing
->Trust, but verify.— Navani Kholin, Rhythm of War
-
-Automated testing became another essential addition to my workflow. During development, I encountered a particularly troublesome bug—the inconsistent blog post list issue (detailed [here](/blog/this-website))—which consumed hours of debugging time. Even after resolving the issue, I found myself compulsively checking whether posts were disappearing with each new change. This repetitive manual testing gradually accumulated to significant lost development time. The solution was clear: automate these checks to eliminate both the tedious verification process and the lingering anxiety about regression. With proper automated tests, I could move forward with confidence, knowing any recurrence of the bug would be caught immediately.
-
-After looking into a few testing options, I decided on Cypress.io for my E2E testing. It's open source and completely free. I built tests that automatically check all the things I was manually testing before - especially the blog post list that had given me so much trouble. I then integrated it with my CI/CD pipeline. Now, whenever I push changes, the tests run automatically before deployment. If anything fails, the pipeline stops immediately. No more manual checking after each change.
-
-![Cypress Test Results](/assets/blog/cypress-test-results.png)
-
-## Wrapping Up
-
-Learning Terraform has been not just useful but genuinely enjoyable. After seeing its benefits firsthand, I'm convinced that Infrastructure as Code provides tremendous value for projects of any size—from personal websites to enterprise applications. The most important lesson I've learned, though, is to implement it early. Having now built this foundation, I'm excited to use Terraform in all my future projects.
-
-Cheers!
