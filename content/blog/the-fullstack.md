@@ -122,7 +122,7 @@ This approach delivered several advantages:
 
 Although I was now managing two services instead of one, the total cost per request was still lower than using REST alone, and the extra features made it worthwhile. The initial setup required more complexity, but Terraform made ongoing maintenance straightforward.
 
-::blog-image{src="fullstack-architecture-first.svg" alt="Terraform" caption=""}
+::blog-image{src="fullstack-architecture-first.svg" alt="Inital Fullstack Architecture" caption=""}
 ::
 
 ## Authentication
@@ -136,19 +136,19 @@ Next, I wanted to build some sign-up and login pages for my website, that would 
 | **Pricing (beyond free)** | $0.0055 per MAU | $0.0055 per MAU | $23/month for up to 1,000 MAUs |
 | **Social Providers** | Google, Facebook, Twitter, GitHub, Microsoft | Google, Facebook, Amazon, Apple | 30+ providers including enterprise SSO |
 | **Multi-factor Authentication** | SMS, TOTP, phone calls | SMS, TOTP, hardware tokens | SMS, TOTP, push notifications, biometrics |
-| **Customization** | Limited UI customization | Hosted UI or custom implementation | Highly customizable Universal Login |
-| **Enterprise Features** | SAML, OpenID Connect | SAML, OpenID Connect | Advanced SAML, AD/LDAP, extensive enterprise SSO |
 | **Developer Experience** | Good documentation, Firebase integration | AWS ecosystem integration | Excellent docs, extensive SDKs |
-| **Standout Features** | • Firebase integration<br>• Google ecosystem synergy<br>• Identity-aware proxy | • User Pools + Identity Pools<br>• Fine-grained IAM integration<br>• Amplify framework support | • Rules engine for custom logic<br>• Advanced analytics<br>• Anomaly detection<br>• Extensive marketplace |
-| **Deployment Model** | Google-managed | AWS-managed | SaaS (Auth0-managed) |
 | **Geographic Coverage** | Global with Google infrastructure | Global with AWS regions | Global CDN with edge locations |
 
 I ultimately went with GCP Identity Platform, as it had a higher free tier than Auth0 and I wanted to try and build some stuff on a different cloud provider.
+
+I didn't want to connect directly from my API gateway to Identity Platform, I wanted my own auth domain services layer, where I could orcherstrate the Identity Platform APIs, and also implement my own business logic. I let Identity Platform do alot of the heavy lifting like registering a new user, authenticating the user with email and password, as well as generating and validating the user tokens(JWT).
+
+I did however build my own verify email flows and services, along with forgot password flows and services. This is what made the need for the third tier in the the three tier architecure, The persistance layer. I needed a place to store custom JWT tokens, that could help me verify that the email that requested verification or the forgot password came from the same email. This way someone would need access to the the other peoples email to gain access.
 
 3. Cloudflare
 4. Cloud run
 5. Auth domain, identity platform, firestore
 
-::blog-image{src="fullstack-architecture.svg" alt="Terraform" caption=""}
+::blog-image{src="fullstack-architecture.svg" alt="Fullstack Architecture" caption=""}
 ::
 
