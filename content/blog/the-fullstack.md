@@ -4,7 +4,7 @@ description: Building a comprehensive fullstack architecture with serverless com
 date: 2025-10-27 06:38:23
 toc: true
 keywords: Serverless, API gateway, Cloudflare Workers, Cloud Run, Lambda, Firebase, Identity Platform, edge computing
-image: /assets/blog/fullstack-architecture.svg
+image: /assets/blog/fullstack-architecture.png
 robots: index, follow
 author: Sheldon Hart
 ogTitle: The Fullstack
@@ -131,7 +131,7 @@ This approach delivered several advantages:
 
 Although I was now managing two services instead of one, the total cost per request was still lower than using REST alone, and the extra features made it worthwhile. The initial setup required more complexity, but Terraform made ongoing maintenance straightforward.
 
-::blog-image{src="fullstack-architecture-first.svg" alt="Inital Fullstack Architecture" caption=""}
+::blog-image{src="fullstack-architecture-first.png" alt="Inital Fullstack Architecture" caption=""}
 ::
 
 ## Authentication
@@ -210,7 +210,7 @@ This authentication model ensures my API Gateway remains the only system capable
 | **Configuration Management** | Centralized configuration for different environments and route definitions |
 | **Edge Caching Integration** | Leverages Cloudflare's edge cache for response caching with cache control strategies |
 
-::blog-image{src="fullstack-architecture.svg" alt="Fullstack Architecture" caption=""}
+::blog-image{src="fullstack-architecture.png" alt="Fullstack Architecture" caption=""}
 ::
 
 ## Consolidating with Cloudflare
