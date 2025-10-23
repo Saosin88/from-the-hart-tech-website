@@ -189,7 +189,7 @@ This essentially gave me the power to create my own API gateway from scratch, wh
 
 The one challenge with this approach was that I now had to expose my Cloud Run and Lambda endpoints publicly, which presented a security risk. I wanted my API Gateway to handle the security heavy lifting while letting my services focus purely on business logic. Fortunately, both platforms provide built-in solutions for this exact scenario.
 
-Lambda function URLs support auth type "AWS_IAM", which requires signing requests with specific IAM access keys. For AWS Lambda, the IAM signature is added as an Authorization header containing the calculated SigV4 signature. Cloud Run uses Google ID tokens for authentication, requiring a signed JWT generated with a service account's private key to obtain an ID token from Google's OAuth2 service. For GCP Cloud Run, the ID token is added as a Bearer token in the Authorization header.
+Lambda function URLs support auth type "AWS_IAM", which requires signing requests with specific IAM access keys. For AWS Lambda, the IAM signature is added as an Authorization header. Cloud Run uses Google ID tokens for authentication, requiring a signed JWT generated with a service account's private key to obtain an ID token from Google's OAuth2 service. For GCP Cloud Run, the ID token is added as a Bearer token in the Authorization header.
 
 This authentication model ensures my API Gateway remains the only system capable of invoking these APIs, as it securely stores the necessary credentials and keys as environmental secrets on Cloudflare. Any direct access attempts result in a 403 forbidden response, effectively creating a secure perimeter around my services.
 
