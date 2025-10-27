@@ -107,6 +107,8 @@ export function useAuthController() {
     const response = await useAuthAPI().refreshToken()
     if (response.success && response.data && response.data.idToken) {
       setAccessToken(response.data.idToken)
+    } else {
+      clearAccessToken()
     }
     return response
   }
