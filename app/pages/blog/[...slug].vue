@@ -104,6 +104,7 @@
     keywords: post?.keywords,
     robots: post?.robots,
     author: post?.author,
+    ogTitle: post?.ogTitle,
     ogDescription: post?.ogDescription,
     ogImage: post?.ogImage,
     ogUrl: post?.ogUrl,

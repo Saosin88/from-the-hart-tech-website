@@ -1,7 +1,7 @@
 ---
 title: The Fullstack
 description: Building a comprehensive fullstack architecture with serverless computing, multi-cloud services, and custom API gateway. Covers AWS Lambda, GCP Cloud Run, Cloudflare Workers, authentication systems, Docker containers, and cost optimization strategies.
-date: 2025-10-27 06:38:23
+date: 2025-10-27 18:01:23
 toc: true
 keywords: Serverless, API gateway, Cloudflare Workers, Cloud Run, Lambda, Firebase, Identity Platform, edge computing
 image: /assets/blog/fullstack-architecture.png
