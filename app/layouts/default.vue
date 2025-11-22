@@ -144,6 +144,12 @@
         to: '/user/profile',
         onSelect: closeMenu,
       },
+      {
+        label: 'Storage',
+        icon: 'lucide:hard-drive',
+        to: '/storage',
+        onSelect: closeMenu,
+      },
     ],
   ])
 </script>

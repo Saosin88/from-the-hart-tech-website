@@ -79,6 +79,16 @@ export function useAuthController() {
     return decoded.email || null
   }
 
+  function getUserID(): string | null {
+    const token = getAccessToken()
+    if (!token) return null
+
+    const decoded = decodeToken(token)
+    if (!decoded) return null
+
+    return decoded.user_id || null
+  }
+
   async function register(email: string, password: string, turnstileToken: string) {
     const response = await useAuthAPI().register(email, password, turnstileToken)
     if (response.success && response.data && response.data.idToken) {
@@ -129,6 +139,7 @@ export function useAuthController() {
     isAccessTokenValid,
     isEmailVerified,
     getUserEmail,
+    getUserID,
     register,
     login,
     verifyEmail,

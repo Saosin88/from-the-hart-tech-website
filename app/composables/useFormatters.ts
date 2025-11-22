@@ -149,6 +149,16 @@ export function useFormatters() {
     return `Password must contain ${requirements.join(', ')}`
   }
 
+  function formatFileSize(bytes: number): string {
+    if (bytes === 0) return '0 Bytes'
+
+    const k = 1024
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
+    const i = Math.floor(Math.log(bytes) / Math.log(k))
+
+    return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + ' ' + sizes[i]
+  }
+
   return {
     formatDate,
     formatDateInAgoTerms,
@@ -158,5 +168,6 @@ export function useFormatters() {
     isValidEmail,
     validatePassword,
     getPasswordError,
+    formatFileSize,
   }
 }
