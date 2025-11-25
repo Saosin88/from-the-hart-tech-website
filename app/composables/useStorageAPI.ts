@@ -4,8 +4,12 @@ export function useStorageAPI() {
 
   async function getFilesAndFolders(urlPath: string) {
     try {
+      const accessToken = useAuthController().getAccessToken() || ''
       const response = await fetch(`${baseUrl}/${urlPath}`, {
         method: 'GET',
+        headers: {
+          ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}),
+        },
       })
 
       const data = await response.json()

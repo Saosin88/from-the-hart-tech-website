@@ -6,9 +6,6 @@ export function useAuthAPI() {
     try {
       const response = await fetch(`${baseUrl}/auth/health`, {
         method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
       })
 
       const data = await response.json()
@@ -114,7 +111,6 @@ export function useAuthAPI() {
       const response = await fetch(`${baseUrl}/auth/resend-verification`, {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json',
           ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}),
         },
       })
@@ -194,9 +190,6 @@ export function useAuthAPI() {
     try {
       const response = await fetch(`${baseUrl}/auth/refresh-token`, {
         method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
         credentials: 'include',
       })
 
@@ -220,9 +213,6 @@ export function useAuthAPI() {
     try {
       const response = await fetch(`${baseUrl}/auth/logout`, {
         method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
       })
 
       const data = await response.json()

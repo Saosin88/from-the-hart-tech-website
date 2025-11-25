@@ -7,9 +7,6 @@ export function useProjectsAPI() {
     try {
       const response = await fetch(`${config.public.fromTheHartAPIBaseUrl}/projects/health`, {
         method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
       })
 
       const data = await response.json()
