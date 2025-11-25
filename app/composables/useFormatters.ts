@@ -159,6 +159,33 @@ export function useFormatters() {
     return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + ' ' + sizes[i]
   }
 
+  function formatDuration(seconds: number): string {
+    if (!seconds || seconds < 0) return '0s'
+
+    const hours = Math.floor(seconds / 3600)
+    const minutes = Math.floor((seconds % 3600) / 60)
+    const secs = Math.floor(seconds % 60)
+
+    const parts: string[] = []
+    if (hours > 0) parts.push(`${hours}h`)
+    if (minutes > 0) parts.push(`${minutes}m`)
+    if (secs > 0 || parts.length === 0) parts.push(`${secs}s`)
+
+    return parts.join(' ')
+  }
+
+  function getFileExtension(filename: string): string {
+    if (!filename) return ''
+    const lastDot = filename.lastIndexOf('.')
+    return lastDot !== -1 ? filename.substring(lastDot + 1).toLowerCase() : ''
+  }
+
+  function isImageFile(contentType?: string, mediaType?: string): boolean {
+    if (mediaType?.toLowerCase() === 'image') return true
+    if (contentType?.startsWith('image/')) return true
+    return false
+  }
+
   return {
     formatDate,
     formatDateInAgoTerms,
@@ -169,5 +196,8 @@ export function useFormatters() {
     validatePassword,
     getPasswordError,
     formatFileSize,
+    formatDuration,
+    getFileExtension,
+    isImageFile,
   }
 }
