@@ -69,12 +69,7 @@
       </div>
     </div>
 
-    <StorageFileViewer
-      v-if="showFileViewer && currentFilePath"
-      :file-path="currentFilePath"
-      :is-open="showFileViewer"
-      @close="handleViewerClose"
-    />
+    <StorageFileViewer v-if="showFileViewer && currentFilePath" :file-path="currentFilePath" :is-open="showFileViewer" @close="handleViewerClose" />
   </div>
 </template>
 
@@ -134,13 +129,13 @@
       loading.value = true
       error.value = null
 
-      const result = await useStorageAPI().getFilesAndFolders(`storage/${apiPath.value}`)
+      const result = await useStorageController().getFilesAndFolders(`storage/${apiPath.value}`)
 
-      if (result.success && result.data) {
+      if (result.success) {
         items.value = result.data.items || []
         nextCursor.value = result.data.next_cursor || null
       } else {
-        error.value = result.error || 'Failed to load files and folders'
+        error.value = result.error
       }
     } catch (err) {
       console.error('Error loading files and folders:', err)
@@ -155,9 +150,9 @@
 
     try {
       loadingMore.value = true
-      const result = await useStorageAPI().getFilesAndFolders(`storage/${apiPath.value}?cursor=${nextCursor.value}`)
+      const result = await useStorageController().getFilesAndFolders(`storage/${apiPath.value}?cursor=${nextCursor.value}`)
 
-      if (result.success && result.data) {
+      if (result.success) {
         items.value = [...items.value, ...(result.data.items || [])]
         nextCursor.value = result.data.next_cursor || null
       }

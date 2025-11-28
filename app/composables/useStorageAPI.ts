@@ -1,143 +1,62 @@
-import type { FileMetadata, StorageAccessResponse } from '~/app/types/storage'
-
-const STORAGE_TOKEN_KEY = 'from_the_hart_storage_access_expires_at'
-const TOKEN_BUFFER_SECONDS = 300
+import type { StorageListResponse, FileMetadata, StorageAccessResponse, Result } from '~/app/types/storage'
 
 export function useStorageAPI() {
   const config = useRuntimeConfig()
   const baseUrl = config.public.fromTheHartAPIBaseUrl
+  const authController = useAuthController()
 
-  async function getFilesAndFolders(urlPath: string) {
+  async function fetchAPI<T>(
+    path: string,
+    options: { credentials?: RequestCredentials } = {}
+  ): Promise<Result<T>> {
     try {
-      const accessToken = useAuthController().getAccessToken() || ''
-      const response = await fetch(`${baseUrl}/${urlPath}`, {
-        method: 'GET',
-        headers: {
-          ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}),
-        },
-      })
+      const accessToken = authController.getAccessToken()
 
-      const data = await response.json()
-      return {
-        success: response.ok,
-        data: response.ok ? data.data : null,
-        error: response.ok ? null : data.error?.message || 'Getting files and folders failed. Please try again.',
-      }
-    } catch (error) {
-      console.error('Error during getting files and folders:', error)
-      return {
-        success: false,
-        data: null,
-        error: 'An unexpected error occurred. Please try again later.',
-      }
-    }
-  }
-
-  async function getStorageAccess() {
-    try {
-      const accessToken = useAuthController().getAccessToken() || ''
-      const response = await fetch(`${baseUrl}/storage/access`, {
-        method: 'GET',
-        headers: {
-          ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}),
-        },
-        credentials: 'include',
-      })
-
-      const data = await response.json()
-
-      if (response.ok && data.data?.expires_at) {
-        if (import.meta.client) {
-          localStorage.setItem(STORAGE_TOKEN_KEY, data.data.expires_at.toString())
-        }
-        return {
-          success: true,
-          data: data.data as StorageAccessResponse,
-          error: null,
-        }
-      }
-
-      return {
-        success: false,
-        data: null,
-        error: data.error?.message || 'Failed to get storage access.',
-      }
-    } catch (error) {
-      console.error('Error getting storage access:', error)
-      return {
-        success: false,
-        data: null,
-        error: 'An unexpected error occurred while getting storage access.',
-      }
-    }
-  }
-
-  function areStorageTokensValid(): boolean {
-    if (!import.meta.client) return false
-
-    const expiresAtStr = localStorage.getItem(STORAGE_TOKEN_KEY)
-    if (!expiresAtStr) return false
-
-    const expiresAt = parseInt(expiresAtStr, 10)
-    if (isNaN(expiresAt)) return false
-
-    const currentTime = Math.floor(Date.now() / 1000)
-    const expiryWithBuffer = expiresAt - TOKEN_BUFFER_SECONDS
-
-    return currentTime < expiryWithBuffer
-  }
-
-  async function getFileMetadata(path: string) {
-    try {
-      if (!areStorageTokensValid()) {
-        const accessResult = await getStorageAccess()
-        if (!accessResult.success) {
-          return {
-            success: false,
-            data: null,
-            error: accessResult.error || 'Failed to refresh storage access.',
-          }
-        }
-      }
-
-      const accessToken = useAuthController().getAccessToken() || ''
       const response = await fetch(`${baseUrl}/${path}`, {
         method: 'GET',
         headers: {
-          ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}),
+          ...(accessToken && { Authorization: `Bearer ${accessToken}` }),
         },
-        credentials: 'include',
+        ...options,
       })
 
-      const data = await response.json()
-
-      if (response.ok && data.data) {
-        return {
-          success: true,
-          data: data.data as FileMetadata,
-          error: null,
+      if (!response.ok) {
+        let errorMessage = 'Request failed. Please try again.'
+        try {
+          const errorData = await response.json()
+          errorMessage = errorData.error?.message || errorMessage
+        } catch {
+          errorMessage = `Request failed with status ${response.status}`
         }
+        return { success: false, error: errorMessage }
       }
 
-      return {
-        success: false,
-        data: null,
-        error: data.error?.message || 'Failed to get file metadata.',
-      }
+      const data = await response.json()
+      return { success: true, data: data.data }
     } catch (error) {
-      console.error('Error getting file metadata:', error)
-      return {
-        success: false,
-        data: null,
-        error: 'An unexpected error occurred while getting file metadata.',
+      console.error('API error:', error)
+      if (error instanceof TypeError && error.message.includes('fetch')) {
+        return { success: false, error: 'Network error. Please check your connection.' }
       }
+      return { success: false, error: 'An unexpected error occurred. Please try again later.' }
     }
+  }
+
+  async function getFilesAndFolders(urlPath: string): Promise<Result<StorageListResponse>> {
+    return fetchAPI<StorageListResponse>(urlPath)
+  }
+
+  async function getStorageAccess(): Promise<Result<StorageAccessResponse>> {
+    return fetchAPI<StorageAccessResponse>('storage/access', { credentials: 'include' })
+  }
+
+  async function getFileMetadata(path: string): Promise<Result<FileMetadata>> {
+    return fetchAPI<FileMetadata>(path, { credentials: 'include' })
   }
 
   return {
     getFilesAndFolders,
     getStorageAccess,
-    areStorageTokensValid,
     getFileMetadata,
   }
 }

@@ -1,48 +1,44 @@
-import type { GitHubRepo } from '~/app/types/projects'
+import type { GitHubRepo, HealthCheckResponse, ProjectsResult } from '~/app/types/projects'
 
 export function useProjectsAPI() {
   const config = useRuntimeConfig()
+  const baseUrl = config.public.fromTheHartAPIBaseUrl
 
-  async function healthCheck() {
+  async function fetchAPI<T>(path: string, options: RequestInit = {}): Promise<ProjectsResult<T>> {
     try {
-      const response = await fetch(`${config.public.fromTheHartAPIBaseUrl}/projects/health`, {
+      const response = await fetch(`${baseUrl}/${path}`, {
         method: 'GET',
+        ...options,
       })
 
+      if (!response.ok) {
+        let errorMessage = 'Request failed. Please try again.'
+        try {
+          const errorData = await response.json()
+          errorMessage = errorData.error?.message || errorMessage
+        } catch {
+          errorMessage = `Request failed with status ${response.status}`
+        }
+        return { success: false, error: errorMessage }
+      }
+
       const data = await response.json()
-      return {
-        success: response.ok,
-        data: response.ok ? data.data : null,
-        error: response.ok ? null : data.error?.message || 'Health check failed',
-      }
+      return { success: true, data: data.data }
     } catch (error) {
-      console.error('Error during health check', error)
-      return {
-        success: false,
-        data: null,
-        error: 'An unexpected error occurred. Please try again later.',
+      console.error('API error:', error)
+      if (error instanceof TypeError && error.message.includes('fetch')) {
+        return { success: false, error: 'Network error. Please check your connection.' }
       }
+      return { success: false, error: 'An unexpected error occurred. Please try again later.' }
     }
   }
 
-  async function getGitHubRepos() {
-    try {
-      const response = await fetch(`${config.public.fromTheHartAPIBaseUrl}/projects/github/Saosin88`)
-      const data = await response.json()
+  async function healthCheck(): Promise<ProjectsResult<HealthCheckResponse>> {
+    return fetchAPI<HealthCheckResponse>('projects/health')
+  }
 
-      return {
-        success: response.ok,
-        data: data.data || [],
-        error: response.ok ? null : 'Failed to fetch GitHub repositories',
-      }
-    } catch (error) {
-      console.error('Error fetching GitHub repositories:', error)
-      return {
-        success: false,
-        data: [],
-        error: 'Unable to connect to the server. Please check your internet connection and try again.',
-      }
-    }
+  async function getGitHubRepos(): Promise<ProjectsResult<GitHubRepo[]>> {
+    return fetchAPI<GitHubRepo[]>('projects/github/Saosin88')
   }
 
   return {

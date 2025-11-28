@@ -1,9 +1,12 @@
 import { jwtDecode } from 'jwt-decode'
+import type { AuthResult, LoginResponse, RegisterResponse, VerifyEmailResponse, RefreshTokenResponse } from '~/app/types/auth'
 
 let accessToken: string | null = null
 const tokenRefreshLoading = ref(false)
 
 export function useAuthController() {
+  const api = useAuthAPI()
+
   function setTokenRefreshLoading(value: boolean) {
     tokenRefreshLoading.value = value
   }
@@ -52,11 +55,7 @@ export function useAuthController() {
     if (!decoded) return false
 
     const currentTime = Date.now() / 1000
-    if (decoded.exp && decoded.exp > currentTime) {
-      return true
-    } else {
-      return false
-    }
+    return decoded.exp ? decoded.exp > currentTime : false
   }
 
   function isEmailVerified(): boolean {
@@ -89,33 +88,38 @@ export function useAuthController() {
     return decoded.user_id || null
   }
 
-  async function register(email: string, password: string, turnstileToken: string) {
-    const response = await useAuthAPI().register(email, password, turnstileToken)
-    if (response.success && response.data && response.data.idToken) {
+  async function register(email: string, password: string, turnstileToken: string): Promise<AuthResult<RegisterResponse>> {
+    const response = await api.register(email, password, turnstileToken)
+    if (response.success) {
       setAccessToken(response.data.idToken)
     }
     return response
   }
 
-  async function login(email: string, password: string, turnstileToken: string, returnRefreshToken: boolean = false) {
-    const response = await useAuthAPI().login(email, password, turnstileToken, returnRefreshToken)
-    if (response.success && response.data && response.data.idToken) {
+  async function login(
+    email: string,
+    password: string,
+    turnstileToken: string,
+    returnRefreshToken: boolean = false
+  ): Promise<AuthResult<LoginResponse>> {
+    const response = await api.login(email, password, turnstileToken, returnRefreshToken)
+    if (response.success) {
       setAccessToken(response.data.idToken)
     }
     return response
   }
 
-  async function verifyEmail(token: string) {
-    const response = await useAuthAPI().verifyEmail(token)
-    if (response.success && response.data && response.data.idToken) {
+  async function verifyEmail(token: string): Promise<AuthResult<VerifyEmailResponse>> {
+    const response = await api.verifyEmail(token)
+    if (response.success) {
       setAccessToken(response.data.idToken)
     }
     return response
   }
 
-  async function refreshToken() {
-    const response = await useAuthAPI().refreshToken()
-    if (response.success && response.data && response.data.idToken) {
+  async function refreshToken(): Promise<AuthResult<RefreshTokenResponse>> {
+    const response = await api.refreshToken()
+    if (response.success) {
       setAccessToken(response.data.idToken)
     } else {
       clearAccessToken()
@@ -125,7 +129,7 @@ export function useAuthController() {
 
   async function logout() {
     clearAccessToken()
-    await useAuthAPI().logout()
+    await api.logout()
   }
 
   return {

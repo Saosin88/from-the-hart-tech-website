@@ -1,50 +1,19 @@
 <template>
-  <Transition
-    enter-active-class="transition-opacity duration-300"
-    leave-active-class="transition-opacity duration-300"
-    enter-from-class="opacity-0"
-    leave-to-class="opacity-0"
-  >
-    <div
-      v-if="isOpen"
-      class="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm"
-      @click.self="close"
-    >
+  <Transition enter-active-class="transition-opacity duration-300" leave-active-class="transition-opacity duration-300" enter-from-class="opacity-0" leave-to-class="opacity-0">
+    <div v-if="isOpen" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm" @click.self="close">
       <div class="absolute inset-0 flex flex-col">
         <div class="absolute top-0 left-0 right-0 bg-gradient-to-b from-black/60 to-transparent z-10">
           <div class="flex items-center justify-between p-4">
             <div class="flex items-center space-x-3 flex-1 min-w-0">
-              <UButton
-                icon="lucide:x"
-                color="white"
-                variant="ghost"
-                size="lg"
-                @click="close"
-                aria-label="Close viewer"
-              />
+              <UButton icon="lucide:x" color="neutral" variant="ghost" size="lg" @click="close" aria-label="Close viewer" />
               <h2 class="text-lg font-medium text-white truncate">
                 {{ fileMetadata?.file_name || 'Loading...' }}
               </h2>
             </div>
 
             <div class="flex items-center space-x-2">
-              <UButton
-                v-if="fileMetadata"
-                icon="lucide:download"
-                color="white"
-                variant="ghost"
-                size="lg"
-                @click="downloadFile"
-                aria-label="Download file"
-              />
-              <UButton
-                icon="lucide:info"
-                color="white"
-                variant="ghost"
-                size="lg"
-                @click="toggleInfo"
-                :aria-label="showInfo ? 'Hide info' : 'Show info'"
-              />
+              <UButton v-if="fileMetadata" icon="lucide:download" color="neutral" variant="ghost" size="lg" @click="downloadFile" aria-label="Download file" />
+              <UButton icon="lucide:info" color="neutral" variant="ghost" size="lg" @click="toggleInfo" :aria-label="showInfo ? 'Hide info' : 'Show info'" />
             </div>
           </div>
         </div>
@@ -58,16 +27,12 @@
           <div v-else-if="error" class="text-center max-w-md">
             <UIcon name="lucide:alert-circle" class="w-16 h-16 text-red-400 mx-auto mb-4" />
             <p class="text-white text-lg mb-4">{{ error }}</p>
-            <UButton color="white" @click="close"> Close </UButton>
+            <UButton color="neutral" @click="close"> Close </UButton>
           </div>
 
           <div v-else-if="fileMetadata">
             <div v-if="isImage" class="relative">
-              <div
-                v-if="imageLoading"
-                class="flex items-center justify-center"
-                style="min-width: 200px; min-height: 200px"
-              >
+              <div v-if="imageLoading" class="flex items-center justify-center" style="min-width: 200px; min-height: 200px">
                 <UIcon name="lucide:loader-2" class="w-12 h-12 animate-spin text-white" />
               </div>
               <img
@@ -84,26 +49,16 @@
               <UIcon name="lucide:file" class="w-24 h-24 text-neutral-400 mx-auto mb-6" />
               <h3 class="text-white text-xl font-medium mb-2">{{ fileMetadata.file_name }}</h3>
               <p class="text-neutral-300 mb-6">
-                {{ formatters.formatFileSize(fileMetadata.size_bytes) }}
+                {{ useFormatters().formatFileSize(fileMetadata.size_bytes) }}
               </p>
-              <UButton icon="lucide:download" color="primary" size="lg" @click="downloadFile">
-                Download File
-              </UButton>
+              <UButton icon="lucide:download" color="primary" size="lg" @click="downloadFile"> Download File </UButton>
             </div>
           </div>
         </div>
       </div>
 
-      <Transition
-        enter-active-class="transition-transform duration-300"
-        leave-active-class="transition-transform duration-300"
-        enter-from-class="translate-x-full"
-        leave-to-class="translate-x-full"
-      >
-        <div
-          v-if="showInfo && fileMetadata"
-          class="absolute top-0 right-0 bottom-0 w-80 bg-neutral-900/95 backdrop-blur-md border-l border-neutral-700 overflow-y-auto"
-        >
+      <Transition enter-active-class="transition-transform duration-300" leave-active-class="transition-transform duration-300" enter-from-class="translate-x-full" leave-to-class="translate-x-full">
+        <div v-if="showInfo && fileMetadata" class="absolute top-0 right-0 bottom-0 w-80 bg-neutral-900/95 backdrop-blur-md border-l border-neutral-700 overflow-y-auto">
           <div class="p-6">
             <h3 class="text-lg font-semibold text-white mb-6">File Information</h3>
 
@@ -115,7 +70,7 @@
 
               <div>
                 <p class="text-sm text-neutral-400 mb-1">Size</p>
-                <p class="text-sm text-white">{{ formatters.formatFileSize(fileMetadata.size_bytes) }}</p>
+                <p class="text-sm text-white">{{ useFormatters().formatFileSize(fileMetadata.size_bytes) }}</p>
               </div>
 
               <div>
@@ -125,25 +80,18 @@
 
               <div>
                 <p class="text-sm text-neutral-400 mb-1">Created</p>
-                <p class="text-sm text-white">{{ formatters.formatDate(new Date(fileMetadata.created_date)) }}</p>
+                <p class="text-sm text-white">{{ useFormatters().formatDate(new Date(fileMetadata.created_date)) }}</p>
               </div>
 
-              <div
-                v-if="
-                  fileMetadata.media_metadata?.width &&
-                  fileMetadata.media_metadata?.height
-                "
-              >
+              <div v-if="fileMetadata.media_metadata?.width && fileMetadata.media_metadata?.height">
                 <p class="text-sm text-neutral-400 mb-1">Dimensions</p>
-                <p class="text-sm text-white">
-                  {{ fileMetadata.media_metadata.width }} x {{ fileMetadata.media_metadata.height }}
-                </p>
+                <p class="text-sm text-white">{{ fileMetadata.media_metadata.width }} x {{ fileMetadata.media_metadata.height }}</p>
               </div>
 
               <div v-if="fileMetadata.media_metadata?.duration">
                 <p class="text-sm text-neutral-400 mb-1">Duration</p>
                 <p class="text-sm text-white">
-                  {{ formatters.formatDuration(fileMetadata.media_metadata.duration) }}
+                  {{ useFormatters().formatDuration(fileMetadata.media_metadata.duration) }}
                 </p>
               </div>
             </div>
@@ -166,9 +114,6 @@
     close: []
   }>()
 
-  const formatters = useFormatters()
-  const storageAPI = useStorageAPI()
-
   const fileMetadata = ref<FileMetadata | null>(null)
   const loading = ref(true)
   const error = ref<string | null>(null)
@@ -176,7 +121,7 @@
   const imageLoading = ref(true)
 
   const isImage = computed(() => {
-    return formatters.isImageFile(fileMetadata.value?.content_type, fileMetadata.value?.media_type)
+    return useFormatters().isImageFile(fileMetadata.value?.content_type, fileMetadata.value?.media_type)
   })
 
   async function loadFile() {
@@ -185,12 +130,12 @@
       error.value = null
       imageLoading.value = true
 
-      const result = await storageAPI.getFileMetadata(props.filePath)
+      const result = await useStorageController().getFileMetadata(props.filePath)
 
-      if (result.success && result.data) {
+      if (result.success) {
         fileMetadata.value = result.data
       } else {
-        error.value = result.error || 'Failed to load file'
+        error.value = result.error
       }
     } catch (err) {
       console.error('Error loading file:', err)
@@ -227,7 +172,7 @@
 
   watch(
     () => props.isOpen,
-    (newValue) => {
+    newValue => {
       if (newValue) {
         loadFile()
         showInfo.value = false
@@ -237,6 +182,6 @@
         imageLoading.value = true
       }
     },
-    { immediate: true }
+    { immediate: true },
   )
 </script>

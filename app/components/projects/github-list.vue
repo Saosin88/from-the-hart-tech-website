@@ -114,7 +114,7 @@
     error.value = null
 
     try {
-      const result = await useProjectsAPI().getGitHubRepos()
+      const result = await useProjectsController().getGitHubRepos()
 
       if (result.success) {
         repos.value = [...result.data].sort((a, b) => b.stargazers_count - a.stargazers_count)

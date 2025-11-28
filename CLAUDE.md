@@ -92,3 +92,4 @@ aws cloudfront create-invalidation --distribution-id ID --paths "/*"
 - **Infrastructure:** Terraform for S3, CloudFront, Cloudflare DNS
 - **API Reverse Proxy:** Routes API requests
 - **Projects API:** Provides project data
+- Composable in nuxt do not need to be imported, it is auto imported by nuxt

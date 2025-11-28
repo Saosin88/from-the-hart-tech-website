@@ -1,3 +1,5 @@
+export type { Result } from './common'
+
 export interface MediaMetadata {
   width?: number
   height?: number

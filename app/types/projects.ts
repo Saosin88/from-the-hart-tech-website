@@ -1,3 +1,5 @@
+import type { Result } from './common'
+
 export interface GitHubRepo {
   id: number
   name: string
@@ -7,3 +9,9 @@ export interface GitHubRepo {
   language: string | null
   updated_at: string
 }
+
+export interface HealthCheckResponse {
+  status: string
+}
+
+export type ProjectsResult<T> = Result<T>

@@ -1,234 +1,131 @@
+import type {
+  RegisterResponse,
+  LoginResponse,
+  VerifyEmailResponse,
+  RefreshTokenResponse,
+  HealthCheckResponse,
+  ForgotPasswordResponse,
+  ResetPasswordResponse,
+  ResendVerificationResponse,
+  LogoutResponse,
+  AuthResult,
+} from '~/app/types/auth'
+
 export function useAuthAPI() {
   const config = useRuntimeConfig()
   const baseUrl = config.public.fromTheHartAPIBaseUrl
 
-  async function healthCheck() {
+  async function fetchAPI<T>(
+    path: string,
+    options: RequestInit = {}
+  ): Promise<AuthResult<T>> {
     try {
-      const response = await fetch(`${baseUrl}/auth/health`, {
+      const response = await fetch(`${baseUrl}/${path}`, {
         method: 'GET',
+        ...options,
       })
 
+      if (!response.ok) {
+        let errorMessage = 'Request failed. Please try again.'
+        try {
+          const errorData = await response.json()
+          errorMessage = errorData.error?.message || errorMessage
+        } catch {
+          errorMessage = `Request failed with status ${response.status}`
+        }
+        return { success: false, error: errorMessage }
+      }
+
       const data = await response.json()
-      return {
-        success: response.ok,
-        data: response.ok ? data.data : null,
-        error: response.ok ? null : data.error?.message || 'Health check failed',
-      }
+      return { success: true, data: data.data }
     } catch (error) {
-      console.error('Error during health check', error)
-      return {
-        success: false,
-        data: null,
-        error: 'An unexpected error occurred. Please try again later.',
+      console.error('API error:', error)
+      if (error instanceof TypeError && error.message.includes('fetch')) {
+        return { success: false, error: 'Network error. Please check your connection.' }
       }
+      return { success: false, error: 'An unexpected error occurred. Please try again later.' }
     }
   }
 
-  async function register(email: string, password: string, turnstileToken: string) {
-    try {
-      const response = await fetch(`${baseUrl}/auth/register`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CF-Turnstile-Token': turnstileToken,
-        },
-        body: JSON.stringify({ email, password }),
-      })
-
-      const data = await response.json()
-      return {
-        success: response.ok,
-        data: response.ok ? data.data : null,
-        error: response.ok ? null : data.error?.message || 'Registration failed. Please try again.',
-      }
-    } catch (error) {
-      console.error('Error during registration:', error)
-      return {
-        success: false,
-        data: null,
-        error: 'An unexpected error occurred. Please try again later.',
-      }
-    }
+  async function healthCheck(): Promise<AuthResult<HealthCheckResponse>> {
+    return fetchAPI<HealthCheckResponse>('auth/health')
   }
 
-  async function login(email: string, password: string, turnstileToken: string, returnRefreshToken: boolean = false) {
-    try {
-      const response = await fetch(`${baseUrl}/auth/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CF-Turnstile-Token': turnstileToken,
-        },
-        body: JSON.stringify({ email, password, returnRefreshToken }),
-        credentials: 'include',
-      })
-
-      const data = await response.json()
-      return {
-        success: response.ok,
-        data: response.ok ? data.data : null,
-        error: response.ok ? null : data.error?.message || 'Invalid email or password',
-      }
-    } catch (error) {
-      console.error('Error logging in:', error)
-      return {
-        success: false,
-        data: null,
-        error: 'An unexpected error occurred. Please try again later.',
-      }
-    }
+  async function register(email: string, password: string, turnstileToken: string): Promise<AuthResult<RegisterResponse>> {
+    return fetchAPI<RegisterResponse>('auth/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CF-Turnstile-Token': turnstileToken,
+      },
+      body: JSON.stringify({ email, password }),
+    })
   }
 
-  async function forgotPassword(email: string, turnstileToken: string) {
-    try {
-      const response = await fetch(`${baseUrl}/auth/forgot-password`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CF-Turnstile-Token': turnstileToken,
-        },
-        body: JSON.stringify({ email }),
-      })
-
-      const data = await response.json()
-      return {
-        success: response.ok,
-        data: response.ok ? data.data : null,
-        error: response.ok ? null : data.error?.message || 'An error occurred while sending the password reset email. Please try again.',
-      }
-    } catch (error) {
-      console.error('Error sending password reset email:', error)
-      return {
-        success: false,
-        data: null,
-        error: 'An unexpected error occurred. Please try again later.',
-      }
-    }
+  async function login(
+    email: string,
+    password: string,
+    turnstileToken: string,
+    returnRefreshToken: boolean = false
+  ): Promise<AuthResult<LoginResponse>> {
+    return fetchAPI<LoginResponse>('auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CF-Turnstile-Token': turnstileToken,
+      },
+      body: JSON.stringify({ email, password, returnRefreshToken }),
+      credentials: 'include',
+    })
   }
 
-  async function resendVerificationEmail(accessToken: string) {
-    try {
-      const response = await fetch(`${baseUrl}/auth/resend-verification`, {
-        method: 'GET',
-        headers: {
-          ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}),
-        },
-      })
-
-      const data = await response.json()
-      return {
-        success: response.ok,
-        data: response.ok ? data.data : null,
-        error: response.ok ? null : data.error?.message || 'An error occurred while sending the verification email. Please try again.',
-      }
-    } catch (error) {
-      console.error('Error resending verification:', error)
-      return {
-        success: false,
-        data: null,
-        error: 'An unexpected error occurred. Please try again later.',
-      }
-    }
+  async function forgotPassword(email: string, turnstileToken: string): Promise<AuthResult<ForgotPasswordResponse>> {
+    return fetchAPI<ForgotPasswordResponse>('auth/forgot-password', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CF-Turnstile-Token': turnstileToken,
+      },
+      body: JSON.stringify({ email }),
+    })
   }
 
-  async function verifyEmail(token: string) {
-    try {
-      const response = await fetch(`${baseUrl}/auth/verify-email`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ token }),
-      })
-
-      const data = await response.json()
-      return {
-        success: response.ok,
-        data: response.ok ? data.data : null,
-        error: response.ok ? null : data.error?.message || 'Failed to verify your email. Please request a new verification link.',
-      }
-    } catch (error) {
-      console.error('Error verifying email:', error)
-      return {
-        success: false,
-        data: null,
-        error: 'An unexpected error occurred. Please try again later.',
-      }
-    }
+  async function resendVerificationEmail(accessToken: string): Promise<AuthResult<ResendVerificationResponse>> {
+    return fetchAPI<ResendVerificationResponse>('auth/resend-verification', {
+      headers: {
+        ...(accessToken && { Authorization: `Bearer ${accessToken}` }),
+      },
+    })
   }
 
-  async function resetPassword(token: string, password: string) {
-    try {
-      const response = await fetch(`${baseUrl}/auth/reset-password`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          token,
-          password,
-        }),
-      })
-
-      const data = await response.json()
-      return {
-        success: response.ok,
-        data: response.ok ? data.data : null,
-        error: response.ok ? null : data.error?.message || 'Failed to reset your password. Please try again or request a new reset link.',
-      }
-    } catch (error) {
-      console.error('Error resetting password:', error)
-      return {
-        success: false,
-        data: null,
-        error: 'An unexpected error occurred. Please try again later.',
-      }
-    }
+  async function verifyEmail(token: string): Promise<AuthResult<VerifyEmailResponse>> {
+    return fetchAPI<VerifyEmailResponse>('auth/verify-email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ token }),
+    })
   }
 
-  async function refreshToken() {
-    try {
-      const response = await fetch(`${baseUrl}/auth/refresh-token`, {
-        method: 'GET',
-        credentials: 'include',
-      })
-
-      const data = await response.json()
-      return {
-        success: response.ok,
-        data: response.ok ? data.data : null,
-        error: response.ok ? null : data.error?.message || 'Failed to refresh token',
-      }
-    } catch (error) {
-      console.error('Error getting refresh token:', error)
-      return {
-        success: false,
-        data: null,
-        error: 'An unexpected error occurred. Please try again later.',
-      }
-    }
+  async function resetPassword(token: string, password: string): Promise<AuthResult<ResetPasswordResponse>> {
+    return fetchAPI<ResetPasswordResponse>('auth/reset-password', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ token, password }),
+    })
   }
 
-  async function logout() {
-    try {
-      const response = await fetch(`${baseUrl}/auth/logout`, {
-        method: 'GET',
-      })
+  async function refreshToken(): Promise<AuthResult<RefreshTokenResponse>> {
+    return fetchAPI<RefreshTokenResponse>('auth/refresh-token', {
+      credentials: 'include',
+    })
+  }
 
-      const data = await response.json()
-      return {
-        success: response.ok,
-        data: response.ok ? data.data : null,
-        error: response.ok ? null : data.error?.message || 'Failed to logout',
-      }
-    } catch (error) {
-      console.error('Error during logout:', error)
-      return {
-        success: false,
-        data: null,
-        error: 'An unexpected error occurred. Please try again later.',
-      }
-    }
+  async function logout(): Promise<AuthResult<LogoutResponse>> {
+    return fetchAPI<LogoutResponse>('auth/logout')
   }
 
   return {
