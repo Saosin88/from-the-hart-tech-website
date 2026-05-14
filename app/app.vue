@@ -10,7 +10,9 @@
   //wakeup possible cold services
   try {
     useAuthAPI().healthCheck()
-  } catch (e) {}
+  } catch (e) {
+    console.warn('Health check failed:', e)
+  }
 
   useHead({
     htmlAttrs: {

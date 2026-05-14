@@ -20,6 +20,10 @@ export default defineNuxtConfig({
 
   modules: ['@nuxtjs/sitemap', '@nuxt/content', '@nuxt/ui', '@nuxt/image', '@nuxtjs/turnstile'],
 
+  sitemap: {
+    zeroRuntime: true,
+  },
+
   runtimeConfig: {
     public: {
       fromTheHartAPIBaseUrl: process.env.FROM_THE_HART_API_BASE_URL || 'https://api.fromthehart.tech',
@@ -48,11 +52,17 @@ export default defineNuxtConfig({
     '/user/**': {
       prerender: false,
     },
+    '/storage/**': {
+      prerender: false,
+    },
   },
 
   css: ['~/assets/css/main.css'],
 
   content: {
+    experimental: {
+      sqliteConnector: 'native',
+    },
     build: {
       markdown: {
         highlight: {
