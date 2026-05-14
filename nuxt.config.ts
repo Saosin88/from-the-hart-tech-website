@@ -4,7 +4,7 @@ export default defineNuxtConfig({
     name: 'My frontend sandbox to play with tech',
   },
 
-  compatibilityDate: '2025-10-21',
+  compatibilityDate: '2026-04-01',
 
   devtools: { enabled: true },
 
@@ -26,7 +26,7 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      fromTheHartAPIBaseUrl: process.env.FROM_THE_HART_API_BASE_URL || 'https://api.fromthehart.tech',
+      fromTheHartAPIBaseUrl: 'https://api.fromthehart.tech',
     },
   },
   turnstile: {
@@ -74,27 +74,12 @@ export default defineNuxtConfig({
         },
       },
     },
-    preview: {
-      api: 'https://api.nuxt.studio',
-    },
   },
 
   icon: {
     clientBundle: {
       icons: ['lucide:align-justify', 'lucide:x', 'lucide:sun', 'lucide:moon'],
       scan: true,
-    },
-  },
-
-  image: {
-    screens: {
-      xs: 320,
-      sm: 640,
-      md: 768,
-      lg: 1024,
-      xl: 1280,
-      xxl: 1536,
-      '2xl': 1536,
     },
   },
 
