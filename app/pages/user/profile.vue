@@ -9,7 +9,7 @@
       <UCard class="max-w-3xl mx-auto">
         <div class="p-6 break-words">
           <div class="flex items-center space-x-4 mb-6 min-w-0">
-            <UAvatar icon="i-heroicons-user-circle" color="primary" variant="solid" size="xl" :alt="userEmail" class="h-16 w-16" />
+            <UAvatar icon="lucide:circle-user" color="primary" variant="solid" size="xl" :alt="userEmail" class="h-16 w-16" />
             <div class="min-w-0">
               <h2 class="text-2xl font-bold text-center sm:text-left break-all">Welcome, {{ userEmail }}!</h2>
               <p class="text-sm text-neutral-500 dark:text-neutral-400">Your profile dashboard</p>

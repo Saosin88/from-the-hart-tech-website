@@ -8,6 +8,16 @@ export default defineNuxtConfig({
 
   devtools: { enabled: true },
 
+  vite: {
+    optimizeDeps: {
+      include: [
+        '@vue/devtools-core',
+        '@vue/devtools-kit',
+        'jwt-decode',
+      ],
+    },
+  },
+
   modules: ['@nuxtjs/sitemap', '@nuxt/content', '@nuxt/ui', '@nuxt/image', '@nuxtjs/turnstile'],
 
   runtimeConfig: {
