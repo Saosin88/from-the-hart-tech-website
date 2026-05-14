@@ -19,7 +19,6 @@
     title: 'Personal Projects - From The Hart Tech',
     description: 'Explore my collection of personal software development projects, including GitHub repositories, web applications, and technical experiments.',
     keywords: 'personal projects, GitHub repositories, open source, Vue.js, Nuxt, AWS, Java, TypeScript, solutions architecture',
-    robots: 'index, follow',
     author: 'Sheldon Hart',
 
     ogTitle: 'Personal Coding Projects | Sheldon Hart',

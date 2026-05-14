@@ -33,7 +33,6 @@
     title: 'From The Hart Tech',
     description: 'Solutions architect and developer sharing insights on architecture, design and development',
     keywords: 'solutions architect, software development, Java, AWS, microservices, enterprise architecture',
-    robots: 'index, follow',
 
     ogTitle: 'From The Hart Tech - Solutions Architecture & Development',
     ogDescription: 'Solutions architect and developer exploring enterprise architecture, cloud solutions, and modern development practices',

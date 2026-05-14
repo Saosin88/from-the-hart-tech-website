@@ -80,7 +80,6 @@
     title: 'About Sheldon Hart - From The Hart Tech',
     description: 'Professional profile of Sheldon Hart, Solutions Architect with 14+ years of experience in architecture, design, and development.',
     keywords: 'Sheldon Hart, solutions architect, enterprise architecture, microservices, AWS, Java, domain-driven design, banking technology, cloud architecture',
-    robots: 'index, follow',
     author: 'Sheldon Hart',
 
     ogTitle: 'About Sheldon Hart | Solutions Architect',

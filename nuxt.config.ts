@@ -2,6 +2,7 @@ export default defineNuxtConfig({
   site: {
     url: 'https://www.fromthehart.tech',
     name: 'My frontend sandbox to play with tech',
+    env: process.env.NUXT_SITE_ENV || 'dev',
   },
 
   compatibilityDate: '2026-04-01',
@@ -18,7 +19,7 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['@nuxtjs/sitemap', '@nuxt/content', '@nuxt/ui', '@nuxt/image', '@nuxtjs/turnstile'],
+  modules: ['@nuxtjs/robots', '@nuxtjs/sitemap', '@nuxt/content', '@nuxt/ui', '@nuxt/image', '@nuxtjs/turnstile'],
 
   sitemap: {
     zeroRuntime: true,
@@ -51,10 +52,14 @@ export default defineNuxtConfig({
     },
     '/user/**': {
       prerender: false,
+      robots: false,
     },
     '/storage/**': {
       prerender: false,
+      robots: false,
     },
+    '/auth/verify-email': { robots: false },
+    '/auth/email-verification-required': { robots: false },
   },
 
   css: ['~/assets/css/main.css'],

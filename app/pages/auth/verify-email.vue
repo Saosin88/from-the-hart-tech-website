@@ -69,7 +69,6 @@
   useSeoMeta({
     title: 'Email Verification - From The Hart Tech',
     description: 'Verify your email address to complete your account setup.',
-    robots: 'noindex, nofollow',
     author: 'Sheldon Hart',
   })
 </script>

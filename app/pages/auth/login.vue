@@ -175,7 +175,6 @@
   useSeoMeta({
     title: 'Login - From The Hart Tech',
     description: 'Sign in to your From The Hart account.',
-    robots: 'noindex, nofollow',
     author: 'Sheldon Hart',
   })
 </script>

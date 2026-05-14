@@ -228,7 +228,6 @@
   useSeoMeta({
     title: 'Register - From The Hart Tech',
     description: 'Create a new From The Hart account.',
-    robots: 'noindex, nofollow',
     author: 'Sheldon Hart',
   })
 </script>

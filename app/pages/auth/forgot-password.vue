@@ -137,7 +137,6 @@
   useSeoMeta({
     title: 'Forgot Password - From The Hart Tech',
     description: 'Request a password reset link for your account.',
-    robots: 'noindex, nofollow',
     author: 'Sheldon Hart',
   })
 </script>

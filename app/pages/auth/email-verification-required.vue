@@ -63,7 +63,6 @@
   useSeoMeta({
     title: 'Email Verification Required - From The Hart Tech',
     description: 'Please verify your email address to continue using your account.',
-    robots: 'noindex, nofollow',
     author: 'Sheldon Hart',
   })
 </script>

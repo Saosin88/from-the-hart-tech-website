@@ -31,7 +31,6 @@
     title: 'From The Hart Tech',
     description: 'A website to play with technologies and share my experiences.',
     keywords: 'Sheldon Hart, From The Hart, blog, technology, architecture, development, sandbox',
-    robots: 'index, follow',
     author: 'Sheldon Hart',
 
     ogTitle: 'From The Hart',
