@@ -1,6 +1,11 @@
 # From The Hart Tech Website
 
-> Nuxt 3 static SPA on S3 + CloudFront. See [master AGENTS.md](../AGENTS.md) for shared principles.
+> **Hierarchy:** Service-specific rules for the website. Extends [master AGENTS.md](../AGENTS.md).
+> Rules here take precedence over both master and personal AGENTS.md.
+> **Stack:** Nuxt 3 + Vue 3 + S3/CloudFront. When reading the master AGENTS.md, Rust/TS/Terraform sections apply to other services.
+>
+> Nuxt 3 static SPA on S3 + CloudFront.
+> Domain glossary: [CONTEXT.md](./CONTEXT.md).
 
 ## Tech Stack
 
@@ -76,4 +81,9 @@ image: "/assets/blog/image.jpg"
 - Composables in `composables/` and components in `components/` are **auto-imported** — no manual imports
 - Use `useSeoMeta()` in `app.vue` for site-wide SEO
 - API calls go through `useAuthAPI()`, `useProjectsAPI()`, etc. composables
-- `runtimeConfig.public` for env vars exposed to client (prefixed `NUXT_PUBLIC_`)
+
+## Boundaries
+
+- ✅ **Always:** Run `npm run generate` to verify static build before deploying. Use `<script setup lang="ts">` for all components. Co-locate composables in `composables/`.
+- ⚠️ **Ask first:** Adding new dependencies, changing the page routing structure, modifying auth flow.
+- 🚫 **Never:** Commit `.env` files. Hard-code API URLs (use `runtimeConfig.public`). Make direct fetch calls instead of using API composables.
