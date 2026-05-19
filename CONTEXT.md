@@ -119,7 +119,4 @@ The mechanism that intercepts navigation to protected pages for **Anonymous** vi
 
 ## Flagged Ambiguities
 
-- **"user" in code vs. Principal in glossary:** The codebase uses "user" terminology but the canonical domain term is **Principal**. → See [TODO.md](../TODO.md#30-website--rename-user-to-principal-throughout).
-- **"accessToken" in code vs. ID Token in glossary:** Code uses `accessToken` but the canonical domain term is **ID Token**. → See [TODO.md](../TODO.md#31-website--rename-accesstoken-to-idtoken-throughout).
-- **"Projects" vs. Repository/Work Project:** The `/projects` page and About page's "Projects" section use the same word for different domain concepts (**Repository** vs. **Work Project**). → See [TODO.md](../TODO.md#32-website--disambiguate-projects-repository-vs-work-project).
-- **/user/profile is a placeholder:** The page exists to verify auth flows end-to-end. It will become the **Identity** view once the **Identity** service is built. → See [TODO.md](../TODO.md#33-website--build-userprofile-into-identity-view).
+- **/user/profile is a placeholder:** The page exists to verify auth flows end-to-end. It will become the **Identity** view once the **Identity** service is built. → See [TODO.md](../TODO.md#16-website--build-userprofile-into-identity-view).

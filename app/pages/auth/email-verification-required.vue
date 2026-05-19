@@ -45,8 +45,8 @@
     showSuccess.value = false
     resendError.value = null
     try {
-      const accessToken = useAuthController().getAccessToken() || ''
-      const result = await resendVerificationEmail(accessToken)
+      const idToken = useAuthController().getIdToken() || ''
+      const result = await resendVerificationEmail(idToken)
       if (result.success) {
         showSuccess.value = true
       } else {

@@ -1,4 +1,4 @@
-import type { GitHubRepo, HealthCheckResponse, ProjectsResult } from '~/app/types/projects'
+import type { Repository, HealthCheckResponse, ProjectsResult } from '~/app/types/projects'
 
 export function useProjectsAPI() {
   const config = useRuntimeConfig()
@@ -37,12 +37,12 @@ export function useProjectsAPI() {
     return fetchAPI<HealthCheckResponse>('projects/health')
   }
 
-  async function getGitHubRepos(): Promise<ProjectsResult<GitHubRepo[]>> {
-    return fetchAPI<GitHubRepo[]>('projects/github/Saosin88')
+  async function getRepositories(): Promise<ProjectsResult<Repository[]>> {
+    return fetchAPI<Repository[]>('projects/github/Saosin88')
   }
 
   return {
     healthCheck,
-    getGitHubRepos,
+    getRepositories,
   }
 }

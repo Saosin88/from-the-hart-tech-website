@@ -35,7 +35,7 @@
 <script setup lang="ts">
   const route = useRoute()
 
-  const userID = ref<string>('')
+  const principalID = ref<string>('')
   const items = ref<any[]>([])
   const nextCursor = ref<string | null>(null)
   const loading = ref(true)
@@ -100,10 +100,10 @@
     const path = cleanSubPath ? `${cleanSubPath}/${item.name}` : item.name
 
     if (item.is_folder) {
-      navigateTo(`/storage/${userID.value}/${path}/`)
+      navigateTo(`/storage/${principalID.value}/${path}/`)
     } else {
       scrollPosition.value = window.scrollY
-      currentFilePath.value = `storage/${userID.value}/${path}`
+      currentFilePath.value = `storage/${principalID.value}/${path}`
       showFileViewer.value = true
     }
   }
@@ -120,17 +120,17 @@
   }
 
   onMounted(() => {
-    const userId = useAuthController().getUserID()
-    if (!userId) {
+    const principalId = useAuthController().getPrincipalID()
+    if (!principalId) {
       navigateTo('/auth/login')
       return
     }
 
-    userID.value = userId
+    principalID.value = principalId
 
     const pathArray = route.params.path as string[]
-    if (pathArray && pathArray.length > 0 && pathArray[0] !== userId) {
-      navigateTo(`/storage/${userId}/`)
+    if (pathArray && pathArray.length > 0 && pathArray[0] !== principalId) {
+      navigateTo(`/storage/${principalId}/`)
       return
     }
 

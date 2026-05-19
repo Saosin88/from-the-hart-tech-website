@@ -1,4 +1,4 @@
-import type { GitHubRepo, HealthCheckResponse, ProjectsResult } from '~/app/types/projects'
+import type { Repository, HealthCheckResponse, ProjectsResult } from '~/app/types/projects'
 
 export function useProjectsController() {
   const api = useProjectsAPI()
@@ -7,12 +7,12 @@ export function useProjectsController() {
     return api.healthCheck()
   }
 
-  async function getGitHubRepos(): Promise<ProjectsResult<GitHubRepo[]>> {
-    return api.getGitHubRepos()
+  async function getRepositories(): Promise<ProjectsResult<Repository[]>> {
+    return api.getRepositories()
   }
 
   return {
     healthCheck,
-    getGitHubRepos,
+    getRepositories,
   }
 }

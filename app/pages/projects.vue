@@ -9,7 +9,7 @@
         </p>
       </div>
 
-      <ProjectsGithubList />
+      <RepositoryList />
     </div>
   </section>
 </template>

@@ -93,7 +93,7 @@
 
   function updateAuthStatus() {
     if (import.meta.client) {
-      isAuthenticated.value = authController.hasAccessToken()
+      isAuthenticated.value = authController.hasIdToken()
     }
   }
 

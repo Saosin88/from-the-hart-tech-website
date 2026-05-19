@@ -7,8 +7,8 @@ export default defineNuxtRouteMiddleware(async to => {
   if (!requiresAuth) return
 
   const authController = useAuthController()
-  const hasToken = authController.hasAccessToken()
-  const isTokenValid = authController.isAccessTokenValid()
+  const hasToken = authController.hasIdToken()
+  const isTokenValid = authController.isIdTokenValid()
 
   if (!hasToken) {
     return navigateTo({

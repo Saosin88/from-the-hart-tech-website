@@ -1,6 +1,6 @@
 import type { Result } from './common'
 
-export interface GitHubRepo {
+export interface Repository {
   id: number
   name: string
   description: string | null

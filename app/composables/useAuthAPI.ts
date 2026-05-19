@@ -90,10 +90,10 @@ export function useAuthAPI() {
     })
   }
 
-  async function resendVerificationEmail(accessToken: string): Promise<AuthResult<ResendVerificationResponse>> {
+  async function resendVerificationEmail(idToken: string): Promise<AuthResult<ResendVerificationResponse>> {
     return fetchAPI<ResendVerificationResponse>('auth/resend-verification', {
       headers: {
-        ...(accessToken && { Authorization: `Bearer ${accessToken}` }),
+        ...(idToken && { Authorization: `Bearer ${idToken}` }),
       },
     })
   }

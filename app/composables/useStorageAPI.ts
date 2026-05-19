@@ -10,12 +10,12 @@ export function useStorageAPI() {
     options: { credentials?: RequestCredentials } = {}
   ): Promise<Result<T>> {
     try {
-      const accessToken = authController.getAccessToken()
+      const idToken = authController.getIdToken()
 
       const response = await fetch(`${baseUrl}/${path}`, {
         method: 'GET',
         headers: {
-          ...(accessToken && { Authorization: `Bearer ${accessToken}` }),
+          ...(idToken && { Authorization: `Bearer ${idToken}` }),
         },
         ...options,
       })

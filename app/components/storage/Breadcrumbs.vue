@@ -2,7 +2,7 @@
   <nav class="mb-6">
     <ol class="flex items-center space-x-2 text-sm">
       <li>
-        <ULink :to="`/storage/${userID}/`" class="text-primary hover:underline flex items-center">
+        <ULink :to="`/storage/${principalID}/`" class="text-primary hover:underline flex items-center">
           <UIcon name="lucide:hard-drive" class="w-4 h-4 mr-1" />
           My Storage
         </ULink>
@@ -32,7 +32,7 @@
 
   const props = defineProps<Props>()
 
-  const userID = computed(() => {
+  const principalID = computed(() => {
     const pathArray = Array.isArray(props.routeParams) ? props.routeParams : [props.routeParams]
     return pathArray && pathArray.length > 0 ? pathArray[0] : ''
   })

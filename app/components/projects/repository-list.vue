@@ -102,9 +102,9 @@
 </template>
 
 <script setup lang="ts">
-  import type { GitHubRepo } from '~/app/types/projects'
+  import type { Repository } from '~/app/types/projects'
 
-  const repos = ref<GitHubRepo[]>([])
+  const repos = ref<Repository[]>([])
   const error = ref<string | null>(null)
   const pending = ref(true)
   const { formatDateInAgoTerms, getLanguageColour } = useFormatters()
@@ -114,7 +114,7 @@
     error.value = null
 
     try {
-      const result = await useProjectsController().getGitHubRepos()
+      const result = await useProjectsController().getRepositories()
 
       if (result.success) {
         repos.value = [...result.data].sort((a, b) => b.stargazers_count - a.stargazers_count)

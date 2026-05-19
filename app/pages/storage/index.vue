@@ -3,11 +3,11 @@
 </template>
 
 <script setup lang="ts">
-  const userID = useAuthController().getUserID()
+  const principalID = useAuthController().getPrincipalID()
 
-  if (!userID) {
+  if (!principalID) {
     navigateTo('/auth/login')
   } else {
-    navigateTo(`/storage/${userID}/`)
+    navigateTo(`/storage/${principalID}/`)
   }
 </script>
