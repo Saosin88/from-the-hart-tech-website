@@ -1,7 +1,7 @@
 export default defineNuxtRouteMiddleware(async to => {
   if (import.meta.server) return
 
-  const authRequiredPaths = ['/user', '/storage']
+  const authRequiredPaths = ['/identity', '/user', '/storage']
   const requiresAuth = authRequiredPaths.some(path => to.path.startsWith(path))
 
   if (!requiresAuth) return

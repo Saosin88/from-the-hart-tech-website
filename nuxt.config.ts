@@ -25,6 +25,16 @@ export default defineNuxtConfig({
     zeroRuntime: true,
   },
 
+  // Workaround for Nuxt 4.4.x ENOTDIR bug (nuxt/nuxt#34547, nitrojs/nitro#4142).
+  // Dev payload cache uses fs-lite driver which can't handle nested route paths
+  // (e.g., /about creates a file, then /about/foo needs a directory → ENOTDIR).
+  // Switch to memory driver in dev. Fixed upstream in Nuxt v5.0.0 (PR #34569).
+  nitro: {
+    devStorage: {
+      'cache:nuxt:payload': { driver: 'memory' },
+    },
+  },
+
   runtimeConfig: {
     public: {
       fromTheHartAPIBaseUrl: 'https://api.fromthehart.tech',
@@ -49,6 +59,10 @@ export default defineNuxtConfig({
     },
     '/auth/**': {
       prerender: false,
+    },
+    '/identity/**': {
+      prerender: false,
+      robots: false,
     },
     '/user/**': {
       prerender: false,

@@ -15,35 +15,22 @@ export function useBlogUtils() {
   }
 
   async function fetchBlogPostsSummaries(limit = 0) {
-    const { data } = await useAsyncData<BlogPostSummary[]>('blog-posts-summary-list-limit-' + limit, () => {
-      const query = queryCollection('blog').where('path', '<>', '/blog').select('path', 'title', 'description', 'date', 'keywords', 'image').order('date', 'DESC')
+    const query = queryCollection('blog').where('path', '<>', '/blog').select('path', 'title', 'description', 'date', 'keywords', 'image').order('date', 'DESC')
 
-      if (limit > 0) {
-        query.limit(limit)
-      }
-
-      return query.all()
-    })
-
-    let posts: BlogPostSummary[] = []
-
-    if (data.value) {
-      posts = mapBlogPostSummary(data.value)
+    if (limit > 0) {
+      query.limit(limit)
     }
 
-    return posts
+    const items = await query.all() as BlogPostSummary[]
+    return mapBlogPostSummary(items)
   }
 
-  async function fetchBlogPost(path: string) {
-    const { data } = await useAsyncData<BlogPost>(path, () => queryCollection('blog').path(path).first())
-
-    let post = null
-    if (data.value) {
-      post = data.value
-      post.formattedDate = useFormatters().formatDate(post.date)
+  async function fetchBlogPost(path: string): Promise<BlogPost | null> {
+    const item = await queryCollection('blog').path(path).first() as BlogPost | null
+    if (item) {
+      item.formattedDate = useFormatters().formatDate(item.date)
     }
-
-    return post
+    return item
   }
 
   return {

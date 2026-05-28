@@ -1,5 +1,5 @@
 export function useFormatters() {
-  function formatDate(dateInput: Date): string {
+  function formatDate(dateInput: Date | string): string {
     if (!dateInput) return ''
 
     const date = typeof dateInput === 'string' ? new Date(dateInput) : dateInput

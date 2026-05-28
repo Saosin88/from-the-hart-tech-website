@@ -141,7 +141,7 @@
       {
         label: 'Profile',
         icon: 'lucide:user',
-        to: '/user/profile',
+        to: '/identity',
         onSelect: closeMenu,
       },
       {

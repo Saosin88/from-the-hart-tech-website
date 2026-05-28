@@ -2,7 +2,7 @@ export interface BlogPost {
   path: string
   title: string
   description: string
-  date: Date
+  date: string
   formattedDate?: string
   keywords: string
   image: string
@@ -26,7 +26,7 @@ export interface BlogPostSummary {
   path: string
   title: string
   description: string
-  date: Date
+  date: string
   keywords: string
   image: string
   formattedDescription?: string

@@ -54,12 +54,12 @@
     }
 
     try {
-      const { success, error } = await useAuthController().verifyEmail(token.value)
+      const result = await useAuthController().verifyEmail(token.value)
 
-      if (success) {
+      if (result.success) {
         isVerified.value = true
       } else {
-        errorMessage.value = error
+        errorMessage.value = result.error
       }
     } finally {
       isLoading.value = false
